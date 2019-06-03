@@ -10,12 +10,12 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 
-gem "algoliasearch-rails"
+# gem "algoliasearch-rails"
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'font-awesome-sass', '~> 5.6.1'
-gem 'geocoder'
+# gem 'geocoder'
 gem 'pundit'
 gem 'sassc-rails'
 gem 'simple_form'
