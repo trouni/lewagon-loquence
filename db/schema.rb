@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_063149) do
+ActiveRecord::Schema.define(version: 2019_06_03_080537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kpis", force: :cascade do |t|
+    t.text "data_type"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +42,26 @@ ActiveRecord::Schema.define(version: 2019_06_03_063149) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "widget_kpis", force: :cascade do |t|
+    t.text "display_type"
+    t.bigint "kpi_id"
+    t.bigint "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kpi_id"], name: "index_widget_kpis_on_kpi_id"
+    t.index ["widget_id"], name: "index_widget_kpis_on_widget_id"
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_widgets_on_report_id"
+  end
+
+  add_foreign_key "widget_kpis", "kpis"
+  add_foreign_key "widget_kpis", "widgets"
+  add_foreign_key "widgets", "reports"
 end

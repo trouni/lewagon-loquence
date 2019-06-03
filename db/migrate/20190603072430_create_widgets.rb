@@ -3,7 +3,7 @@ class CreateWidgets < ActiveRecord::Migration[5.2]
     create_table :widgets do |t|
       t.string :name
       t.text :description
-      t.references :report_id, foreign_key: true
+      t.references :report, foreign_key: true
 
       t.timestamps
     end
