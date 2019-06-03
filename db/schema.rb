@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 2019_06_03_081842) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "kpis", force: :cascade do |t|
+    t.text "data_type"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "buyers", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -55,6 +63,15 @@ ActiveRecord::Schema.define(version: 2019_06_03_081842) do
     t.integer "sku"
     t.string "product_type"
     t.string "product_info"
+    
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,4 +96,28 @@ ActiveRecord::Schema.define(version: 2019_06_03_081842) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "buyers"
+
+  create_table "widget_kpis", force: :cascade do |t|
+    t.text "display_type"
+    t.bigint "kpi_id"
+    t.bigint "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kpi_id"], name: "index_widget_kpis_on_kpi_id"
+    t.index ["widget_id"], name: "index_widget_kpis_on_widget_id"
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_widgets_on_report_id"
+  end
+
+  add_foreign_key "widget_kpis", "kpis"
+  add_foreign_key "widget_kpis", "widgets"
+  add_foreign_key "widgets", "reports"
+
 end
