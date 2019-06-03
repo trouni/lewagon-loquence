@@ -1,3 +1,3 @@
-class Kpi < ApplicationRecord
+class KPI < ApplicationRecord
   has_many :widget_kpis
 end
