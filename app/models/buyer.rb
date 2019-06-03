@@ -1,2 +1,0 @@
-class Buyer < ApplicationRecord
-end
