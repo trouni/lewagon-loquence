@@ -10,7 +10,7 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 
-# gem "algoliasearch-rails"
+gem "algoliasearch-rails"
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'cloudinary'
