@@ -1,4 +1,4 @@
-class CreateWidgetKPIs < ActiveRecord::Migration[5.2]
+class CreateWidgetKpis < ActiveRecord::Migration[5.2]
   def change
     create_table :widget_kpis do |t|
       t.text :display_type
