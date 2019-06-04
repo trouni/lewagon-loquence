@@ -2,6 +2,9 @@ import "bootstrap";
 
 import "controllers"
 
+require("chartkick")
+require("chart.js")
+
 // Chartkick
 //= require chartkick
 //= require Chart.bundle
