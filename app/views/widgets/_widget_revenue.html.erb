@@ -1,0 +1,3 @@
+<div class="widget">
+<h5 class = "widget_revenue"><%= column_chart Order.group_by_day_of_week(:created_at, format: "%a").count %></h5>
+</div>
