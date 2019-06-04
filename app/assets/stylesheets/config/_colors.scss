@@ -1,4 +1,13 @@
 // Define variables for your color scheme
+$prussianblue: #086788;
+$prussianblue25: #08678840;
+$prussianblue50: #086788CC;
+$darkblue: #1B4353;
+$darkblue25: #1B435340;
+$darkblue50: #1B4353CC;
+$skyblue: #DBE9EE;
+$skyblue25: #DBE9EE40;
+$skyblue50: #DBE9EECC;
 
 // For example:
 $red: #FD1015;
@@ -8,3 +17,8 @@ $orange: #E67E22;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
+
+
+
+$accent: $prussianblue;
+$secondary: $skyblue;
