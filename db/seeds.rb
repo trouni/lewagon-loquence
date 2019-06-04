@@ -60,3 +60,16 @@ amazon_order_items.each do |order_item|
 end
 puts ""
 
+puts "creating reports..."
+
+    Report.create!(
+      name: Daily sales
+      description: Monitoring daily sales
+    )
+
+    Report.create!(
+      name: Monthly sales
+      description: Monitoring monthly sales
+    )
+
+
