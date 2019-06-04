@@ -122,3 +122,5 @@ Chartkick.options = {
     maskColor: 'rgba(255,255,255,0.3)'
   }
 }
+
+Chartkick.options[:content_for] = :charts_js
