@@ -1,14 +1,6 @@
-import "bootstrap";
-
-import "controllers"
-<<<<<<< HEAD
-
+// Chartkick
 require("chartkick")
 require("chart.js")
-
-// Chartkick
-//= require chartkick
-//= require Chart.bundle
 
 // Highcharts
 //= require highcharts
@@ -26,5 +18,4 @@ require("chart.js")
 //= require highcharts/modules/heatmap
 //= require highcharts/modules/no-data-to-display
 //= require highcharts/modules/offline-exporting
-=======
->>>>>>> master
+console.log("chartkick loaded")
