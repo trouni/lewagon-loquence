@@ -23,6 +23,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'chartkick'
 gem 'highcharts-rails'
+gem 'groupdate'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
