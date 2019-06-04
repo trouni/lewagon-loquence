@@ -1,23 +1,21 @@
 require 'yaml'
 
-puts "Destroying orders..."
-Order.all.destroy_all
 puts "Destroying order items..."
 OrderItem.all.destroy_all
+puts "Destroying orders..."
+Order.all.destroy_all
 puts "Destroying products..."
 Product.all.destroy_all
+puts "Destroying buyers..."
+Buyer.all.destroy_all
 
 puts "Loading amazon_orders.yml..."
-<<<<<<< HEAD
-amazon_orders = YAML.load(File.open('./db/amazon_orders.yml'))
-=======
-amazon_orders = YAML.load(File.open('./db/seed_data/amazon_orders.yml'))
->>>>>>> master
+amazon_orders = YAML.load(File.open('db/seed_data/amazon_orders.yml'))
 
 puts "Creating buyers and orders..."
 amazon_orders.each do |order|
   if order["OrderStatus"] != "Canceled" && order["OrderStatus"] != "Pending"
-    buyer = Buyer.create!(email: order["BuyerEmail"])
+    buyer = Buyer.find_by(email: order["BuyerEmail"]) || Buyer.create!(email: order["BuyerEmail"])
 
     Order.create!(
       buyer: buyer,
@@ -37,7 +35,7 @@ end
 puts ""
 
 puts "Loading amazon_order_items.yml..."
-amazon_order_items = YAML.load(File.open('./db/seed_data/amazon_order_items.yml'))
+amazon_order_items = YAML.load(File.open('db/seed_data/amazon_order_items.yml'))
 
 puts "Creating products and order items..."
 amazon_order_items.each do |order_item|

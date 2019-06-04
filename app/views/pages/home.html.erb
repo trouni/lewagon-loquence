@@ -1,37 +1,37 @@
 <div class="container ctn-widgets pt-5">
   <div class="row widget-row">
     <div class="ctn-widget col-xl-6">
-      <%= render 'widgets/widget_revenuep' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "column_chart" } %>
     </div>
     <div class="ctn-widget col-xl-3">
-      <%= render 'widgets/widget_average_perproduct' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers"} %>
     </div>
     <div class="ctn-widget col-xl-3">
-      <%= render 'widgets/widget_average_s' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers"} %>
     </div>
   </div>
   <div class="row widget-row">
     <div class="ctn-widget col-lg-12">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
   </div>
   <div class="row widget-row">
     <div class="ctn-widget col-xl-4">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
     <div class="ctn-widget col-xl-4">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
     <div class="ctn-widget col-xl-4">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
   </div>
   <div class="row widget-row">
     <div class="ctn-widget col-lg-6">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
     <div class="ctn-widget col-lg-6">
-      <%= render 'widgets/widget' %>
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
     </div>
   </div>
 </div>

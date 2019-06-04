@@ -18,4 +18,3 @@ require("chart.js")
 //= require highcharts/modules/heatmap
 //= require highcharts/modules/no-data-to-display
 //= require highcharts/modules/offline-exporting
-console.log("chartkick loaded")
