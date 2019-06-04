@@ -1,12 +1,65 @@
-.navbar-lewagon {
+.navbar-loquence {
+  overflow: hidden;
+  padding: 24px;
   justify-content: space-between;
-  background: white;
+  align-items: start;
+  // background: rgba(255,255,255,0.5);
+  height: 100vh;
+  width: 240px;
+  flex-direction: column;
+  transition: 0.3s opacity ease-out, 0.3s width ease-out;
+  .menu-item {
+    align-items: center;
+    color: $secondary;
+    justify-content: space-between;
+    margin: 2em 0;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .menu-item i {
+    font-size: 24px;
+  }
+  .menu-item h4 {
+    width: 200px;
+    margin-left: 2em;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 3px;
+  }
+  h4.avatar-name {
+    margin: 0 0 0 1em;
+    width: 120px;
+  }
+  .expand-menu {
+    text-align: center;
+    width: 100%;
+  }
+  .expand-menu i {
+    transition: 0.3s opacity ease-in;
+    transform: scale(-1.2);
+    opacity: 0;
+  }
+  &:hover .expand-menu i {
+    opacity: 1;
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-loquence.minimized {
+  width: 70px;
+  .menu-item h4 {
+    transition: 0.3s opacity ease-out;
+    opacity: 0;
+  }
+  .menu-item i {
+    margin-right: 0;
+  }
+  .menu-item a {
+    justify-content: center;
+  }
+  .expand-menu i {
+    transform: scale(1.2);
+  }
 }
