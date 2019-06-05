@@ -3,10 +3,14 @@
 <% display_type = nil unless display_type %>
 
 <div class="widget">
-<h5><%= title %></h5>
+  <div class="widget-header d-flex justify-content-between">
+    <h5><%= title %></h5>
+    <i class="fas fa-ellipsis-v"></i>
+  </div>
 
-<% if kpi %>
-  <%= render kpi, locals: { display_type: display_type } %>
-<% end %>
-
+  <div class="ctn-kpi h-100 d-flex align-items-center">
+    <% if kpi %>
+      <%= render kpi, locals: { display_type: display_type } %>
+    <% end %>
+  </div>
 </div>
