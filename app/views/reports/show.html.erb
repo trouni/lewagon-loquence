@@ -1,12 +1,7 @@
-<div class="ctn-widgets grid-layout">
-    <div class="widget grid-item grid-item-1 colspan-6 rowspan-4">item 1</div>
-    <div class="widget grid-item grid-item-2 colspan-6 rowspan-2 rowspan-2">item 2</div>
-    <div class="widget grid-item grid-item-3">item 3</div>
-    <div class="widget grid-item grid-item-4">item 4</div>
-    <div class="widget grid-item grid-item-5">item 5</div>
-    <div class="widget grid-item grid-item-6">item 6</div>
-    <div class="widget grid-item grid-item-7">item 7</div>
-    <div class="widget grid-item grid-item-8">item 8</div>
-    <div class="widget grid-item grid-item-9">item 9</div>
-    <div class="widget grid-item grid-item-10">item 10</div>
+<div class="ctn-widgets grid-layout" data-controller="chartkick">
+  <% @report.widgets.sort_by {|widget| widget.grid_item_position }.each do |widget| %>
+    <div class="grid-item colspan-<%= widget.colspan %> rowspan-<%= widget.rowspan %>" data-grid-item-position="<%= widget.grid_item_position %>">
+      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
+    </div>
+  <% end %>
 </div>

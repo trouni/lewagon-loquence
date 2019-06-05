@@ -1,5 +1,3 @@
-
-<h5>Average per product title - X first products</h5>
 <%= data = OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |key, value| -value }.first(5) %>
 
 <% case locals[:display_type] %>
