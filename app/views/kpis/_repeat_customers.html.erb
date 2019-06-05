@@ -1,6 +1,6 @@
 <% data = [
   ["New customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[false].count],
-  ["Returning customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[true].count]
+  ["Returning customers", (Order.group(:buyer_id).count.group_by {|k, v| v > 1000}[true] || []).count]
 ] %>
 
 <% case locals[:display_type] %>

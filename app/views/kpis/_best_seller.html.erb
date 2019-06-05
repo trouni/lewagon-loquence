@@ -1,0 +1,5 @@
+<%  @total_list = OrderItem.group(:product_id).count%>
+<% @total_list = @total_list.sort_by { |k, v| -v } %>
+<% @total_list.first(5) %>
+<%# data = ["Best sellers": @total_list.first(5)] %>
+<%= bar_chart @total_list.first(5) %>
