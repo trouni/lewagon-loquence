@@ -1,1 +1,10 @@
-<%= line_chart OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |key, value| -value }.first(5) %>
+<%= data = OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |key, value| -value }.first(5) %>
+
+<% case locals[:display_type] %>
+<% when "pie_chart" %>
+  <%= pie_chart data %>
+<% when "column_chart" %>
+  <%= column_chart data %>
+<% else %>
+  <%= pie_chart data %>
+<% end %>
