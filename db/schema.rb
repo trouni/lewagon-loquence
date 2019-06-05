@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_081109) do
+ActiveRecord::Schema.define(version: 2019_06_05_014556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,9 @@ ActiveRecord::Schema.define(version: 2019_06_04_081109) do
     t.bigint "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "grid_item_position"
+    t.integer "rowspan"
+    t.integer "colspan"
     t.string "display_type"
     t.bigint "kpi_id"
     t.index ["kpi_id"], name: "index_widgets_on_kpi_id"
