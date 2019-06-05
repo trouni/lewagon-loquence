@@ -73,7 +73,7 @@ sales_widget =
     report: monthly_sales_report,
     name: 'Evolution of sales per week',
     display_type: 'line_chart',
-    kpi: Kpi.create!(
+    kpi: KPI.create!(
       partial_name: 'revenue_per_week'
       )
     )
@@ -83,7 +83,7 @@ customers_widget =
     report: monthly_sales_report,
     name: 'repeat customers',
     display_type: 'column_chart',
-    kpi:  Kpi.create!(
+    kpi:  KPI.create!(
         partial_name: 'repeat_customers'
       )
     )
@@ -99,7 +99,7 @@ quantity_widget =
     report: order_analysis_report,
     name: 'Average quantity per product',
     display_type: 'pie_chart',
-    kpi: Kpi.create!(
+    kpi: KPI.create!(
         partial_name: 'avg_qty_per_product'
       )
    )
@@ -109,7 +109,7 @@ amout_order_widget =
     report: order_analysis_report,
     name: 'Average amount per order',
     display_type: 'line_chart',
-    kpi: Kpi.create!(
+    kpi: KPI.create!(
       partial_name: 'avg_order_amount_and_items'
     )
   )
