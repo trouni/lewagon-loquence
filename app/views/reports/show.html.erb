@@ -1,7 +1,7 @@
 <div class="ctn-widgets grid-layout" data-controller="chartkick">
   <% @report.widgets.sort_by {|widget| widget.grid_item_position }.each do |widget| %>
     <div class="grid-item colspan-<%= widget.colspan %> rowspan-<%= widget.rowspan %>" data-grid-item-position="<%= widget.grid_item_position %>">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
+      <%= render partial: 'shared/widget', locals: { kpi: widget.kpi.partial_name, title: widget.name } %>
     </div>
   <% end %>
 </div>

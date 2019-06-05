@@ -25,6 +25,7 @@ gem 'webpacker'
 gem 'chartkick'
 gem 'highcharts-rails'
 gem 'groupdate'
+gem 'annotate'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
