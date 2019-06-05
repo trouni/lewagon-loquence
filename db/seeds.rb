@@ -8,7 +8,7 @@ puts "Destroying products..."
 Product.all.destroy_all
 
 puts "Loading amazon_orders.yml..."
-amazon_orders = YAML.load(File.open('./db/seed_data/amazon_orders.yml'))
+amazon_orders = YAML.load(File.open('db/seed_data/amazon_orders.yml'))
 
 puts "Creating buyers and orders..."
 amazon_orders.each do |order|
@@ -33,7 +33,7 @@ end
 puts ""
 
 puts "Loading amazon_order_items.yml..."
-amazon_order_items = YAML.load(File.open('./db/seed_data/amazon_order_items.yml'))
+amazon_order_items = YAML.load(File.open('db/seed_data/amazon_order_items.yml'))
 
 puts "Creating products and order items..."
 amazon_order_items.each do |order_item|
