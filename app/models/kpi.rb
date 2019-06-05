@@ -1,3 +1,4 @@
 class KPI < ApplicationRecord
-  has_many :widget_kpis
+  has_many :widgets
+  validates :partial_name, presence: true
 end
