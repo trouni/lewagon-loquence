@@ -6,11 +6,5 @@ export default class extends Controller {
   // static targets = [ "output" ]
 
   connect() {
-    console.log("controller chartkick")
-    window.Chartkick = Chartkick
-    Chartkick.addAdapter(Chart)
-    Chartkick.options = {
-      library: {animation: {easing: 'easeOutQuart', backgroundColor: 'rgba(200,0,0,1)'}},
-    }
   }
 }

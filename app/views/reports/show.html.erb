@@ -1,23 +1,7 @@
 <div class="ctn-widgets grid-layout" data-controller="chartkick">
-    <div class="grid-item colspan-4 rowspan-4" data-grid-item-position="1">
+  <% @report.widgets.sort_by {|widget| widget.grid_item_position }.each do |widget| %>
+    <div class="grid-item colspan-<%= widget.colspan %> rowspan-<%= widget.rowspan %>" data-grid-item-position="<%= widget.grid_item_position %>">
       <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
     </div>
-    <div class="grid-item colspan-4 rowspan-4" data-grid-item-position="2">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
-    </div>
-    <div class="grid-item colspan-4 rowspan-5" data-grid-item-position="3">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
-    </div>
-    <div class="grid-item colspan-5 rowspan-4" data-grid-item-position="4">
-      <%= render partial: 'shared/widget', locals: { kpi: "test", title: "Test", display_type: "pie_chart" } %>
-    </div>
-    <div class="grid-item colspan-3 rowspan-4" data-grid-item-position="5">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers", display_type: "pie_chart" } %>
-    </div>
-    <div class="grid-item colspan-8 rowspan-2" data-grid-item-position="6">
-      <%= render partial: 'shared/widget', locals: { kpi: "avg_order_amount_and_items", title: "Average cart", display_type: "pie_chart" } %>
-    </div>
-    <div class="grid-item colspan-4 rowspan-5" data-grid-item-position="7">
-      <%= render partial: 'shared/widget', locals: { kpi: "avg_order_amount_and_items", title: "Average cart", display_type: "pie_chart" } %>
-    </div>
+  <% end %>
 </div>
