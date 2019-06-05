@@ -1,10 +1,14 @@
-<div class="widget">
-  <div>
-  <h5>Average order amount</h5>
-  <%= "Y | #{Order.all.average("order_total_cents").round}" %>
-  </div>
-  <div>
-  <h5>Average number of items per order</h5>
-  <%= Order.all.average("items_total") %>
-  </div>
-</div>
+<% data = [
+  ["Average order amount", Order.all.average("order_total_cents").round],
+  ["Average number of items per order", rder.all.average("items_total")]
+] %>
+
+<% case locals[:display_type] %>
+<% when "pie_chart" %>
+  <%= pie_chart data %>
+<% when "column_chart" %>
+  <%= column_chart data %>
+<% else %>
+  <%= pie_chart data %>
+<% end %>
+                   

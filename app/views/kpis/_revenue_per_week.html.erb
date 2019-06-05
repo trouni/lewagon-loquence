@@ -1,5 +1,1 @@
-<div class="widget">
-<h5>Revenue - Timeframe</h5>
 <%= line_chart Order.group_by_week(:purchase_date).sum(:order_total_cents) %>
-</div>
-

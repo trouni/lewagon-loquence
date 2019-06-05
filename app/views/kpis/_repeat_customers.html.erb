@@ -1,12 +1,6 @@
 <% data = [
-  ["New customers", Order.group(:id, :buyer_id).count.group_by {|k, v| v > 1}[false].count],
-  ["Returning customers",
-    if Order.group(:id, :buyer_id).count.group_by {|k, v| v > 1}[true] == nil
-      0
-    else
-     Order.group(:id,:buyer_id).count.group_by {|k, v| v > 1}[true].count
-    end
-  ]
+  ["New customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[false].count],
+  ["Returning customers", (Order.group(:buyer_id).count.group_by {|k, v| v > 1000}[true] || []).count]
 ] %>
 
 <% case locals[:display_type] %>

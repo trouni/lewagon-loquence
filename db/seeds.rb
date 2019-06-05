@@ -60,3 +60,58 @@ amazon_order_items.each do |order_item|
 end
 puts ""
 
+puts "creating reports..."
+
+monthly_sales_report =
+  Report.create!(
+    name: 'Monthly sales',
+    description: 'Monitoring monthly sales',
+  )
+
+sales_widget =
+  Widget.create!(
+    report: monthly_sales_report,
+    name: 'Evolution of sales per week',
+    display_type: 'line_chart',
+    kpi: KPI.create!(
+      partial_name: 'revenue_per_week'
+      )
+    )
+
+customers_widget =
+  Widget.create!(
+    report: monthly_sales_report,
+    name: 'repeat customers',
+    display_type: 'column_chart',
+    kpi:  KPI.create!(
+        partial_name: 'repeat_customers'
+      )
+    )
+
+ order_analysis_report =
+  Report.create!(
+    name: 'Order analysis',
+    description: 'Analyze orders',
+  )
+
+quantity_widget =
+  Widget.create!(
+    report: order_analysis_report,
+    name: 'Average quantity per product',
+    display_type: 'pie_chart',
+    kpi: KPI.create!(
+        partial_name: 'avg_qty_per_product'
+      )
+   )
+
+amout_order_widget =
+  Widget.create!(
+    report: order_analysis_report,
+    name: 'Average amount per order',
+    display_type: 'line_chart',
+    kpi: KPI.create!(
+      partial_name: 'avg_order_amount_and_items'
+    )
+  )
+
+
