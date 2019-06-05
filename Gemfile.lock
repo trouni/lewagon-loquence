@@ -24,6 +24,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_median (0.2.2)
+      activerecord (>= 4.2)
     activejob (5.2.3)
       activesupport (= 5.2.3)
       globalid (>= 0.3.6)
@@ -101,6 +103,8 @@ GEM
       activesupport (>= 4.2)
     highcharts-rails (6.0.3)
       railties (>= 3.1)
+    hightop (0.2.0)
+      activerecord
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -239,6 +243,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   algoliasearch-rails
   autoprefixer-rails
   better_errors
@@ -253,6 +258,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.6.1)
   groupdate
   highcharts-rails
+  hightop
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
   pg (~> 0.21)
