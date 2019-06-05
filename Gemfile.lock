@@ -48,6 +48,9 @@ GEM
     algoliasearch-rails (1.22.0)
       algoliasearch (>= 1.17.0, < 2.0.0)
       json (>= 1.5.1)
+    annotate (2.7.5)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 13.0)
     arel (9.0.0)
     autoprefixer-rails (9.5.1.1)
       execjs
@@ -240,6 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   algoliasearch-rails
+  annotate
   autoprefixer-rails
   better_errors
   binding_of_caller
