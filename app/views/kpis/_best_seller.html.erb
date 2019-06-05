@@ -1,8 +1,31 @@
-<% top_number = 5 %>
+<%= form_tag root_path, method: :get do %>
+  <%= select_tag :time_type,
+    options_for_select(%w(days weeks months years), params[:time_type]),
+    # selected: params[:time_type],
+    {class: "form-control"}%>
+  <%= text_field_tag :time_ago,
+    params[:time_ago],
+    class: "form-control",
+    placeholder: "whitout restriction"%>
+  <%= text_field_tag :top_count,
+    params[:top_count],
+    class: "form-control",
+    value: OrderItem::DEFAULT_TOP_NUMBER%>
+    <%= submit_tag "apply" %>
+<% end %>
+<% time_type =  (params[:time_type] || "months").to_s%>
+<% time_ago =  (params[:time_ago] || 3).to_i%>
+<% top_number = (params[:top_count] || OrderItem::DEFAULT_TOP_NUMBER).to_i %>
 <% revenue_for_top_number = 0 %>
-<% best_sellers_list =  OrderItem.top(:product_id, top_number)%>
+
+<% if params[:time_ago] %>
+  <% best_sellers_list =  Order.joins(:order_items).where(purchase_date: time_ago.send(time_type).ago..Date.today).top(:product_id, top_number)%>
+<% else %>
+  <% best_sellers_list =  Order.joins(:order_items).top(:product_id, top_number)%>
+<% end %>
 <% best_sellers_list.each do|product| %>
-  <% revenue_for_top_number += OrderItem.where("product_id = #{product[0]}").sum("item_price_cents *quantity")%>
+  <% orders =OrderItem.where("product_id = #{product[0]}") %>
+  <% revenue_for_top_number += orders.sum("item_price_cents *quantity")%>
 <% end %>
 <h3><%= top_number %>
     top best sellers yield
@@ -12,4 +35,4 @@
   (<%= number_to_percentage(revenue_for_top_number.to_f / OrderItem.sum("item_price_cents *quantity") * 100, delimiter: '.', precision: 1)%>)
   of total revenue
 </h5>
-<%= bar_chart OrderItem.top(:product_id, top_number), discrete: true %>
+<%= bar_chart best_sellers_list, discrete: true %>
