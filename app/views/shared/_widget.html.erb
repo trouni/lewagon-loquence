@@ -3,10 +3,8 @@
 <% display_type = nil unless display_type %>
 
 <div class="widget">
-<h5><%= title %></h5>
-
-<% if kpi %>
-  <%= render kpi, locals: { display_type: display_type } %>
-<% end %>
-
+  <h5><%= title %></h5>
+  <% if kpi %>
+   <%= render kpi, locals: { display_type: display_type } %>
+  <% end %>
 </div>
