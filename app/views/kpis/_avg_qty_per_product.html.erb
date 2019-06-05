@@ -1,0 +1,4 @@
+<div class="widget">
+<h5>Average per product title - X first products</h5>
+<%= line_chart OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |key, value| -value }.first(5) %>
+</div>

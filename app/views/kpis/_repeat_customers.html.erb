@@ -1,1 +1,13 @@
-<%= line_chart [2,4,5,2,6,3] %>
+<% data = [
+  ["New customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[false].count],
+  ["Returning customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[true].count]
+] %>
+
+<% case locals[:display_type] %>
+<% when "pie_chart" %>
+  <%= pie_chart data %>
+<% when "column_chart" %>
+  <%= column_chart data %>
+<% else %>
+  <%= pie_chart data %>
+<% end %>
