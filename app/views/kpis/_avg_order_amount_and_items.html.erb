@@ -1,14 +1,5 @@
-<% data = [
-  ["Average order amount", Order.all.average("order_total_cents").round],
-  ["Average number of items per order", rder.all.average("items_total")]
-] %>
-
-<% case locals[:display_type] %>
-<% when "pie_chart" %>
-  <%= pie_chart data %>
-<% when "column_chart" %>
-  <%= column_chart data %>
+<% if widget.display_type %>
+  <%= send("#{widget.display_type} data[:chart_data]") %>
 <% else %>
-  <%= pie_chart data %>
+  <%= column_chart data[:chart_data] %>
 <% end %>
-                   

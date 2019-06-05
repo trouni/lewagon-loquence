@@ -1,13 +1,5 @@
-<% data = [
-  ["New customers", Order.group(:buyer_id).count.group_by {|k, v| v > 1}[false].count],
-  ["Returning customers", (Order.group(:buyer_id).count.group_by {|k, v| v > 1000}[true] || []).count]
-] %>
-
-<% case locals[:display_type] %>
-<% when "pie_chart" %>
-  <%= pie_chart data %>
-<% when "column_chart" %>
-  <%= column_chart data %>
+<% if widget.display_type %>
+  <%= send("#{widget.display_type} data[:chart_data]") %>
 <% else %>
-  <%= pie_chart data %>
+  <%= column_chart data[:chart_data] %>
 <% end %>

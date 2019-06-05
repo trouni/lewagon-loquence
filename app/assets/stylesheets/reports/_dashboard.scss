@@ -10,9 +10,18 @@ body {
       $prussianblue50 10%,
       $darkblue25
   );
-  height: 100vh;
 }
 
 a, a:hover {
   text-decoration: none;
+}
+
+.dashboard {
+  height: 100vh;
+  overflow: scroll;
+  .report-title {
+    color: $secondary;
+    margin-top: 24px;
+    font-size: 24px;
+  }
 }
