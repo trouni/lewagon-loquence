@@ -137,39 +137,54 @@ amout_order_widget =
 
 # grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end | itemname;
 SAMPLE_REPORT_LAYOUTS = {
-  "Random report #1": [
-    "1 / 1 / span 4 / span 4",
-    "1 / 5 / span 4 / span 4",
-    "1 / 9 / span 3 / span 4",
-    "4 / 9 / span 6 / span 4",
-    "5 / 6 / span 4 / span 3",
-    "5 / 1 / span 4 / span 5",
-    "9 / 1 / span 3 / span 8",
-  ],
-  "Random report #2": [
-    "1 / 1 / span 5 / span 4",
-    "1 / 5 / span 5 / span 4",
-    "1 / 9 / span 5 / span 4",
-    "6 / 1 / span 5 / span 12",
-  ],
-  "Customers": [
-    "1 / 1 / span 3 / span 4",
-    "1 / 5 / span 5 / span 8",
-    "4 / 1 / span 4 / span 4",
-    "6 / 5 / span 5 / span 8",
-    "8 / 1 / span 3 / span 4"
-  ]
+  "Random report #1": {
+    layout: [
+      "1 / 1 / span 4 / span 4",
+      "1 / 5 / span 4 / span 4",
+      "1 / 9 / span 3 / span 4",
+      "4 / 9 / span 6 / span 4",
+      "5 / 6 / span 4 / span 3",
+      "5 / 1 / span 4 / span 5",
+      "9 / 1 / span 3 / span 8"
+    ],
+    kpis: []
+  },
+  "Random report #2": {
+    layout: [
+      "1 / 1 / span 5 / span 4",
+      "1 / 5 / span 5 / span 4",
+      "1 / 9 / span 5 / span 4",
+      "6 / 1 / span 5 / span 12"
+    ],
+    kpis: []
+  },
+  "Customers": {
+    layout: [
+      "1 / 1 / span 3 / span 4",
+      "1 / 5 / span 5 / span 8",
+      "4 / 1 / span 4 / span 4",
+      "6 / 5 / span 5 / span 8",
+      "8 / 1 / span 3 / span 4"
+    ],
+    kpis: [
+      "unique_customers",
+      "new_customers_per_month",
+      "repeat_customers",
+      "customers_per_country",
+      "avg_customer_value"
+    ]
+  }
 }
 
-SAMPLE_REPORT_LAYOUTS.each do |title, layout|
+SAMPLE_REPORT_LAYOUTS.each do |title, widget|
   report =
     Report.create!(
       name: title,
       description: 'Description of #{title}',
     )
   print "#"
-  layout.each do |widget_layout|
-    kpi_name = KPI_NAMES.sample
+  widget[:layout].each_with_index do |widget_layout, index|
+    kpi_name = widget[:kpis][index] || KPI_NAMES.sample
     Widget.create!(
       report: report,
       name: kpi_name.gsub("_"," ").capitalize,

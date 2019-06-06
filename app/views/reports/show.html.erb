@@ -11,7 +11,7 @@
 
           <div class="ctn-kpi h-100 d-flex align-items-center">
             <% partial = "kpis/#{widget.kpi.query}" %>
-            <%= render partial: partial, locals: { widget: widget, data: KPI.send(widget.kpi.query) } %>
+            <%= render partial: partial, locals: { widget: widget } %>
           </div>
         </div>
       </div>

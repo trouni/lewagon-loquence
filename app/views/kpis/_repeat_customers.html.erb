@@ -1,5 +1,1 @@
-<% if widget.display_type %>
-  <%= send("#{widget.display_type} data[:chart_data]") %>
-<% else %>
-  <%= column_chart data[:chart_data] %>
-<% end %>
+<%= pie_chart KPI.send(widget.kpi.query) %>

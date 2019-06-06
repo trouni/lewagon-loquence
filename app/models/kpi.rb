@@ -17,67 +17,72 @@ class KPI < ApplicationRecord
 
   # REVENUE
   def self.revenue_per_week
-    {
-      chart_data:
-        Order.group_by_week(:purchase_date).sum(:order_total_cents)
-    }
+    Order.group_by_week(:purchase_date).sum("order_total_cents / 100")
+  end
+
+  def self.revenue_per_day
+    Order.group_by_day(:purchase_date).sum("order_total_cents / 100")
   end
 
   # ORDERS
 
   def self.avg_order_amount_and_items
-    {
-      chart_data: [
-        ["Average order amount", Order.all.average("order_total_cents").round],
-        ["Average number of items per order", Order.all.average("items_total")]
-      ]
-    }
+    [
+      ["Average order amount", Order.all.average("order_total_cents").round],
+      ["Average number of items per order", Order.all.average("items_total")]
+    ]
   end
 
   def self.avg_qty_per_product
-    {
-      chart_data:
-        OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |_k, v| -v }.first(5)
-    }
+    OrderItem.joins(:product).group("products.title").average("quantity").sort_by { |_k, v| -v }.first(5)
   end
 
-  def self.number_of_items_sold
-    {
-      total:
-        Order.joins(:order_items).sum(:quantity),
-      chart_data:
-        Order.joins(:order_items).group_by_month(:purchase_date).sum(:quantity)
-    }
+  def self.total_number_of_items_sold
+    Order.joins(:order_items).sum(:quantity)
+  end
+
+  def self.total_number_of_items_sold_per_month
+    Order.joins(:order_items).group_by_month(:purchase_date).sum(:quantity)
   end
 
   # PRODUCTS
 
   def self.best_seller
-    {
-      chart_data: ""
-    }
   end
 
   def self.slow_mover
-    {
-      chart_data: ""
-    }
   end
 
   def self.revenue_per_product
-    {
-      chart_data: ""
-    }
   end
 
   # BUYERS
 
+  def self.unique_customers
+  end
+
   def self.repeat_customers
-    {
-      chart_data: [
-        ["New customers", Order.group(:buyer_id).count.group_by { |_k, v| v > 1 }[false].count],
-        ["Returning customers", (Order.group(:buyer_id).count.group_by { |_k, v| v > 1 }[true] || []).count]
-      ]
-    }
+    [
+      ["New customers", Buyer.single_time_buyers],
+      ["Returning customers", Buyer.repeat_buyers]
+    ]
+  end
+
+  def self.repeat_customers_per_day
+    [
+      ["New customers", Buyer.single_time_buyers],
+      ["Returning customers", Buyer.repeat_buyers]
+    ]
+  end
+
+  def self.new_customers_per_month
+    Order.group_by_day(:purchase_date).count # test
+  end
+
+  def self.customers_per_country
+    Order.group(:shipping_address_country_code).count
+  end
+
+  def self.avg_customer_value
   end
 end
