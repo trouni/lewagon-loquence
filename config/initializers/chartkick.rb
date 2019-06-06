@@ -1,6 +1,6 @@
 Chartkick.options = {
-  height: "300px",
-  colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+  # height: "300px",
+  colors: ['#00D7C0', '#F6DD27', '#FE864E', '#DB1271', '#8A4BFF'],
   library: {
     animation: {
       duration: 1500,

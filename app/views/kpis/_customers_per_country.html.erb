@@ -1,3 +1,3 @@
-<%= javascript_include_tag "//www.google.com/jsapi" %>
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-<%= geo_chart KPI.send(widget.kpi.query) %>
+<%= geo_chart KPI.send(widget.kpi.query), library: { backgroundColor: { fill:'transparent' } } %>

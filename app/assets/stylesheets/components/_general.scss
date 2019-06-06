@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background:
+    black radial-gradient(
+      ellipse farthest-corner at top left,
+      $prussianblue50 10%,
+      $darkblue25
+  );
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, p {
+  color: $secondary;
+}
+
+h4, h5, h6 {
+  color: white;
+}
+
+.absolute-centering {
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

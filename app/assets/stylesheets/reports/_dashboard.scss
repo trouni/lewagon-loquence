@@ -1,29 +1,3 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  background:
-    black radial-gradient(
-      ellipse farthest-corner at top left,
-      $prussianblue50 10%,
-      $darkblue25
-  );
-}
-
-a, a:hover {
-  text-decoration: none;
-}
-
-h1, h2, h3, p {
-  color: $secondary;
-}
-
-h4, h5, h6 {
-  color: white;
-}
-
 .dashboard {
   width: 100%;
   height: 100vh;
