@@ -1,0 +1,34 @@
+<div class="text-center">
+  <h3 class="highlight-white">¥3,342,543</h3>
+  <p>so far this month</p>
+
+</div>
+<div class="chart position-relative my-3">
+  <%= pie_chart [['Revenue', 3342543], ['Remaining to goal', 4000000 - 3342543]],
+    colors: ['#00D7C0', '#0E6E63'],
+    library: {
+      borderColor: ['#00D7C0', '#128F80'],
+      donut: true,
+      legend: false,
+      cutoutPercentage: 70
+    }
+  %>
+  <div class="absolute-centering flex-column">
+    <h3 class="highlight text-center m-0"><%= ((3342543 / 4000000.0) * 100).round(1) %>%</h3>
+    <p>of monthly goal</p>
+    <small>¥4,000,000</small>
+  </div>
+</div>
+<div class="text-center mt-3">
+  <h5>Revenue growth</h5>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h3 class="highlight-white">+3.2%</h3>
+      <p>(previous month)</p>
+    </div>
+    <div>
+      <h3 class="highlight-white">+6.3%</h3>
+      <p>(same period last year)</p>
+    </div>
+  </div>
+</div>

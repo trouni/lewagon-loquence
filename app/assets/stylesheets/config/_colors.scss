@@ -9,6 +9,7 @@ $skyblue: #DBE9EE;
 $skyblue25: #DBE9EE40;
 $skyblue50: #DBE9EECC;
 
+
 // For example:
 $red: #FD1015;
 $blue: #167FFB;
@@ -18,7 +19,20 @@ $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
 
+// Chart colors:
 
+// $teal: get('colors.teal');
+// $yellow: get('colors.yellow');
+// $magenta: get('colors.magenta');
+// $orange: get('colors.orange');
+// $purple: get('colors.purple');
+
+$teal: #00D7C0;
+$yellow: #F6DD27;
+$magenta: #DB1271;
+$orange: #FE864E;
+$purple: #8A4BFF;
 
 $accent: $prussianblue;
 $secondary: $skyblue;
+$highlight: $teal;

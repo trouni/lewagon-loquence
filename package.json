@@ -2,15 +2,18 @@
   "name": "loquence",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.0.6",
+    "@rails/webpacker": "^4.0.7",
+    "animated-number-vue": "^0.1.5",
+    "animejs": "^3.0.1",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "chartkick": "^3.1.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
-    "stimulus": "^1.1.1"
+    "stimulus": "^1.1.1",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.5.1"
+    "webpack-dev-server": "^3.6.0"
   }
 }

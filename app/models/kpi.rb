@@ -26,6 +26,10 @@ class KPI < ApplicationRecord
 
   # ORDERS
 
+  def self.order_total
+    Order.all.count
+  end
+
   def self.avg_order_amount_and_items
     [
       ["Average order amount", Order.all.average("order_total_cents").round],
@@ -59,6 +63,15 @@ class KPI < ApplicationRecord
   # BUYERS
 
   def self.unique_customers
+    Order.distinct.count('buyer_id')
+  end
+
+  def self.average_purchase_frequency
+    order_total.to_f / unique_customers
+  end
+
+  def self.average_purchase_frequency
+    order_total.to_f / unique_customers
   end
 
   def self.repeat_customers
@@ -84,5 +97,9 @@ class KPI < ApplicationRecord
   end
 
   def self.avg_customer_value
+  end
+
+  def self.total_customers
+    Buyer.single_time_buyers + Buyer.repeat_buyers
   end
 end
