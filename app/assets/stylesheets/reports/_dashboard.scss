@@ -16,6 +16,14 @@ a, a:hover {
   text-decoration: none;
 }
 
+h1, h2, h3, p {
+  color: $secondary;
+}
+
+h4, h5, h6 {
+  color: white;
+}
+
 .dashboard {
   width: 100%;
   height: 100vh;
