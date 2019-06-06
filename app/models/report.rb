@@ -10,6 +10,7 @@
 #
 
 class Report < ApplicationRecord
-  has_many :widgets
+  has_many :widgets, dependent: :destroy
+  has_many :kpis, through: :widgets
   validates :name, presence: true
 end

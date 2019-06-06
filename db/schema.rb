@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_014556) do
+ActiveRecord::Schema.define(version: 2019_06_05_085332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_014556) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "partial_name"
+    t.string "query"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -101,9 +101,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_014556) do
     t.bigint "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "grid_item_position"
-    t.integer "rowspan"
-    t.integer "colspan"
+    t.string "grid_item_position"
     t.string "display_type"
     t.bigint "kpi_id"
     t.index ["kpi_id"], name: "index_widgets_on_kpi_id"

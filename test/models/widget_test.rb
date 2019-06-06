@@ -8,9 +8,7 @@
 #  report_id          :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  grid_item_position :integer
-#  rowspan            :integer
-#  colspan            :integer
+#  grid_item_position :string
 #  display_type       :string
 #  kpi_id             :bigint
 #

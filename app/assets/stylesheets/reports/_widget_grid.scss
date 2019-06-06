@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(8%, 1fr));
     // grid-gap: 10px;
-    grid-auto-rows: minmax(100px, 100px);
+    grid-auto-rows: minmax(100px, 150px);
     grid-auto-flow: dense;
     padding: 10px;
 }
@@ -14,8 +14,6 @@
 }
 
 .ctn-widgets {
-  height: 100vh;
-  overflow: scroll;
   flex-grow: 1;
   max-width: unset;
 }

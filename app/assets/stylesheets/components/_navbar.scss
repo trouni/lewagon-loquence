@@ -14,12 +14,15 @@
     justify-content: space-between;
     margin: 2em 0;
     opacity: 0.5;
+    transition: 0.3s;
     &:hover {
       opacity: 1;
     }
   }
   .menu-item i {
     font-size: 24px;
+    &:hover {
+    }
   }
   .menu-item h4 {
     width: 200px;

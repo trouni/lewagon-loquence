@@ -8,9 +8,7 @@
 #  report_id          :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  grid_item_position :integer
-#  rowspan            :integer
-#  colspan            :integer
+#  grid_item_position :string
 #  display_type       :string
 #  kpi_id             :bigint
 #
@@ -20,5 +18,4 @@ class Widget < ApplicationRecord
   belongs_to :report
   belongs_to :kpi
   validates :name, presence: true
-  validates :display_type, presence: true, inclusion: { in: DISPLAY }
 end

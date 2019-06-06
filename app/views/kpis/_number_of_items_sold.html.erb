@@ -1,5 +1,5 @@
 
-<h2> Total: <%=number_to_human(Order.joins(:order_items).sum(:quantity))%></h2>
+<h2> <%= number_to_human(data[:total]) %> items sold</h2>
 <!--number_with_delimiter to display with decimal: ','  -->
-<%= line_chart Order.joins(:order_items).group_by_month(:purchase_date).sum(:quantity), thousands: "," %>
+<%= line_chart KPI.send(widget.kpi.query), thousands: "," %>
 
