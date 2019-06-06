@@ -1,0 +1,3 @@
+<% product_id = 243 %>
+<% OrderItem.where("product_id = #{product_id}").sum("item_price_cents / 100 *quantity") %>
+

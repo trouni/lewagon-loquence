@@ -10,12 +10,13 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 
+gem 'active_median'
 gem "algoliasearch-rails"
 gem 'autoprefixer-rails'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'font-awesome-sass', '~> 5.6.1'
-# gem 'geocoder'
+gem 'hightop'
 gem 'pundit'
 gem 'sassc-rails'
 gem 'simple_form'
@@ -24,6 +25,7 @@ gem 'webpacker'
 gem 'chartkick'
 gem 'highcharts-rails'
 gem 'groupdate'
+gem 'annotate'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

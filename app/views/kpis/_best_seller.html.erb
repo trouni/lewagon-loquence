@@ -1,0 +1,15 @@
+<% top_number = 5 %>
+<% revenue_for_top_number = 0 %>
+<% best_sellers_list =  OrderItem.top(:product_id, top_number)%>
+<% best_sellers_list.each do|product| %>
+  <% revenue_for_top_number += OrderItem.where("product_id = #{product[0]}").sum("item_price_cents *quantity")%>
+<% end %>
+<h3><%= top_number %>
+    top best sellers yield
+    <%= number_to_currency(revenue_for_top_number / 100, options ={locale: :jp})%>
+</h3>
+<h5>
+  (<%= number_to_percentage(revenue_for_top_number.to_f / OrderItem.sum("item_price_cents *quantity") * 100, delimiter: '.', precision: 1)%>)
+  of total revenue
+</h5>
+<%= bar_chart OrderItem.top(:product_id, top_number), discrete: true %>
