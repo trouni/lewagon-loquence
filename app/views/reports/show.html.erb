@@ -2,19 +2,19 @@
   <h1 class="report-title">Report: <%= @report.name %></h1>
   <div class="ctn-widgets grid-layout" data-controller="chartkick">
     <% @report.widgets.each do |widget| %>
-      <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
-        <div class="widget">
-          <div class="widget-header d-flex justify-content-between">
-            <h5><%= widget.name %></h5>
-            <i class="fas fa-ellipsis-v"></i>
-          </div>
+    <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
+      <div class="widget">
+        <div class="widget-header d-flex justify-content-between">
+          <h5><%= widget.name %></h5>
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
 
-          <div class="ctn-kpi h-100 d-flex align-items-center">
-            <% partial = "kpis/#{widget.kpi.query}" %>
-            <%= render partial: partial, locals: { widget: widget } %>
-          </div>
+        <div class="ctn-kpi h-100 d-flex align-items-center widget-repeat-customers">
+          <% partial = "kpis/#{widget.kpi.query}" %>
+          <%= render partial: partial, locals: { widget: widget } %>
         </div>
       </div>
+    </div>
     <% end %>
   </div>
 </div>

@@ -1,1 +1,32 @@
+<div class="widget-repeat-customers">
+  <% repeat_buyers = (Buyer.repeat_buyers.to_f / KPI.total_customers * 100) %>
+  <p class="widgets-icons">
+    <%(repeat_buyers / 5).round.times do%>
+    <i class="fas fa-user"></i>
+    <% end %>
+    <%(20 - (repeat_buyers / 5).round).times do%>
+    <i class="far fa-user"></i>
+    <% end %>
+  </p>
+  <p class="widgets-text">
+    <span><%= repeat_buyers.round(1) %>% </span>total repeat cutomers
+  </p>
+</div>
+
+
 <%= pie_chart KPI.send(widget.kpi.query) %>
+
+<div class="widget-repeat-customers-bottom">
+  <p class="widgets-text m-t-3">Average purchase frequency</p>
+  <div class="grid-layout-2">
+    <div class="grid-item-center">
+      <h4 class="font-weight-bold">1.10x</h4>
+      <p class="widgets-text-small">(last 30 days)</p>
+    </div>
+    <div class="grid-item-center">
+      <h4 class="font-weight-bold"><%= KPI.average_purchase_frequency.round(2) %>x</h4>
+      <p class="widgets-text-small">(all time)</p>
+    </div>
+  </div>
+</div>
+
