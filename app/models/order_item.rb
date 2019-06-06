@@ -17,4 +17,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
+
+  DEFAULT_TOP_NUMBER = 5
+  TIME_TYPE = %w(days week month year)
 end
