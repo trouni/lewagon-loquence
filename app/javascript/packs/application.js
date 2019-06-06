@@ -1,3 +1,5 @@
 import "bootstrap";
+import "controllers"
+import repeat_customers_chart from "./repeat_customers_chart.js";
 
-import "controllers";
+repeat_customers_chart();

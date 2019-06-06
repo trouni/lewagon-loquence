@@ -1,4 +1,4 @@
-# == Schema Information
+  # == Schema Information
 #
 # Table name: kpis
 #
@@ -89,7 +89,7 @@ class KPI < ApplicationRecord
   end
 
   def self.new_customers_per_month
-    Order.group_by_day(:purchase_date).count # test
+    Order.group_by_month(:purchase_date).count # test
   end
 
   def self.customers_per_country
