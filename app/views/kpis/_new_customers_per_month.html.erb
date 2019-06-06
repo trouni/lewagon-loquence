@@ -1,0 +1,5 @@
+
+<%= line_chart [
+    {name: "amazon", data: Order.where(external_source: "amazon").group_by_week(:purchase_date).count},
+    {name: "other", data: Order.where.not(external_source: "amazon").group_by_week(:purchase_date).count}
+] %>
