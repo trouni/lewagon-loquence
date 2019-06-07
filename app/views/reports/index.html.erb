@@ -1,15 +1,15 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8 mt-5">
-      <h1 class="my-5">Reports</h1>
-      <ul>
-        <% @reports.each do |report| %>
-          <li style="list-style: none;">
-            <h4><%= link_to report.name, report %></h4>
-            <p><%= report.description %></p>
-            </li>
-        <% end %>
-      </ul>
-    </div>
+<%= render 'shared/dashboard' do %>
+<div class="row justify-content-center">
+  <div class="col-8 mt-5">
+    <h1 class="my-5">Reports</h1>
+    <ul>
+      <% @reports.each do |report| %>
+      <li style="list-style: none;">
+        <h4><%= link_to report.name, report %></h4>
+        <p><%= report.description %></p>
+      </li>
+      <% end %>
+    </ul>
   </div>
 </div>
+<% end %>
