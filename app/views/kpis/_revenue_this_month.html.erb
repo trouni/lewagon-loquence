@@ -1,13 +1,14 @@
-<div class="text-center">
+<div class="text-center mb-4">
   <h3 class="highlight-white">¥3,342,543</h3>
   <p>so far this month</p>
 
 </div>
-<div class="chart position-relative my-3">
+
+<div class="chart position-relative mb-4">
   <%= pie_chart [['Revenue', 3342543], ['Remaining to goal', 4000000 - 3342543]],
     colors: ['#00D7C0', '#0E6E63'],
     library: {
-      borderColor: ['#00D7C0', '#128F80'],
+      borderColor: ['#00D7C0', '#0E6E63'],
       donut: true,
       legend: false,
       cutoutPercentage: 70
@@ -19,7 +20,8 @@
     <small>¥4,000,000</small>
   </div>
 </div>
-<div class="text-center mt-3">
+
+<div class="text-center">
   <h5>Revenue growth</h5>
   <div class="d-flex justify-content-between">
     <div>

@@ -26,8 +26,12 @@ class KPI < ApplicationRecord
 
   # ORDERS
 
-  def self.order_total
+  def self.order_count_total
     Order.all.count
+  end
+
+  def self.order_count_total_between(start_time, end_time = DateTime.now)
+    Order.between(start_time, end_time).count
   end
 
   def self.avg_order_amount_and_items
@@ -66,25 +70,25 @@ class KPI < ApplicationRecord
     Order.distinct.count('buyer_id')
   end
 
-  def self.average_purchase_frequency
-    order_total.to_f / unique_customers
+  def self.avg_purchase_frequency
+    order_count_total.to_f / unique_customers
   end
 
-  def self.average_purchase_frequency
-    order_total.to_f / unique_customers
+  def self.avg_purchase_frequency_between(start_time, end_time = DateTime.now)
+    order_count_total_between(start_time, end_time) / Buyer.unique_buyers_between(start_time, end_time)
   end
 
   def self.repeat_customers
     [
-      ["New customers", Buyer.single_time_buyers],
-      ["Returning customers", Buyer.repeat_buyers]
+      ["Repeat customers", Buyer.repeat_buyers],
+      ["One-time customers", Buyer.single_time_buyers]
     ]
   end
 
   def self.repeat_customers_per_day
     [
-      ["New customers", Buyer.single_time_buyers],
-      ["Returning customers", Buyer.repeat_buyers]
+      ["Returning customers", Buyer.repeat_buyers],
+      ["New customers", Buyer.single_time_buyers]
     ]
   end
 
@@ -101,5 +105,15 @@ class KPI < ApplicationRecord
 
   def self.total_customers
     Buyer.single_time_buyers + Buyer.repeat_buyers
+  end
+
+  # LOCATION
+
+  def self.orders_by_country
+    Order.group(:shipping_address_country_code).count
+  end
+
+  def self.orders_by_region
+    Order.group(:shipping_address_region).count
   end
 end

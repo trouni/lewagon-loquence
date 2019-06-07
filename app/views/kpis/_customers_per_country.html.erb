@@ -1,3 +1,11 @@
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
-<%= geo_chart KPI.send(widget.kpi.query), library: { backgroundColor: { fill:'transparent' } } %>
+<%= geo_chart KPI.orders_by_region, library: {
+  backgroundColor: { fill:'transparent' },
+  datalessRegionColor: 'transparent',
+  # region: 'JP',
+  # displayMode: 'markers',
+  colorAxis: { colors: ['#00D7C0', '#0E6E63'] },
+  height: '100%',
+  width: '100%'
+} %>
