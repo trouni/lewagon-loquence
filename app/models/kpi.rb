@@ -36,13 +36,13 @@ class KPI < ApplicationRecord
 
   def self.avg_order_amount
     amounts = Order.group_by_week(:purchase_date).sum("order_total_cents / 100")
-    avg_amount_total = revenue_total / order_total
+    avg_amount_total = revenue_total / order_count_total
     avg_amounts_total = amounts.each do |key, value|
       amounts[key] = value * 0 + avg_amount_total
     end
     return avg_amounts_total
   end
-  
+
   def self.order_count_total_between(start_time, end_time = DateTime.now)
     Order.between(start_time, end_time).count
   end
