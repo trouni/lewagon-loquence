@@ -16,6 +16,10 @@ class KPI < ApplicationRecord
   validates :query, presence: true
 
   # REVENUE
+  def self.revenue_total
+    Order.sum("order_total_cents / 100")
+  end
+
   def self.revenue_per_week
     Order.group_by_week(:purchase_date).sum("order_total_cents / 100")
   end
@@ -30,15 +34,21 @@ class KPI < ApplicationRecord
     Order.all.count
   end
 
+  def self.avg_order_amount
+    amounts = Order.group_by_week(:purchase_date).sum("order_total_cents / 100")
+    avg_amount_total = revenue_total / order_total
+    avg_amounts_total = amounts.each do |key, value|
+      amounts[key] = value * 0 + avg_amount_total
+    end
+    return avg_amounts_total
+  end
+  
   def self.order_count_total_between(start_time, end_time = DateTime.now)
     Order.between(start_time, end_time).count
   end
 
   def self.avg_order_amount_and_items
-    [
-      ["Average order amount", Order.all.average("order_total_cents").round],
-      ["Average number of items per order", Order.all.average("items_total")]
-    ]
+    Order.group_by_week(:purchase_date).average("order_total_cents / items_total / 100")
   end
 
   def self.avg_qty_per_product

@@ -1,15 +1,14 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8 mt-5">
-      <h1 class="my-5">Reports</h1>
-      <ul>
-        <% @reports.each do |report| %>
-          <li style="list-style: none;">
-            <h4><%= link_to report.name, report %></h4>
-            <p><%= report.description %></p>
-            </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+<div class="grid-report-index">
+  <% @reports.each do |report| %>
+    <%imgage_url = report.name.gsub(" ","_").downcase%>
+    <%=link_to report do%>
+      <div>
+        <%= image_tag "index_#{imgage_url}", class: "card-img-top",  width: "100%" %>
+        <li style="list-style: none;">
+          <h4 class="font-weight-bold pt-1 pl-1"><%=report.name%></h4>
+          <p class="pl-1"><%= report.description %></p>
+        </li>
+      </div>
+    <% end %>
+  <% end %>
 </div>
