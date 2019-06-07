@@ -1,15 +1,12 @@
-
 .home-banner {
-  height: 100vh;
   background-size: cover;
   background-position: center;
-  width: 100%;
-  padding: 150px 0;
-  h1 {
+  // padding: 150px 0;
+  h2 {
     margin: 0;
     color: white;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    font-size: 32px;
+    font-size: 48px;
     font-weight: bold;
   }
   p {
@@ -19,3 +16,21 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   }
 }
+
+
+
+.btn-home-cta {
+  font-size: 1.2em;
+  margin: 1.5em auto;
+  padding: 1.5em 2.5em;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 200;
+  letter-spacing: 3px;
+}
+
+// @media (max-width: 490px) {
+//   .btn-home-cta {
+//     width: 100%;
+//   }
+// }

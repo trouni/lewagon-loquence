@@ -161,9 +161,10 @@ SAMPLE_REPORT_LAYOUTS = {
   "Customers": {
     layout: [
       "1 / 1 / span 3 / span 4",
-      "1 / 5 / span 5 / span 8",
+      "1 / 5 / span 4 / span 8",
       "4 / 1 / span 4 / span 4",
-      "6 / 5 / span 5 / span 8",
+      "5 / 5 / span 5 / span 4",
+      "5 / 9 / span 5 / span 4",
       "8 / 1 / span 3 / span 4"
     ],
     kpis: [
@@ -171,6 +172,7 @@ SAMPLE_REPORT_LAYOUTS = {
       "new_customers_per_month",
       "repeat_customers",
       "customers_per_country",
+      "revenue_this_month",
       "avg_customer_value"
     ]
   }

@@ -5,11 +5,8 @@
 
 body {
   background:
-    black radial-gradient(
-      ellipse farthest-corner at top left,
-      $prussianblue50 10%,
-      $darkblue25
-  );
+    black
+    radial-gradient(ellipse farthest-corner at top left, $prussianblue50 10%, $darkblue25);
 }
 
 a, a:hover {
@@ -34,4 +31,30 @@ h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.highlight-white {
+  font-weight: 300;
+  color: white;
+  text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+.highlight {
+  font-weight: 300;
+  color: $highlight;
+  text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+
+.box-highlight {
+  border-color: $highlight;
+  box-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+
+.box-highlight-white {
+  border-color: $white;
+  box-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+
+.box-highlight-white-hover:hover {
+  border-color: $white;
+  box-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
 }

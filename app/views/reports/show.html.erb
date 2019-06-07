@@ -1,4 +1,4 @@
-<div class="dashboard">
+<%= render 'shared/dashboard' do %>
   <h1 class="report-title">Report: <%= @report.name %></h1>
   <div class="ctn-widgets grid-layout" data-controller="chartkick">
     <% @report.widgets.each do |widget| %>
@@ -17,4 +17,4 @@
       </div>
     <% end %>
   </div>
-</div>
+<% end %>
