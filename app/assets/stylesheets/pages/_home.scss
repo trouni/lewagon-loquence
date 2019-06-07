@@ -1,1 +1,29 @@
 // Specific CSS for your home-page
+#homepage {
+  padding: 50px;
+  .supported-platforms {
+    opacity: 0.5;
+    .logos {
+      margin: 0 auto;
+      padding: 40px 1em 30px 1em;
+      border-radius: 10px;
+      background-color: rgba(255,255,255,0.1);
+      width: fit-content;
+    }
+  }
+  .platform-logo {
+    height: 30px;
+    margin: 0 2em;
+  }
+}
+
+.separator {
+  margin: 2em auto;
+  width: 15%;
+}
+
+#top-nav {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}

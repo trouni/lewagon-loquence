@@ -1,37 +1,28 @@
-<div class="container ctn-widgets pt-5">
-  <div class="row widget-row">
-    <div class="ctn-widget col-xl-6">
-      <%= render partial: 'shared/widget', locals: { kpi: "best_seller", title: "Best sellers", display_type: "column_chart" } %>
+<div id="homepage" class="w-100 vh-100 home-banner position-relative">
+  <% if user_signed_in? %>
+    <div id="top-nav" class="d-flex">
+      <%= link_to "Go to Dashboard", report_path(Report.last), class: "btn btn-outline-light box-highlight-white-hover mr-3" %>
+      <%= image_tag "https://avatars1.githubusercontent.com/u/34345789?s=460&v=4", class: "avatar" %>
     </div>
-    <div class="ctn-widget col-xl-3">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers"} %>
+  <% end %>
+  <div class="container d-flex justify-content-between flex-column h-100 text-center">
+    <div class="row justify-content-center">
+      <h1 class="highlight"><small>Loquence</small></h1>
+      <h2 class="my-3 col-12 col-sm-12">Data-driven decision making<br>
+      <span class="highlight-white font-weight-bold">made simple.</span>
+      </h2>
+      <hr class="separator box-highlight">
+      <h4 class="my-3 col-12 col-sm-12">Connect your online shops, get automated smart reports, and <span class="highlight">finally ditch Excel.</span></h4>
+      <%= link_to "Connect your shops for free", reports_path, class: "btn btn-outline-light box-highlight-white btn-home-cta" %>
     </div>
-    <div class="ctn-widget col-xl-3">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers"} %>
-    </div>
-  </div>
-  <div class="row widget-row">
-    <div class="ctn-widget col-lg-12">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
-    </div>
-  </div>
-  <div class="row widget-row">
-    <div class="ctn-widget col-xl-4">
-      <%= render partial: 'shared/widget', locals: { kpi: "slow_mover", title: "Slow mover" } %>
-    </div>
-    <div class="ctn-widget col-xl-4">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
-    </div>
-    <div class="ctn-widget col-xl-4">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
-    </div>
-  </div>
-  <div class="row widget-row">
-    <div class="ctn-widget col-lg-6">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
-    </div>
-    <div class="ctn-widget col-lg-6">
-      <%= render partial: 'shared/widget', locals: { kpi: "repeat_customers", title: "Returning customers" } %>
+    <div class="supported-platforms">
+      <h6 class="highlight-white">Supported platforms</h6>
+      <div class="logos">
+        <%= image_tag "logos/amazon", alt: "Amazon", class: "platform-logo" %>
+        <%= image_tag "logos/woocommerce", alt: "WooCommerce", class: "platform-logo", style: "margin-top: -5px" %>
+        <%= image_tag "logos/shopify", alt: "Shopify", class: "platform-logo", style: "margin-top: -15px"  %>
+        <%= image_tag "logos/bigcommerce", alt: "BigCommerce", class: "platform-logo", style: "margin-top: -18px"  %>
+      </div>
     </div>
   </div>
 </div>
