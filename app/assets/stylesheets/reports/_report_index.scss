@@ -1,0 +1,9 @@
+.grid-report-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: top;
+  grid-column-gap: 16px;
+  grid-row-gap: 8px;
+  margin: 16px 16px;
+  padding: 8px 8px;
+}

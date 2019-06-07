@@ -1,1 +1,5 @@
-<%= column_chart KPI.send(widget.kpi.query) %>
+<%#= line_chart KPI.send(widget.kpi.query) %>
+<%= line_chart [
+    {name: "Average order amount", data: KPI.avg_order_amount_and_items, min: 12000},
+    {name: "Average order amount total", data: KPI.avg_order_amount, min: 12000}
+  ]%>
