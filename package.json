@@ -2,6 +2,7 @@
   "name": "loquence",
   "private": true,
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.4.5",
     "@rails/webpacker": "^4.0.7",
     "animated-number-vue": "^0.1.5",
     "animejs": "^3.0.1",
