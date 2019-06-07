@@ -11,22 +11,22 @@ const repeat_customers_chart = () => {
       type: 'bar',
       data: {
         datasets: [{
-            label: 'Fist time customers',
-            yAxisID: 'A',
-            data: newCustomerData,
-            backgroundColor: '#1EDD88',
-        }, {
-            label: 'Repeat customers',
-            yAxisID: 'A',
-            data: repeatCustomerData,
-            backgroundColor: '#167FFB',
-        }, {
             label: 'Total customers (cumul)',
             yAxisID: 'B',
             data: cumulData,
             borderColor: '#F4F4F4',
             // Changes this dataset to become a line
             type: 'line'
+        }, {
+            label: 'Fist time customers',
+            yAxisID: 'A',
+            data: newCustomerData,
+            backgroundColor: '#AFCFEA',
+        }, {
+            label: 'Repeat customers',
+            yAxisID: 'A',
+            data: repeatCustomerData,
+            backgroundColor: '#00D7C0',
         }],
         labels: ['January', 'February', 'March', 'April', 'Mai']
       },
@@ -39,7 +39,7 @@ const repeat_customers_chart = () => {
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                      max: 70,
+                      max: 100,
                       min: 0
                     }
                   }, {
@@ -47,7 +47,7 @@ const repeat_customers_chart = () => {
                     type: 'linear',
                     position: 'right',
                     ticks: {
-                      max: 250,
+                      max: 100,
                       min: 0
                     }
                   }]
