@@ -1,0 +1,25 @@
+#edit-report-layout {
+  .grid-item {
+    box-shadow: 0 0 5px $teal25, 0 0 15px rgba(255,255,255,0.1);
+    background-color: transparent;
+    margin: 0;
+    border: none;
+    z-index: 100;
+  }
+  .grid-item.active {
+    border: none;
+    background-color: $prussianblue25;
+    box-shadow: none;
+    z-index: 1;
+  }
+  // .grid-item:hover {
+  //   background-color: $primary;
+  // }
+}
+
+#s-rectBox {
+  position: absolute;
+  z-index: 1090;
+  border:2px dashed #cbd3e3;
+  border-radius:0;
+}
