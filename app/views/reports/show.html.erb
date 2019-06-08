@@ -1,6 +1,6 @@
 <%= render 'shared/dashboard' do %>
   <h1 class="report-title">Report: <%= @report.name %></h1>
-  <div class="ctn-widgets grid-layout" data-controller="chartkick">
+  <div class="ctn-widgets grid-layout" data-controller="chartkick load-animation">
     <% @report.widgets.each do |widget| %>
       <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
         <div class="widget">

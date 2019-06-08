@@ -12,7 +12,9 @@
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "stimulus": "^1.1.1",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.6.0"

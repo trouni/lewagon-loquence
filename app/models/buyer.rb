@@ -37,6 +37,10 @@ class Buyer < ApplicationRecord
     (Order.group(:buyer_id).count.group_by { |_k, v| v > 1 }[true] || []).count
   end
 
+  def self.unique_buyers_total
+    Order.distinct.count(:buyer_id)
+  end
+
   def self.unique_buyers_between(start_time, end_time = DateTime.now)
     Order.between(start_time, end_time).distinct.count(:buyer_id)
   end

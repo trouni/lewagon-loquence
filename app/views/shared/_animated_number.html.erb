@@ -1,0 +1,14 @@
+<% duration = 'defaultDuration' unless duration %>
+<% format = 'integer' unless format %>
+<% prefix = nil unless prefix %>
+<% suffix = nil unless suffix %>
+<% spanclass = nil unless spanclass %>
+
+
+<span class="<%= spanclass %>">
+  <%= prefix %><span><animated-number data-target="load-animation.number"
+  :value="<%= value %>"
+  :format-value="<%= format %>"
+  :duration="<%= duration %>"
+  /></span><%= suffix %>
+</span>
