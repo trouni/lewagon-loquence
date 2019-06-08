@@ -1,4 +1,4 @@
-<div id="homepage" class="w-100 vh-100 home-banner position-relative">
+<div id="homepage" class="w-100 home-banner position-relative">
   <% if user_signed_in? %>
     <div id="top-nav" class="d-flex">
       <%= link_to "Go to Dashboard", report_path(Report.last), class: "btn btn-outline-light box-highlight-white-hover mr-3" %>

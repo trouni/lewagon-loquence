@@ -4,6 +4,7 @@
 }
 
 body {
+  color: $secondary;
   background:
     black
     radial-gradient(ellipse farthest-corner at top left, $prussianblue50 10%, $darkblue25);
