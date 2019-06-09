@@ -1,9 +1,27 @@
-.grid-report-index {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: top;
-  grid-column-gap: 16px;
-  grid-row-gap: 8px;
-  margin: 16px 16px;
-  padding: 8px 8px;
+// .grid-report-index {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr;
+//   align-items: top;
+//   grid-column-gap: 16px;
+//   grid-row-gap: 8px;
+//   margin: 16px 16px;
+//   padding: 8px 8px;
+// }
+
+.card-report {
+  grid-area: span 4 / span 4;
+  margin: 0.5em;
+}
+
+.card-report-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    background-position: top;
+  }
 }

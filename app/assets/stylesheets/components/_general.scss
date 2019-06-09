@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  transition: opacity 0.3s ease-out, box-shadow 0.3s ease-out, text-shadow 0.3s ease-out, transform 0.3s ease-out;
 }
 
 body {
@@ -20,6 +21,14 @@ h1, h2, h3, p {
 
 h4, h5, h6 {
   color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .absolute-centering {
@@ -45,6 +54,11 @@ h4, h5, h6 {
   text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
 }
 
+.highlight-on-hover:hover {
+  // color: $highlight;
+  text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+
 .box-highlight {
   border-color: $highlight;
   box-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
@@ -58,4 +72,8 @@ h4, h5, h6 {
 .box-highlight-white-hover:hover {
   border-color: $white;
   box-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.1);
 }

@@ -1,29 +1,34 @@
-<div id="navbar" class="navbar navbar-loquence minimized" data-controller="navbar">
-  <div class="menu-item expand-menu">
-    <%= link_to "#", data: { action: "click->navbar#toggleExpand" } do %>
-      <i class="far fa-caret-square-right"></i>
-    <% end %>
+<div data-controller="navbar">
+  <div id="navbar" class="navbar navbar-loquence minimized">
+    <div class="navbar-top">
+      <div class="home-link">
+        <%= link_to root_path do %>
+          <h4 class="highlight-white">Loquence</h4>
+        <% end %>
+      </div>
+      <div class="menu-item d-flex">
+        <%= image_tag "https://via.placeholder.com/150", class: "avatar-square" %>
+        <h4 class="avatar-name">Company name</h4>
+      </div>
+    </div>
+    <div class="menu-navigation">
+      <div class="menu-item">
+        <%= link_to reports_path, class: "d-flex" do %>
+          <i class="fas fa-th-large"></i> <h4>Reports</h4>
+        <% end %>
+      </div>
+      <div class="menu-item">
+        <%= link_to "#", class: "d-flex" do %>
+          <i class="fas fa-chart-pie"></i> <h4>Widgets</h4>
+        <% end %>
+      </div>
+      <div class="menu-item">
+        <%= link_to "#", class: "d-flex" do %>
+          <i class="fas fa-cog"></i> <h4>Settings</h4>
+        <% end %>
+      </div>
+    </div>
+    <div class="menu-item d-flex mb-3">
+      <%= image_tag "https://avatars1.githubusercontent.com/u/34345789?s=460&v=4", class: "avatar" %><h4 class="avatar-name">Trouni Tiet</h4></div>
   </div>
-  <!-- <div class="menu-item d-flex"><%#= image_tag "https://via.placeholder.com/150", class: "avatar-square" %> -->
-    <!-- <h4 class="avatar-name">Company name</h4> -->
-  <!-- </div> -->
-  <div class="menu-navigation">
-    <div class="menu-item">
-      <%= link_to reports_path, class: "d-flex" do %>
-        <i class="fas fa-th-large"></i> <h4>Reports</h4>
-      <% end %>
-    </div>
-    <div class="menu-item">
-      <%= link_to "#", class: "d-flex" do %>
-        <i class="fas fa-chart-pie"></i> <h4>Widgets</h4>
-      <% end %>
-    </div>
-    <div class="menu-item">
-      <%= link_to "#", class: "d-flex" do %>
-        <i class="fas fa-cog"></i> <h4>Settings</h4>
-      <% end %>
-    </div>
-  </div>
-  <div class="menu-item d-flex mb-3">
-    <%= image_tag "https://avatars1.githubusercontent.com/u/34345789?s=460&v=4", class: "avatar" %><h4 class="avatar-name">Trouni Tiet</h4></div>
 </div>
