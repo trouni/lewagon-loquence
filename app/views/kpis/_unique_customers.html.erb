@@ -1,5 +1,7 @@
 <div class="text-center mb-4">
-  <h2 class="highlight"><%= Order.group(:buyer_id).count.size %></h2>
+  <h2 class="highlight">
+    <%= render partial: "shared/animated_number", locals: { value: Buyer.unique_buyers_total, format: 'integer' } %>
+    </h2>
   <small class="highlight-white">total unique customers</small>
 </div>
 
@@ -7,11 +9,15 @@
 
 <div class="d-flex w-100 justify-content-around mb-4">
   <div>
-    <h4 class="highlight-white">+<%= Order.where("purchase_date >= ?", (Date.today - 36) - 7).pluck(:buyer_id).uniq.count %></h4>
+    <h4 class="highlight-white">
+      <%= render partial: "shared/animated_number", locals: { value: Order.between(Order.last_order_date - 7*60*60*24).pluck(:buyer_id).uniq.count, format: 'integer', prefix: '+' } %>
+        </h4>
     <small>last 7 days</small>
   </div>
   <div>
-    <h4 class="highlight-white">+<%= Order.where("purchase_date >= ?", (Date.today - 36) - 30).pluck(:buyer_id).uniq.count %></h4>
+    <h4 class="highlight-white">
+      <%= render partial: "shared/animated_number", locals: { value: Order.between(Order.last_order_date - 30*60*60*24).pluck(:buyer_id).uniq.count, format: 'integer', prefix: '+' } %>
+    </h4>
     <small>last 30 days</small>
   </div>
 </div>
@@ -20,11 +26,15 @@
 
 <div class="d-flex w-100 justify-content-around">
   <div>
-    <h4 class="highlight-white"><%= (Order.where("purchase_date >= ?", (Date.today - 36) - 7).pluck(:buyer_id).uniq.count).fdiv((Order.all.pluck(:buyer_id).uniq.count)-(Order.where("purchase_date >= ?", (Date.today - 36) - 7).pluck(:buyer_id).uniq.count)).floor(2)%>%</h4>
+    <h4 class="highlight-white">
+      <%= render partial: "shared/animated_number", locals: { value: Buyer.unique_buyers_between(Order.last_order_date - 7 * 60 * 60 * 24).fdiv(Buyer.unique_buyers_total - Buyer.unique_buyers_between(Order.last_order_date - 7 * 60 * 60 * 24)), format: 'percent' } %>
+    </h4>
     <small>last 7 days</small>
   </div>
   <div>
-    <h4 class="highlight-white"><%= (Order.where("purchase_date >= ?", (Date.today - 36) - 30).pluck(:buyer_id).uniq.count).fdiv((Order.all.pluck(:buyer_id).uniq.count)-(Order.where("purchase_date >= ?", (Date.today - 36) - 30).pluck(:buyer_id).uniq.count)).floor(2)%>%</h4>
+    <h4 class="highlight-white">
+      <%= render partial: "shared/animated_number", locals: { value: Buyer.unique_buyers_between(Order.last_order_date - 30 * 60 * 60 * 24).fdiv(Buyer.unique_buyers_total - Buyer.unique_buyers_between(Order.last_order_date - 30 * 60 * 60 * 24)), format: 'percent' } %>
+    </h4>
     <small>last 30 days</small>
   </div>
 </div>

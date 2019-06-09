@@ -1,16 +1,18 @@
 <%= render 'shared/dashboard' do %>
-  <div class="grid-report-index">
+  <div class="grid-layout container">
     <% @reports.each do |report| %>
-      <%image_url = report.name.gsub(" ","_").downcase%>
-      <%=link_to report do%>
-        <div>
-          <%= image_tag "index_#{image_url}.jpg", class: "card-img-top",  width: "100%" %>
-          <li style="list-style: none;">
-            <h4 class="font-weight-bold pt-1 pl-1"><%=report.name%></h4>
-            <p class="pl-1"><%= report.description %></p>
-          </li>
-        </div>
-      <% end %>
+      <% image_name = report.name.gsub(" ","_").downcase %>
+      <div class="card-report widget">
+        <%= link_to report do %>
+          <div class="card-report-content">
+            <%= image_tag "index_#{image_name}.png" %>
+            <div>
+              <h4 class="font-weight-bold pt-1 pl-1"><%=report.name%></h4>
+              <p class="pl-1"><%= report.description %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>

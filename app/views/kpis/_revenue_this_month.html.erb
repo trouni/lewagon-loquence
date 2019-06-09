@@ -1,5 +1,6 @@
 <div class="text-center mb-4">
-  <h3 class="highlight-white">¥3,342,543</h3>
+  <h3 class="highlight-white">
+    <%= render partial: "shared/animated_number", locals: { value: 3342543, format: 'JPY' } %></h3>
   <p>so far this month</p>
 
 </div>
@@ -15,7 +16,9 @@
     }
   %>
   <div class="absolute-centering flex-column">
-    <h3 class="highlight text-center m-0"><%= ((3342543 / 4000000.0) * 100).round(1) %>%</h3>
+    <h3 class="highlight text-center m-0">
+      <%= render partial: "shared/animated_number", locals: { value: ((3342543 / 4000000.0) * 100).round(1), format: 'percent' } %>
+      </h3>
     <p>of monthly goal</p>
     <small>¥4,000,000</small>
   </div>
@@ -25,11 +28,11 @@
   <h5>Revenue growth</h5>
   <div class="d-flex justify-content-between">
     <div>
-      <h3 class="highlight-white">+3.2%</h3>
+      <h3 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 3.2, format: 'percent', prefix: '+' } %></h3>
       <p>(previous month)</p>
     </div>
     <div>
-      <h3 class="highlight-white">+6.3%</h3>
+      <h3 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 6.3, format: 'percent', prefix: '+' } %></h3>
       <p>(same period last year)</p>
     </div>
   </div>
