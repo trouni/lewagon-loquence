@@ -1,0 +1,49 @@
+<%= render 'shared/dashboard' do %>
+  <div class="d-flex justify-content-between align-items-center">
+    <div></div>
+    <h1 class="report-title">Edit Report: <%= @report.name %></h1>
+    <%= link_to "Done", @report, class: "btn btn-outline-light box-highlight-white mx-4" %>
+  </div>
+  <div id="edit-report-layout" class="zone w-100" data-controller="dashbuilder">
+    <div class="list-group ctn-widgets grid-layout">
+      <% @report.widgets.each do |widget| %>
+      <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
+        <div class="widget">
+          <div class="widget-header d-flex justify-content-between">
+            <h5><%= widget.name %></h5>
+            <%= link_to widget_path(widget), method: :delete do %>
+              <i class="fas fa-trash"></i>
+            <% end %>
+          </div>
+
+          <div class="ctn-kpi">
+            <% partial = "kpis/#{widget.kpi.query}" %>
+            <%= render partial: partial, locals: { widget: widget } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <% (1..15).to_a.each do |row| %>
+      <% (1..12).to_a.each do |col| %>
+        <div class="list-group-item grid-edit-item" data-row="<%= row %>" data-col="<%= col %>" style="grid-area: <%= row %> / <%= col %>" data-target="dashbuilder.gridEditItem"></div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+<div id="new-widget-grid-item" class="grid-item hidden">
+  <div class="widget">
+    <div class="widget-header d-flex justify-content-between">
+      <h5>New widget</h5>
+      <i class="far fa-times-circle btn-close scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+    </div>
+
+    <div class="ctn-kpi justify-content-center">
+      <h3>Select a KPI</h3>
+      <%= simple_form_for [@report, Widget.new] do |f| %>
+          <%= f.input :grid_item_position, as: :hidden %>
+          <%= f.association :kpi, input_html: { data: { action: "change->dashbuilder#newWidgetSubmit" } }, label: false %>
+      <% end %>
+    </div>
+  </div>
+</div>

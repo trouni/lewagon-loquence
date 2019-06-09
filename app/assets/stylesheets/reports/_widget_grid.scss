@@ -1,15 +1,17 @@
-// http://gridbyexample.com/
-
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8%, 1fr));
-  // grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(100px, 180px);
   grid-auto-flow: dense;
   padding: 10px;
 }
 
+.list-group-item {
+  width: 100%;
+}
+
 .grid-item {
+  // z-index: 500;
   padding: 0.5rem;
 }
 
@@ -47,6 +49,7 @@
 }
 
 .widget {
+  // z-index: 10000;
   padding: 1em;
   align-content: flex-center;
   background: linear-gradient(154.9deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.3) 86.37%);
