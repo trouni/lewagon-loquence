@@ -6043,6 +6043,11 @@ select-hose@^2.0.0:
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
 
+selectables@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/selectables/-/selectables-1.4.1.tgz#55c65e9beaa43ae84fe55207765be6dc25b61bc9"
+  integrity sha1-VcZem+qkOuhP5VIHdlvm3CW2G8k=
+
 selfsigned@^1.10.4:
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/selfsigned/-/selfsigned-1.10.4.tgz#cdd7eccfca4ed7635d47a08bf2d5d3074092e2cd"

@@ -1,0 +1,30 @@
+#edit-report-layout {
+  .grid-edit-item {
+    // box-shadow: 0 0 5px $teal25, 0 0 15px rgba(255,255,255,0.1);
+    border: 1px dashed $teal25 !important;
+    background-color: transparent;
+    margin: 0;
+    border: none;
+    z-index: 1;
+  }
+  .grid-edit-item.active {
+    border: none;
+    background-color: $prussianblue25;
+    box-shadow: none;
+  }
+
+  .grid-item {
+    z-index: 10;
+  }
+  #new-widget-grid-item .widget {
+    background: linear-gradient(154.9deg, $teal25 0%, $darkblue50 86.37%);
+  }
+}
+
+// #s-rectBox {
+//   position: absolute;
+//   z-index: 1090;
+//   // border:2px dotted $teal50;
+//   box-shadow: 0 0 5px $teal25, 0 0 15px rgba(255,255,255,0.1);
+//   // border-radius:0;
+// }
