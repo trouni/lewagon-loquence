@@ -1,6 +1,6 @@
 <%= render 'shared/dashboard' do %>
   <h1 class="report-title">Edit Report: <%= @report.name %></h1>
-  <div id="edit-report-layout" class="zone w-100" data-controller="selectables">
+  <div id="edit-report-layout" class="zone w-100" data-controller="dashbuilder">
     <div class="list-group ctn-widgets grid-layout">
       <% @report.widgets.each do |widget| %>
       <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
@@ -21,14 +21,25 @@
     <% end %>
     <% (1..15).to_a.each do |row| %>
       <% (1..12).to_a.each do |col| %>
-        <div class="list-group-item grid-edit-item" data-row="<%= row %>" data-col="<%= col %>" style="grid-area: <%= row %> / <%= col %>"></div>
+        <div class="list-group-item grid-edit-item" data-row="<%= row %>" data-col="<%= col %>" style="grid-area: <%= row %> / <%= col %>" data-target="dashbuilder.gridEditItem"></div>
       <% end %>
     <% end %>
     </div>
   </div>
 <% end %>
-<%= simple_form_for [@report, Widget.new] do |f| %>
-    <%= f.input :grid_item_position %>
-    <%= f.association :kpi %>
-    <%= f.submit %>
-<% end %>
+<div id="new-widget-grid-item" class="grid-item hidden">
+  <div class="widget">
+    <div class="widget-header d-flex justify-content-between">
+      <h5>New widget</h5>
+      <i class="far fa-times-circle btn-close scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+    </div>
+
+    <div class="ctn-kpi justify-content-center">
+      <h3>Select a KPI</h3>
+      <%= simple_form_for [@report, Widget.new] do |f| %>
+          <%= f.input :grid_item_position, as: :hidden %>
+          <%= f.association :kpi, input_html: { data: { action: "change->dashbuilder#newWidgetSubmit" } }, label: false %>
+      <% end %>
+    </div>
+  </div>
+</div>
