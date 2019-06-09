@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+require("selectables")
 import { Selectables } from "selectables"
 
 export default class extends Controller {
@@ -6,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     const selectable = new Selectables({
-      elements: '.grid-item',
+      elements: '.grid-edit-item',
       selectedClass: 'active',
       zone: '#edit-report-layout',
       stop: function(e) {
@@ -14,8 +15,12 @@ export default class extends Controller {
         selected.forEach((item) => {
           item.classList.remove('available')
         });
-        console.log(selected[0]);
-        console.log(selected[selected.length - 1]);
+        const gridArea = `${selected[0].dataset["row"]} / ${selected[0].dataset["col"]} / ${parseInt(selected[selected.length - 1].dataset["row"]) + 1} / ${parseInt(selected[selected.length - 1].dataset["col"]) + 1}`
+        document.getElementById('widget_grid_item_position').value = gridArea
+        console.log(selected[0].dataset["row"]);
+        console.log(selected[0].dataset["col"]);
+        console.log(selected[selected.length - 1].dataset["row"]);
+        console.log(selected[selected.length - 1].dataset["col"]);
       }
     });
   }

@@ -1,5 +1,5 @@
 
-<h2> <%= number_to_human(data[:total]) %> items sold</h2>
+<h2> <%= number_to_human(KPI.total_number_of_items_sold) %> items sold</h2>
 <!--number_with_delimiter to display with decimal: ','  -->
-<%= line_chart KPI.send(widget.kpi.query), thousands: "," %>
+<%= line_chart KPI.total_number_of_items_sold_per_month, thousands: "," %>
 
