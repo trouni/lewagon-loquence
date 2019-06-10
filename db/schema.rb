@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_085332) do
+ActiveRecord::Schema.define(version: 2019_06_10_020011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(version: 2019_06_05_085332) do
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
   end
 
+  create_table "platforms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "sku"
     t.string "product_type"
@@ -81,6 +87,16 @@ ActiveRecord::Schema.define(version: 2019_06_05_085332) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_platforms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "platform_id"
+    t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
+    t.index ["user_id"], name: "index_user_platforms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,6 +132,8 @@ ActiveRecord::Schema.define(version: 2019_06_05_085332) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "buyers"
+  add_foreign_key "user_platforms", "platforms"
+  add_foreign_key "user_platforms", "users"
   add_foreign_key "widgets", "kpis"
   add_foreign_key "widgets", "reports"
 end
