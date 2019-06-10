@@ -11,9 +11,7 @@
   <body>
     <%= javascript_pack_tag 'chartkick' %>
     <%= render 'shared/flashes' %>
-    <div class="d-flex">
-      <%= yield %>
-    </div>
+    <%= yield %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

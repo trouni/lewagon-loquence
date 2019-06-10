@@ -1,6 +1,9 @@
-<%= render 'shared/navbar' %>
-<div class="dashboard">
-
-    <%= yield %>
-
+<div class="d-flex">
+  <%= render 'shared/navbar' %>
+  <div class="dashboard">
+    <div class="d-flex h-100 flex-column justify-content-between align-content-end">
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
+  </div>
 </div>
