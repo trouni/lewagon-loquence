@@ -3,14 +3,17 @@
   <h3 class="highlight-white">Which platform do you want to connect?</h3>
   </div>
   <div class="row align-content-center justify-content-center platforms supported-platforms">
-      <div data-controller="category-selector">
-        <%= image_tag "logos/amazon.png", alt: "Amazon", class: "platform-logo category"%>
-        <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "platform-logo category", style: "margin-top: -5px" %>
-        <%= image_tag "logos/shopify.png", alt: "Shopify", class: "platform-logo category", style: "margin-top: -15px" %>
-        <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "platform-logo category", style: "margin-top: -18px" %>
+      <div class="col-12" data-controller="category-selector">
+        <%= image_tag "logos/amazon.png", alt: "Amazon", class: "logo category"%>
+        <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "logo category", style: "margin-top: -5px" %>
+        <%= image_tag "logos/shopify.png", alt: "Shopify", class: "logo category", style: "margin-top: -15px" %>
+        <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "logo category", style: "margin-top: -18px" %>
       </div>
 
   </div>
+    <div class="row align-content-center justify-content-center">
+          <%= link_to 'Next', next_wizard_path, class: "btn btn-success w-50 align-content-center" %>
+    </div>
 </div>
 
 
