@@ -1,1 +1,8 @@
 <h2>Thanks for signing up!</h2>
+<%= simple_form_for(@user, url: wizard_path, method: :put) do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.submit "Next", class: 'btn btn-primary w-100'  %>
+
+  <%= link_to 'skip', next_wizard_path %>
+<% end %>
