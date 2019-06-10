@@ -6,7 +6,6 @@ export default class extends Controller {
   static targets = [ "number" ]
 
   connect() {
-    // console.log(this)
     this.numberTargets.forEach((number) => {
       const app = new Vue({
         components: { AnimatedNumber },

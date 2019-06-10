@@ -1,0 +1,24 @@
+<div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
+  <div class="widget">
+    <div class="widget-header d-flex justify-content-between">
+      <h5><%= widget.name %></h5>
+      <div class="btn-group">
+        <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <%= link_to widget_path(widget), method: :delete, remote: true, authenticity_token: true do %>
+            <button class="dropdown-item" type="button">Delete</button>
+          <% end %>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="ctn-kpi" data-controller="load-animation chartkick">
+      <% partial = "kpis/#{widget.kpi.query}" %>
+      <%= render partial: partial, locals: { widget: widget } %>
+    </div>
+  </div>
+</div>

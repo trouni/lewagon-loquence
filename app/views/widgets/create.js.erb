@@ -1,0 +1,7 @@
+<% if @widget.persisted? %>
+  var newWidget = "<%= j render partial: 'widgets/grid_item', locals: { widget: @widget } %>"
+  var grid = document.querySelector('.grid-layout')
+  document.getElementById("new-widget-blueprint").remove();
+  grid.insertAdjacentHTML('afterBegin', newWidget)
+<% else %>
+<% end %>
