@@ -75,6 +75,12 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.index ["buyer_id"], name: "index_orders_on_buyer_id"
   end
 
+  create_table "platforms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "sku"
     t.string "product_type"
@@ -101,6 +107,16 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.index ["owner_id"], name: "index_reports_on_owner_id"
   end
 
+  create_table "user_platforms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "platform_id"
+    t.index ["platform_id"], name: "index_user_platforms_on_platform_id"
+    t.index ["user_id"], name: "index_user_platforms_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,6 +125,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.boolean "admin"
     t.bigint "company_id"
     t.index ["company_id"], name: "index_users_on_company_id"
@@ -138,6 +156,8 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "buyers"
+  add_foreign_key "user_platforms", "platforms"
+  add_foreign_key "user_platforms", "users"
   add_foreign_key "reports", "users", column: "owner_id"
   add_foreign_key "users", "companies"
   add_foreign_key "widgets", "kpis"
