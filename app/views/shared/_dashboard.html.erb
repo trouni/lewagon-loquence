@@ -2,9 +2,9 @@
 <%= render 'shared/navbar' %>
 <%= javascript_pack_tag 'chartkick' %>
 <div class="dashboard">
-
   <%= render 'shared/topbar', title: title %>
-
-  <%= yield %>
-
+  <div class="d-flex h-100 flex-column justify-content-between align-content-end">
+    <%= yield %>
+    <%= render 'shared/footer' %>
+  </div>
 </div>
