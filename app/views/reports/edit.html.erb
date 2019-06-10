@@ -3,21 +3,7 @@
   <div id="edit-report-layout" class="zone w-100" data-controller="dashbuilder load-animation">
     <div class="list-group ctn-widgets grid-layout">
       <% @report.widgets.each do |widget| %>
-      <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
-        <div class="widget">
-          <div class="widget-header d-flex justify-content-between">
-            <h5><%= widget.name %></h5>
-            <%= link_to widget_path(widget), method: :delete do %>
-              <i class="fas fa-trash"></i>
-            <% end %>
-          </div>
-
-          <div class="ctn-kpi">
-            <% partial = "kpis/#{widget.kpi.query}" %>
-            <%= render partial: partial, locals: { widget: widget } %>
-          </div>
-        </div>
-      </div>
+        <%= render partial: 'widgets/grid_item', locals: { widget: widget } %>
     <% end %>
     <% (1..15).to_a.each do |row| %>
       <% (1..12).to_a.each do |col| %>
@@ -27,7 +13,7 @@
     </div>
   </div>
 <% end %>
-<div id="new-widget-grid-item" class="grid-item hidden">
+<div id="new-widget-template" class="grid-item hidden">
   <div class="widget">
     <div class="widget-header d-flex justify-content-between">
       <h5>New widget</h5>
@@ -36,9 +22,10 @@
 
     <div class="ctn-kpi justify-content-center">
       <h3>Select a KPI</h3>
-      <%= simple_form_for [@report, Widget.new] do |f| %>
+      <%= simple_form_for [@report, Widget.new], remote: true do |f| %>
           <%= f.input :grid_item_position, as: :hidden %>
-          <%= f.association :kpi, input_html: { data: { action: "change->dashbuilder#newWidgetSubmit" } }, label: false %>
+          <%= f.association :kpi, input_html: { data: { action: "dashbuilder#newWidgetSubmit" } }, label: false %>
+          <%= f.submit class: "hidden" %>
       <% end %>
     </div>
   </div>

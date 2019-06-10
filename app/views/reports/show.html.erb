@@ -1,20 +1,7 @@
 <%= render 'shared/dashboard', title: @report.name do %>
-
   <div class="ctn-widgets grid-layout" data-controller="chartkick load-animation">
     <% @report.widgets.each do |widget| %>
-      <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
-        <div class="widget">
-          <div class="widget-header d-flex justify-content-between">
-            <h5 class="py-1 px-2"><%= widget.name %></h5>
-            <i class="fas fa-ellipsis-v scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
-          </div>
-
-          <div class="ctn-kpi">
-            <% partial = "kpis/#{widget.kpi.query}" %>
-            <%= render partial: partial, locals: { widget: widget } %>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'widgets/grid_item', locals: { widget: widget } %>
     <% end %>
   </div>
 
