@@ -1,8 +1,16 @@
-<h2>Thanks for signing up!</h2>
-<%= simple_form_for(@user, url: wizard_path, method: :put) do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.submit "Next", class: 'btn btn-primary w-100'  %>
+<div class="container">
+  <div class="row vh-100 align-content-center justify-content-center">
+    <div class="col-12 col-md-4">
+      <div class="widget">
+        <h2 class="text-center">Thanks for signing up!</h2>
+        <%= simple_form_for(@user, url: wizard_path, method: :put) do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.submit "Next", class: 'btn btn-primary w-100'  %>
 
-  <%= link_to 'skip', next_wizard_path %>
-<% end %>
+          <%= link_to 'skip', next_wizard_path %>
+        <% end %>
+       </div>
+    </div>
+  </div>
+</div>
