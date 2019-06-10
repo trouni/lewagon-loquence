@@ -1,6 +1,17 @@
+<% title = "" unless title %>
 <%= render 'shared/navbar' %>
 <div class="dashboard">
 
-    <%= yield %>
+  <div id="top-navbar" class="d-flex justify-content-between align-items-center pt-3 px-4" data-controller="navbar">
+    <div></div>
+    <h1 class="report-title text-center m-0"><%= title.upcase %></h1>
+    <div>
+      <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover clickable" data-action='click->navbar#goFullscreen'></i>
+      <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover clickable hidden" data-action='click->navbar#exitFullscreen'></i>
+      <i class="fas fa-bars btn-icon ml-3 scale-on-hover highlight-on-hover clickable"></i>
+    </div>
+  </div>
+
+  <%= yield %>
 
 </div>
