@@ -5,4 +5,5 @@ Rails.application.routes.draw do
     resources :widgets, only: [:create, :update]
   end
   resources :widgets, only: :destroy
+  recourses :onboarding
 end
