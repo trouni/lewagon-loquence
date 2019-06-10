@@ -4,16 +4,19 @@ export default class extends Controller {
   static targets = [ "gridEditItem" ]
 
   connect() {
-    let selectable = true
     let selecting = false
+    const grid = document.querySelector(".grid-layout");
+
+    const isSelectable = () => {
+      return document.getElementById("new-widget-blueprint") === null
+    }
 
     const resetGrid = () => {
       items.forEach(item => item.classList.remove('active'))
     }
 
     const removeKPISelectorDiv = () => {
-      document.getElementById("new-widget-grid-item").remove();
-      selectable = true
+      document.getElementById("new-widget-blueprint").remove();
     }
     const escapeKPISelectorDiv = (event) => {
       if (event.key === 'Escape') {
@@ -23,18 +26,26 @@ export default class extends Controller {
     }
 
     const insertKPISelectorDiv = (gridArea) => {
-      const KPISelectorDiv = document.getElementById("new-widget-grid-item").cloneNode(true);
+      // creating the new widget blueprint div
+      const KPISelectorDiv = document.getElementById("new-widget-template").cloneNode(true);
       KPISelectorDiv.style.gridArea = gridArea;
+      KPISelectorDiv.id = "new-widget-blueprint";
       KPISelectorDiv.classList.remove('hidden');
-      const firstGridItem = document.querySelector(".grid-item");
-      const grid = document.querySelector(".grid-layout");
-      grid.insertBefore(KPISelectorDiv, firstGridItem);
-      const gridAreaInput = document.getElementById('widget_grid_item_position');
-      gridAreaInput.value = gridArea;
-      selectable = false;
+
+      // inserting new div before the first grid-edit-item
+      const firstGridEditItem = document.querySelector(".grid-edit-item");
+      grid.insertBefore(KPISelectorDiv, firstGridEditItem);
+
+      // select newly created div
+      const widgetBlueprint = document.getElementById("new-widget-blueprint");
+      // set grid-area in the hidden form
+      widgetBlueprint.querySelector('#widget_grid_item_position').value = gridArea;
+      // set focus to the select field
+      widgetBlueprint.querySelector('#widget_kpi_id').focus();
+
       resetGrid();
 
-      const closeBtn = document.querySelector("#new-widget-grid-item .btn-close")
+      const closeBtn = document.querySelector("#new-widget-blueprint .btn-close")
       closeBtn.addEventListener("click", event => removeKPISelectorDiv())
       window.addEventListener("keyup", escapeKPISelectorDiv)
     }
@@ -47,7 +58,7 @@ export default class extends Controller {
     let fromItem
     items.forEach((item) => {
       item.addEventListener('mousedown', (event) => {
-        if (selectable) {
+        if (isSelectable()) {
           selecting = true
           event.target.classList.add('active')
           fromItem = [event.target.dataset['row'], event.target.dataset['col']]
@@ -79,6 +90,6 @@ export default class extends Controller {
     })
   }
   newWidgetSubmit() {
-    document.getElementById("new_widget").submit();
+    document.querySelector("#new_widget input[type='submit']").click();
   }
 }

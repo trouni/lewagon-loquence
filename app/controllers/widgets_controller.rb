@@ -5,16 +5,26 @@ class WidgetsController < ApplicationController
     @widget.report = @report
     @widget.name = @widget.kpi.name
     if @widget.save
-      redirect_to edit_report_path(@report)
+      respond_to do |format|
+        format.html { redirect_to edit_report_path(@report) }
+        format.js
+      end
     else
-      render 'reports/edit'
+      respond_to do |format|
+        format.html { render 'reports/edit' }
+        format.js
+      end
     end
   end
 
   def destroy
     @widget = Widget.find(params[:id])
     @widget.destroy
-    redirect_to edit_report_path(@widget.report)
+    respond_to do |format|
+      format.html { redirect_to edit_report_path(@widget.report) }
+      format.js
+    end
+
   end
 
   private
