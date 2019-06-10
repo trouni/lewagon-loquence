@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
   root to: 'pages#home'
   resources :reports do
     resources :widgets, only: [:create, :update]
@@ -9,4 +12,5 @@ Rails.application.routes.draw do
   get 'settings', to: 'settings#account', as: 'settings'
   get 'settings/account', to: 'settings#account'
   get 'settings/users', to: 'settings#users'
+  resources :onboarding
 end
