@@ -4,6 +4,7 @@ class WidgetsController < ApplicationController
     @widget = Widget.new(widget_params)
     @widget.report = @report
     @widget.name = @widget.kpi.name
+    authorize @widget
     if @widget.save
       respond_to do |format|
         format.html { redirect_to edit_report_path(@report) }
@@ -19,6 +20,7 @@ class WidgetsController < ApplicationController
 
   def destroy
     @widget = Widget.find(params[:id])
+    authorize @widget
     @widget.destroy
     respond_to do |format|
       format.html { redirect_to edit_report_path(@widget.report) }
