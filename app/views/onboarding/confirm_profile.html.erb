@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row vh-100 align-content-center justify-content-center">
+    <div class="col-12 col-md-4">
+      <div class="widget">
+        <h3 class="text-center">Thanks for signing up!</h3>
+        <p>You are almost done 🚀, we need a few more information</p>
+        <%= simple_form_for(@user, url: wizard_path, method: :put) do |f| %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <div class="d-flex mt-5">
+          <%= f.submit "Next", class: 'btn btn-outline-success w-100' %>
+          <%= link_to 'skip', next_wizard_path, class: 'btn btn-outline-info ml-5 w-100' %>
+          </div>
+        <% end %>
+       </div>
+    </div>
+  </div>
+</div>

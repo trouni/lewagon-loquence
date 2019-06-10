@@ -1,0 +1,26 @@
+.supported-platforms {
+  height: 200px;
+
+  .logos {
+    margin: 0 auto;
+    padding: 40px 1em 30px 1em;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.1);
+    width: fit-content;
+  }
+}
+
+.logo {
+    height: 80px;
+    margin: 0 2em;
+    border-style: solid;
+    padding: 20px;
+    border-color: white;
+    border-width: thin;
+    border-radius: 20px;
+  }
+
+.platform-container {
+ padding: 40px;
+
+}
