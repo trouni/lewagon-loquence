@@ -7,9 +7,7 @@
           <i class="fas fa-ellipsis-v btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <%= link_to widget_path(widget), method: :delete, remote: true, authenticity_token: true do %>
-            <button class="dropdown-item" type="button">Delete</button>
-          <% end %>
+          <%= link_to "Delete widget", widget_path(widget), method: :delete, class: "menu-item", remote: true %>
         </div>
       </div>
 

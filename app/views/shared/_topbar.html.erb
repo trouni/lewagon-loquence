@@ -1,9 +1,5 @@
 <div id="top-navbar" class="d-flex justify-content-between align-items-center pt-3 px-4" data-controller="navbar">
-    <div>
-
-
-
-    </div>
+    <div></div>
     <h1 class="report-title text-center m-0"><%= title.upcase %></h1>
     <div>
       <div class="btn-group">
@@ -13,9 +9,14 @@
           <i class="fas fa-bars btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <% if @report %>
+          <%= link_to new_report_path do %>
+            <div id="menu-item-new-report" class="menu-item">
+              <p class="m-0"><i class="far fa-plus-square mr-2"></i>Create new report</p>
+            </div>
+          <% end %>
+          <% if @report && @report.persisted? %>
             <%= link_to edit_report_path(@report), remote: true do %>
-              <div id="menu-item-edit-report" class="d-flex justify-content-between align-items-center">
+              <div id="menu-item-edit-report" class="menu-item d-flex justify-content-between align-items-center">
                 <p class="m-0">Edit report</p>
                 <%= render 'shared/switch' %>
               </div>
