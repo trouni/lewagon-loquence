@@ -1,0 +1,5 @@
+<% if @widget.destroyed? %>
+  var widgetToDestroy = document.querySelector(`[data-widget-id="${<%= @widget.id %>}"]`)
+  widgetToDestroy.remove();
+<% else %>
+<% end %>

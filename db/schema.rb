@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_031604) do
+ActiveRecord::Schema.define(version: 2019_06_10_044736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 2019_06_10_031604) do
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_companies_on_owner_id"
   end
 
   create_table "kpis", force: :cascade do |t|
@@ -82,11 +90,21 @@ ActiveRecord::Schema.define(version: 2019_06_10_031604) do
     t.string "title"
   end
 
+  create_table "report_accesses", force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id", "user_id"], name: "index_report_accesses_on_report_id_and_user_id", unique: true
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_reports_on_owner_id"
   end
 
   create_table "user_platforms", force: :cascade do |t|
@@ -109,6 +127,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_031604) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
+    t.boolean "admin"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -131,11 +152,14 @@ ActiveRecord::Schema.define(version: 2019_06_10_031604) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "companies", "users", column: "owner_id"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "buyers"
   add_foreign_key "user_platforms", "platforms"
   add_foreign_key "user_platforms", "users"
+  add_foreign_key "reports", "users", column: "owner_id"
+  add_foreign_key "users", "companies"
   add_foreign_key "widgets", "kpis"
   add_foreign_key "widgets", "reports"
 end

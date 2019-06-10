@@ -1,28 +1,8 @@
-<%= render 'shared/dashboard' do %>
-  <div id="top-navbar" class="d-flex justify-content-between align-items-center pt-3 px-4" data-controller="navbar">
-    <div></div>
-    <h1 class="report-title text-center m-0"><%= @report.name.upcase %></h1>
-    <div>
-      <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover clickable" data-action='click->navbar#goFullscreen'></i>
-      <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover clickable hidden" data-action='click->navbar#exitFullscreen'></i>
-      <i class="fas fa-bars btn-icon ml-3 scale-on-hover highlight-on-hover clickable"></i>
-    </div>
-  </div>
+<%= render 'shared/dashboard', title: @report.name do %>
   <div class="ctn-widgets grid-layout" data-controller="chartkick load-animation">
     <% @report.widgets.each do |widget| %>
-      <div class="grid-item" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
-        <div class="widget">
-          <div class="widget-header d-flex justify-content-between">
-            <h5 class="py-1 px-2"><%= widget.name %></h5>
-            <i class="fas fa-ellipsis-v scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
-          </div>
-
-          <div class="ctn-kpi">
-            <% partial = "kpis/#{widget.kpi.query}" %>
-            <%= render partial: partial, locals: { widget: widget } %>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'widgets/grid_item', locals: { widget: widget } %>
     <% end %>
   </div>
+
 <% end %>

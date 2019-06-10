@@ -17,5 +17,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  belongs_to :company
+  has_many :report_accesses
+  has_many :reports, through: :report_accesses
+  has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
   has_many :user_platforms
 end
