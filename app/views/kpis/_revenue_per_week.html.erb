@@ -1,4 +1,1 @@
-<%#= simple_form_for OrderItem do |f| %>
-<%#= f.input :timeframe %>
-<%# end %>
-<%#= line_chart Order.group_by_week(:purchase_date).sum(:order_total_cents) %>
+<%= column_chart KPI.revenue_per_week %>
