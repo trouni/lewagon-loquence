@@ -14,4 +14,10 @@
       opacity: 1;
     }
   }
+  .dropdown-menu {
+    background: linear-gradient(154.9deg, $darkblue75 0%, $darkblue50 86.37%);
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+  }
 }

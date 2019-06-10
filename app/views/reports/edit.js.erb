@@ -1,0 +1,54 @@
+if (!document.querySelector('.grid-layout').classList.contains('edit')) {
+  // Initialize Editing Grid
+
+  // Hidden form template
+  const newWidgetTemplateHTML = `
+  <div id="new-widget-template" class="grid-item hidden">
+    <div class="widget">
+      <div class="widget-header d-flex justify-content-between">
+        <h5>New widget</h5>
+        <i class="far fa-times-circle btn-close scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+      </div>
+
+      <div class="ctn-kpi justify-content-center">
+        <h3>Select a KPI</h3>
+        <%=j render 'widgets/form_new', report: @report %>
+      </div>
+    </div>
+  </div>
+  `;
+
+  // Grid elements
+  const gridEditItemsHTML = "<%=j render 'reports/edit_grid_items', rows: 15, cols: 12 %>";
+
+  const initEditGrid = () => {
+    const grid = document.querySelector('.grid-layout')
+    grid.insertAdjacentHTML("beforeEnd", gridEditItemsHTML)
+    grid.insertAdjacentHTML("beforeEnd", newWidgetTemplateHTML)
+    // Connect to stimulus dashbuilder-controller
+    grid.dataset.controller = 'dashbuilder'
+    grid.classList.add('edit')
+  }
+
+
+  initEditGrid()
+  document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
+  document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
+} else {
+  // Remove Editing Grid
+  const removeEditGrid = () => {
+    const grid = document.querySelector('.grid-layout')
+    grid.removeAttribute('data-controller')
+    grid.classList.remove('edit')
+    grid.querySelectorAll('.grid-edit-item').forEach(el => el.remove())
+    // Removes existing blueprint if any
+    const newWidgetBlueprint = document.getElementById('new-widget-blueprint')
+    if (newWidgetBlueprint) { newWidgetBlueprint.remove() }
+    // Removes hidden template
+    const newWidgetTemplate = document.getElementById('new-widget-template')
+    if (newWidgetTemplate) { newWidgetTemplate.remove() }
+  }
+  removeEditGrid()
+  document.querySelector('[type="checkbox"]').checked = false
+  document.getElementById('label-edit-switch').innerText = "Edit report"
+}
