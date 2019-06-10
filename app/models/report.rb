@@ -18,4 +18,11 @@ class Report < ApplicationRecord
   delegate :company, to: :owner
 
   validates :name, presence: true
+
+  def most_recent_widget_date
+    return updated_at.strftime('%e %b %Y %H:%M:%S%p') if widgets.empty?
+
+    widgets.order(updated_at: :desc).first.updated_at.strftime('%e %b %Y %H:%M:%S%p')
+  end
 end
+
