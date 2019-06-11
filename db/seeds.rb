@@ -131,10 +131,10 @@ if ENV["orders"]
   puts
 end
 
-puts "Destroying companies & users..."
-Company.all.destroy_all
 puts "Destroying reports..."
 Report.all.destroy_all
+puts "Destroying companies & users..."
+Company.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
 

@@ -30,25 +30,25 @@ if (!document.querySelector('.grid-layout').classList.contains('edit')) {
     grid.classList.add('edit')
   }
 
-
   initEditGrid()
-  document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
-  document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
+  // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
+  // document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
 } else {
+  document.querySelector('.grid-layout').removeAttribute('data-controller')
   // Remove Editing Grid
-  const removeEditGrid = () => {
-    const grid = document.querySelector('.grid-layout')
-    grid.removeAttribute('data-controller')
-    grid.classList.remove('edit')
-    grid.querySelectorAll('.grid-edit-item').forEach(el => el.remove())
-    // Removes existing blueprint if any
-    const newWidgetBlueprint = document.getElementById('new-widget-blueprint')
-    if (newWidgetBlueprint) { newWidgetBlueprint.remove() }
-    // Removes hidden template
-    const newWidgetTemplate = document.getElementById('new-widget-template')
-    if (newWidgetTemplate) { newWidgetTemplate.remove() }
-  }
-  removeEditGrid()
-  document.querySelector('[type="checkbox"]').checked = false
-  document.getElementById('label-edit-switch').innerText = "Edit report"
+  // const removeEditGrid = () => {
+  //   const grid = document.querySelector('.grid-layout')
+  //   // grid.removeAttribute('data-controller')
+  //   grid.classList.remove('edit')
+  //   grid.querySelectorAll('.grid-edit-item').forEach(el => el.remove())
+  //   // Removes existing blueprint if any
+  //   const newWidgetBlueprint = document.getElementById('new-widget-blueprint')
+  //   if (newWidgetBlueprint) { newWidgetBlueprint.remove() }
+  //   // Removes hidden template
+  //   const newWidgetTemplate = document.getElementById('new-widget-template')
+  //   if (newWidgetTemplate) { newWidgetTemplate.remove() }
+  // }
+  // removeEditGrid()
+  // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = false
+  // document.querySelector('#menu-item-edit-report p').innerText = "Edit report"
 }

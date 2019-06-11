@@ -8,6 +8,9 @@ export default class extends Controller {
     let selecting = false
     const grid = document.querySelector(".grid-layout");
 
+    document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
+    document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
+
     const isSelectable = () => {
       return document.getElementById("new-widget-blueprint") === null
     }
@@ -56,10 +59,14 @@ export default class extends Controller {
       return (Math.abs(fromItem[0] - toItem[0]) + 1) * (Math.abs(fromItem[1] - toItem[1]) + 1)
     }
 
+    const firstWidgetNotice = document.getElementById('notice-first-widget')
     const items = this.gridEditItemTargets
     let fromItem
     items.forEach((item) => {
       item.addEventListener('mousedown', (event) => {
+        if (firstWidgetNotice) {
+          firstWidgetNotice.classList.add("transparent");
+        }
         if (isSelectable()) {
           selecting = true
           event.target.classList.add('active')
@@ -96,8 +103,23 @@ export default class extends Controller {
     document.querySelector("#new_widget input[type='submit']").click();
   }
 
-  launchBuilder() {
-
+  disconnect() {
+    // Remove Editing Grid
+    const removeEditGrid = () => {
+      const grid = document.querySelector('.grid-layout')
+      // grid.removeAttribute('data-controller')
+      grid.classList.remove('edit')
+      grid.querySelectorAll('.grid-edit-item').forEach(el => el.remove())
+      // Removes existing blueprint if any
+      const newWidgetBlueprint = document.getElementById('new-widget-blueprint')
+      if (newWidgetBlueprint) { newWidgetBlueprint.remove() }
+      // Removes hidden template
+      const newWidgetTemplate = document.getElementById('new-widget-template')
+      if (newWidgetTemplate) { newWidgetTemplate.remove() }
+    }
+    removeEditGrid()
+    document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = false
+    document.querySelector('#menu-item-edit-report p').innerText = "Edit report"
   }
 }
 
