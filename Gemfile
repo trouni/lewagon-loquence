@@ -26,6 +26,7 @@ gem 'chartkick'
 gem 'highcharts-rails'
 gem 'groupdate'
 gem 'annotate'
+gem "select2-rails"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
