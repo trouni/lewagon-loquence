@@ -89,7 +89,29 @@ export default class extends Controller {
       })
     })
   }
+
   newWidgetSubmit() {
     document.querySelector("#new_widget input[type='submit']").click();
   }
+
+  launchBuilder() {
+
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

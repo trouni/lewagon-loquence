@@ -7,6 +7,7 @@
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  owner_id    :bigint
 #
 
 class Report < ApplicationRecord
