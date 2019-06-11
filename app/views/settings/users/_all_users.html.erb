@@ -49,5 +49,8 @@
 <div class="mt-5 form-inline">
 <input type="text" placeholder="John Smith" class="form-control mr-3">
 <input type="text" placeholder="email@example.com" class="form-control mr-3">
+<%#= f.input :team, collection: User::TEAM %>
+<%= select_tag "", options_for_select(User::TEAM), options = { class: "select2" }%>
+<select type="text" placeholder="email@example.com" class="form-control mr-3"></select>
 <button class="btn btn-outline-light form-control"><i class="fas fa-user-plus"></i> Add a new user</button>
 </div>

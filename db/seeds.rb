@@ -132,9 +132,9 @@ if ENV["orders"]
 end
 
 puts "Destroying companies & users..."
+Report.all.destroy_all
 Company.all.destroy_all
 puts "Destroying reports..."
-Report.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
 
@@ -144,7 +144,7 @@ puts "Creating companies & users..."
 
 
 COMPANIES.each do |company|
-  Company.create!(name: company[:name], owner: User.first)
+  Company.create!(name: company[:name])
 end
 
 USERS.each do |user|

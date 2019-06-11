@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_10_044736) do
+ActiveRecord::Schema.define(version: 2019_06_11_024012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.bigint "company_id"
     t.string "first_name"
     t.string "last_name"
+    t.string "team"
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -139,9 +140,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.bigint "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "grid_item_position"
     t.string "display_type"
     t.bigint "kpi_id"
+    t.string "grid_item_position"
     t.index ["kpi_id"], name: "index_widgets_on_kpi_id"
     t.index ["report_id"], name: "index_widgets_on_report_id"
   end

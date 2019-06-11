@@ -18,11 +18,13 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  TEAM = %w(Customer_Support IT Marketing Sales)
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
-  has_many :report_accesses
+  has_many :report_accesses, dependent: :destroy
   has_many :reports, through: :report_accesses
   has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
-  has_many :user_platforms
+  has_many :user_platforms, dependent: :destroy
+  validates :team, inclusion: { in: TEAM }
 end
