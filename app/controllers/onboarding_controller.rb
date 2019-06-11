@@ -6,7 +6,6 @@ class OnboardingController < ApplicationController
   def show
     skip_authorization
     @user = current_user
-
     render_wizard
   end
 
