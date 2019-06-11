@@ -1,6 +1,5 @@
 class ReportsController < ApplicationController
   def index
-    # @reports = Report.all
     @reports = policy_scope(Report).order(created_at: :desc) #copied from pundit lecture note
   end
 
@@ -27,11 +26,11 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
+    authorize @report
     respond_to do |format|
       format.html
       format.js
     end
-    authorize @report
   end
 
   private
