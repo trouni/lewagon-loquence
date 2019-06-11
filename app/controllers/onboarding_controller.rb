@@ -5,12 +5,13 @@ class OnboardingController < ApplicationController
 
   def show
     @user = current_user
-
+    authorize @user
     render_wizard
   end
 
   def update
     @user = current_user
+    authorize @user
     case step
     when :confirm_profile
       @user.update_attributes(user_params)
