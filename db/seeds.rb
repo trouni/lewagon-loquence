@@ -1,3 +1,31 @@
+COMPANIES = [
+  {
+    name: "Loquence"
+  },
+  {
+    name: "Apple, Inc."
+  }
+]
+
+USERS = [
+  {
+    email: "trouni@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "saad@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "alex@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "eugene@loquence.co",
+    password: "secret"
+  },
+]
+
 SAMPLE_REPORT_LAYOUTS = {
     "Random report #1": {
       layout: [
@@ -111,35 +139,9 @@ puts "Destroying KPIs..."
 KPI.all.destroy_all
 
 
+
 puts "Creating companies & users..."
 
-COMPANIES = [
-  {
-    name: "Loquence"
-  },
-  {
-    name: "Apple, Inc."
-  }
-]
-
-USERS = [
-  {
-    email: "trouni@loquence.co",
-    password: "secret"
-  },
-  {
-    email: "saad@loquence.co",
-    password: "secret"
-  },
-  {
-    email: "alex@loquence.co",
-    password: "secret"
-  },
-  {
-    email: "eugene@loquence.co",
-    password: "secret"
-  },
-]
 
 COMPANIES.each do |company|
   Company.create!(name: company[:name], owner: User.first)
