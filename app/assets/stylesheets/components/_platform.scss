@@ -11,16 +11,20 @@
 }
 
 .logo {
-    height: 80px;
-    margin: 0 2em;
-    border-style: solid;
-    padding: 20px;
-    border-color: white;
-    border-width: thin;
-    border-radius: 20px;
-  }
+  height: 80px;
+  margin: 0 2em;
+  border-style: solid;
+  padding: 20px;
+  border-color: white;
+  border-width: thin;
+  border-radius: 20px;
+}
 
 .platform-container {
- padding: 40px;
-
+  padding: 40px;
+  .active {
+    border-style: dotted;
+    border-color: black;
+    box-shadow: 0 0 5px #00D7C0, 0 0 40px rgba(255, 255, 255, 0.5);
+  }
 }
