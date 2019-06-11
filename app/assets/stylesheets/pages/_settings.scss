@@ -1,0 +1,12 @@
+#settings-container .settings-table {
+  background: none;
+  border: none;
+  width: 100%;
+  thead {
+    border-bottom: 1px solid $teal25;
+  }
+}
+
+#settings-container .nav-link.active {
+  color: $darkblue;
+}

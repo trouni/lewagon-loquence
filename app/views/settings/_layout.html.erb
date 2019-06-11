@@ -1,0 +1,24 @@
+<%= render 'shared/dashboard' do %>
+  <div id="settings-container" class="container pt-5">
+    <div class="row pt-5">
+      <div class="col-12">
+        <h1 class="py-5 highlight-white">Settings</h1>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-account-tab" href="/settings/account" role="tab" aria-controls="nav-account" aria-selected="true">Account</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" href="#" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-users-tab" href="/settings/users" role="tab" aria-controls="nav-users" aria-selected="false">Users</a>
+            <a class="nav-item nav-link" id="nav-appearance-tab" href="#" role="tab" aria-controls="nav-appearance" aria-selected="false">Appearance</a>
+            <a class="nav-item nav-link" id="nav-billing-tab" href="#" role="tab" aria-controls="nav-billing" aria-selected="false">Billing</a>
+          </div>
+        </nav>
+
+        <div class="tab-content pt-3" id="nav-tabContent">
+
+          <%= yield %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

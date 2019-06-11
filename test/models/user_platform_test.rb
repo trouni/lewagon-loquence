@@ -1,17 +1,18 @@
 # == Schema Information
 #
-# Table name: reports
+# Table name: user_platforms
 #
 #  id          :bigint           not null, primary key
 #  name        :string
-#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :bigint
+#  platform_id :bigint
 #
 
 require 'test_helper'
 
-class ReportTest < ActiveSupport::TestCase
+class UserPlatformTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

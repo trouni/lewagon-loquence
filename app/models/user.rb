@@ -10,6 +10,9 @@
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  company_id             :bigint
+#  first_name             :string
+#  last_name              :string
 #
 
 class User < ApplicationRecord
@@ -17,4 +20,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  belongs_to :company
+  has_many :report_accesses
+  has_many :reports, through: :report_accesses
+  has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
+  has_many :user_platforms
+
+  # valiate
+  before_validation do
+    self.company ||= Company.placeholder
+  end
 end
