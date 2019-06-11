@@ -39,14 +39,14 @@ export default class extends Controller {
       // inserting new div before the first grid-edit-item
       const firstGridEditItem = document.querySelector(".grid-edit-item");
       grid.insertBefore(KPISelectorDiv, firstGridEditItem);
-      initSelect2(`.select2-dashbuilder`);
+      initSelect2(`.form-control.select`); // TODO: Change and fix targeting to .select2-dashbuilder
 
       // select newly created div
       const widgetBlueprint = document.getElementById("new-widget-blueprint");
       // set grid-area in the hidden form
       widgetBlueprint.querySelector('#widget_grid_item_position').value = gridArea;
       // set focus to the select field
-      widgetBlueprint.querySelector('#widget_kpi_id').focus();
+      // widgetBlueprint.querySelector('#widget_kpi_id').focus();
 
       resetGrid();
 
