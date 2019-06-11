@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get 'settings/account', to: 'settings#account'
   get 'settings/users', to: 'settings#users'
   resources :onboarding
+  get 'info', to: 'pages#info'
 end
