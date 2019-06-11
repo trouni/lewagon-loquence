@@ -1,12 +1,13 @@
 <%= render 'shared/dashboard' do %>
   <div class="container">
     <% @reports.each do |report| %>
-      <% image_name = report.name.gsub(" ","_").downcase %>
+      <%# image_name = report.name.gsub(" ","_").downcase %>
       <div class="card-report widget">
         <%= link_to report do %>
           <div class="card-report-content">
             <div>
-              <%= image_tag "index_#{image_name}.png" %>
+              <%= image_tag Report::RANDOMIMAGES.sample, alt: "alttext" %>
+              <%#= image_tag "index_#{image_name}.png" %>
             </div>
             <div style="padding: 10px">
               <h4 class="font-weight-bold pt-1 pl-1"><%=report.name%></h4>
