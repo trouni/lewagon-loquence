@@ -2,12 +2,18 @@
   <div class="widget">
     <div class="widget-header d-flex justify-content-between">
       <h5><%= widget.name %></h5>
-      <div class="btn-group">
+      <div class="btn-group widget-edit-icons">
+          <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+        <%= link_to widget_path(widget), method: :delete, class: "menu-item", remote: true do %>
+          <i class="fas fa-trash-alt btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
+        <% end %>
+      </div>
+      <div class="btn-group widget-filter-menu">
         <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-ellipsis-v btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <%= link_to "Delete widget", widget_path(widget), method: :delete, class: "menu-item", remote: true %>
+          Menu item
         </div>
       </div>
 
