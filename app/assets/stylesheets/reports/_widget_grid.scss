@@ -83,6 +83,22 @@ $columns: 12;
 }
 @include colspan-x;
 
+.widget-filter-menu {
+  display: unset;
+}
+
+.edit .widget-filter-menu {
+  display: none;
+}
+
+.widget-edit-icons {
+  display: none;
+}
+
+.edit .widget-edit-icons {
+  display: unset;
+}
+
 .widget-dropdown {
   background: transparent;
   color: white;

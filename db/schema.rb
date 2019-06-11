@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin"
     t.bigint "company_id"
     t.string "first_name"
     t.string "last_name"
@@ -140,9 +139,9 @@ ActiveRecord::Schema.define(version: 2019_06_10_044736) do
     t.bigint "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "grid_item_position"
     t.string "display_type"
     t.bigint "kpi_id"
-    t.string "grid_item_position"
     t.index ["kpi_id"], name: "index_widgets_on_kpi_id"
     t.index ["report_id"], name: "index_widgets_on_report_id"
   end
