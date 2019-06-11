@@ -1,5 +1,5 @@
 import { Controller } from "stimulus"
-import { initSelect2 } from '../components/init_select2';
+// import { initSelect2 } from '../components/init_select2';
 
 export default class extends Controller {
   static targets = [ "gridEditItem" ]
@@ -8,8 +8,12 @@ export default class extends Controller {
     let selecting = false
     const grid = document.querySelector(".grid-layout");
 
-    document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
-    document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
+    // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
+    // document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
+    document.querySelector('#floating-button-edit-report input[type="checkbox"]').checked = true
+    // document.querySelector('#floating-button-edit-report p').innerText = "Done editing"
+    document.getElementById('editFloatingButton').classList.add('show')
+    document.querySelector('#top-navbar .dropdown-menu').classList.remove('show')
 
     const isSelectable = () => {
       return document.getElementById("new-widget-blueprint") === null
@@ -31,10 +35,14 @@ export default class extends Controller {
 
     const insertKPISelectorDiv = (gridArea) => {
       // creating the new widget blueprint div
-      const KPISelectorDiv = document.getElementById("new-widget-template").cloneNode(true);
-      KPISelectorDiv.style.gridArea = gridArea;
+      const newWidgetTemplate = document.getElementById("new-widget-template");
+      // newWidgetTemplate.classList.add("select2");
+      const KPISelectorDiv = newWidgetTemplate.cloneNode(true);
       KPISelectorDiv.id = "new-widget-blueprint";
+      // newWidgetTemplate.classList.remove("select2");
+      KPISelectorDiv.style.gridArea = gridArea;
       KPISelectorDiv.classList.remove('hidden');
+      KPISelectorDiv.dataset.controller = 'select2';
 
       // inserting new div before the first grid-edit-item
       const firstGridEditItem = document.querySelector(".grid-edit-item");
@@ -45,8 +53,7 @@ export default class extends Controller {
       const widgetBlueprint = document.getElementById("new-widget-blueprint");
       // set grid-area in the hidden form
       widgetBlueprint.querySelector('#widget_grid_item_position').value = gridArea;
-      // set focus to the select field
-      // widgetBlueprint.querySelector('#widget_kpi_id').focus();
+
 
       resetGrid();
 
@@ -88,7 +95,9 @@ export default class extends Controller {
       item.addEventListener('mouseup', (event) => {
         if (selecting) {
           const toItem = [event.target.dataset['row'], event.target.dataset['col']]
-          const gridArea = `${Math.min(fromItem[0], toItem[0])} / ${Math.min(fromItem[1], toItem[1])} / ${parseInt(Math.max(fromItem[0], toItem[0])) + 1} / ${parseInt(Math.max(fromItem[1], toItem[1])) + 1}`
+          let colspan = Math.abs(fromItem[0] - toItem[0]) + 1
+          let rowspan = Math.abs(fromItem[1] - toItem[1]) + 1
+          const gridArea = `${Math.min(fromItem[0], toItem[0])} / ${Math.min(fromItem[1], toItem[1])} / span ${colspan} / span ${rowspan}`
           resetGrid()
           selecting = false
           if (widgetArea(fromItem, toItem) >= 4) {
@@ -118,8 +127,10 @@ export default class extends Controller {
       if (newWidgetTemplate) { newWidgetTemplate.remove() }
     }
     removeEditGrid()
-    document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = false
-    document.querySelector('#menu-item-edit-report p').innerText = "Edit report"
+    // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = false
+    // document.querySelector('#menu-item-edit-report p').innerText = "Edit report"
+    document.querySelector('#floating-button-edit-report input[type="checkbox"]').checked = false
+    document.getElementById('editFloatingButton').classList.remove('show')
   }
 }
 

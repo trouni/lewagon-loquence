@@ -10,8 +10,7 @@ if (!document.querySelector('.grid-layout').classList.contains('edit')) {
         <i class="far fa-times-circle btn-close scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
       </div>
 
-      <div class="ctn-kpi justify-content-center">
-        <h3>Select a KPI</h3>
+      <div class="ctn-kpi justify-content-start w-100">
         <%=j render 'widgets/form_new', report: @report %>
       </div>
     </div>

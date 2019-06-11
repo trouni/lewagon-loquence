@@ -1,6 +1,7 @@
 <% title = "" unless title %>
 <%= render 'shared/navbar' %>
 <%= javascript_pack_tag 'chartkick' %>
+<%#= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 <div class="dashboard">
   <%= render 'shared/topbar', title: title %>
   <div class="d-flex h-100 flex-column justify-content-between align-content-end">

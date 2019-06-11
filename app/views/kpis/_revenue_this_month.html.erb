@@ -5,7 +5,8 @@
 
 </div>
 
-<div class="chart position-relative mb-4">
+<div class="chart position-relative mb-4 h-100 w-100">
+ <div class="absolute-centering h-100 w-100">
   <%= pie_chart [['Revenue', 3342543], ['Remaining to goal', 4000000 - 3342543]],
     colors: ['#00D7C0', '#0E6E63'],
     library: {
@@ -15,6 +16,7 @@
       cutoutPercentage: 70
     }
   %>
+ </div>
   <div class="absolute-centering flex-column">
     <h3 class="highlight text-center m-0">
       <%= render partial: "shared/animated_number", locals: { value: ((3342543 / 4000000.0) * 100).round(1), format: 'percent' } %>
