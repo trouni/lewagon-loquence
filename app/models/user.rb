@@ -27,4 +27,9 @@ class User < ApplicationRecord
   has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
   has_many :user_platforms, dependent: :destroy
   validates :team, inclusion: { in: TEAM }
+
+  # valiate
+  before_validation do
+    self.company ||= Company.placeholder
+  end
 end

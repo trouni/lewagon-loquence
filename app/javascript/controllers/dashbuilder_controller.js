@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import { initSelect2 } from '../components/init_select2';
 
 export default class extends Controller {
   static targets = [ "gridEditItem" ]
@@ -35,6 +36,7 @@ export default class extends Controller {
       // inserting new div before the first grid-edit-item
       const firstGridEditItem = document.querySelector(".grid-edit-item");
       grid.insertBefore(KPISelectorDiv, firstGridEditItem);
+      initSelect2(`.select2-dashbuilder`);
 
       // select newly created div
       const widgetBlueprint = document.getElementById("new-widget-blueprint");
@@ -45,9 +47,9 @@ export default class extends Controller {
 
       resetGrid();
 
-      const closeBtn = document.querySelector("#new-widget-blueprint .btn-close")
-      closeBtn.addEventListener("click", event => removeKPISelectorDiv())
-      window.addEventListener("keyup", escapeKPISelectorDiv)
+      const closeBtn = document.querySelector("#new-widget-blueprint .btn-close");
+      closeBtn.addEventListener("click", event => removeKPISelectorDiv());
+      window.addEventListener("keyup", escapeKPISelectorDiv);
     }
 
     const widgetArea = (fromItem, toItem) => {

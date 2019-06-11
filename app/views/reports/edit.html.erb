@@ -24,7 +24,7 @@
       <h3>Select a KPI</h3>
       <%= simple_form_for [@report, Widget.new], remote: true do |f| %>
           <%= f.input :grid_item_position, as: :hidden %>
-          <%= f.association :kpi, input_html: { data: { action: "dashbuilder#newWidgetSubmit" } }, label: false %>
+          <%= f.association :kpi, input_html: {class: 'select2-dashbuilder', data: { action: "dashbuilder#newWidgetSubmit" } }, label: false %>
           <%= f.submit class: "hidden" %>
       <% end %>
     </div>

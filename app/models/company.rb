@@ -15,4 +15,12 @@ class Company < ApplicationRecord
   belongs_to :owner, class_name: "User"
 
   validates :name, uniqueness: true
+
+  def self.placeholder
+    company = find_or_initialize_by(name: "Placeholder Inc.")
+    return company if company.persisted?
+
+    company.save!(validate: false)
+    company
+  end
 end
