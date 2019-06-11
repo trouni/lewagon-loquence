@@ -4,12 +4,14 @@ class OnboardingController < ApplicationController
   steps :confirm_profile, :add_platforms
 
   def show
+    skip_authorization
     @user = current_user
     authorize @user
     render_wizard
   end
 
   def update
+    skip_authorization
     @user = current_user
     authorize @user
     case step

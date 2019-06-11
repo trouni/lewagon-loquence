@@ -2,17 +2,9 @@
 <%= render 'shared/navbar' %>
 <%= javascript_pack_tag 'chartkick' %>
 <div class="dashboard">
-
-  <div id="top-navbar" class="d-flex justify-content-between align-items-center pt-3 px-4" data-controller="navbar">
-    <div></div>
-    <h1 class="report-title text-center m-0"><%= title.upcase %></h1>
-    <div>
-      <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover clickable" data-action='click->navbar#goFullscreen'></i>
-      <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover clickable hidden" data-action='click->navbar#exitFullscreen'></i>
-      <i class="fas fa-bars btn-icon ml-3 scale-on-hover highlight-on-hover clickable"></i>
-    </div>
+  <%= render 'shared/topbar', title: title %>
+  <div class="d-flex h-100 flex-column justify-content-between align-content-end">
+    <%= yield %>
+    <%= render 'shared/footer' %>
   </div>
-
-  <%= yield %>
-
 </div>

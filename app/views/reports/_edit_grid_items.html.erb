@@ -1,0 +1,5 @@
+<% (1..rows).to_a.each do |row| %>
+  <% (1..cols).to_a.each do |col| %>
+    <div class="list-group-item grid-edit-item" data-row="<%= row %>" data-col="<%= col %>" style="grid-area: <%= row %> / <%= col %>" data-target="dashbuilder.gridEditItem"></div>
+  <% end %>
+<% end %>
