@@ -6,11 +6,13 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new
+    authorize @report
   end
 
   def create
     @report = Report.new(report_params)
     @report.owner = current_user
+    authorize @report
     if @report.save
       redirect_to @report
     else

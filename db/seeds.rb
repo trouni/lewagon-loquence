@@ -1,3 +1,45 @@
+SAMPLE_REPORT_LAYOUTS = {
+    "Random report #1": {
+      layout: [
+        "1 / 1 / span 4 / span 4",
+        "1 / 5 / span 4 / span 4",
+        "1 / 9 / span 3 / span 4",
+        "4 / 9 / span 6 / span 4",
+        "5 / 6 / span 4 / span 3",
+        "5 / 1 / span 4 / span 5",
+        "9 / 1 / span 3 / span 8"
+      ],
+      kpis: []
+    },
+    "Random report #2": {
+      layout: [
+        "1 / 1 / span 5 / span 4",
+        "1 / 5 / span 5 / span 4",
+        "1 / 9 / span 5 / span 4",
+        "6 / 1 / span 5 / span 12"
+      ],
+      kpis: []
+    },
+    "Customers": {
+      layout: [
+        "1 / 1 / span 3 / span 4",
+        "1 / 5 / span 4 / span 8",
+        "4 / 1 / span 4 / span 4",
+        "5 / 5 / span 5 / span 4",
+        "5 / 9 / span 5 / span 4",
+        "8 / 1 / span 3 / span 4"
+      ],
+      kpis: [
+        "unique_customers",
+        "new_customers_per_month",
+        "repeat_customers",
+        "customers_per_country",
+        "revenue_this_month",
+        "avg_customer_value"
+      ]
+    }
+  }
+
 if ENV["orders"]
   require 'yaml'
   puts "Destroying order items..."
@@ -61,13 +103,55 @@ if ENV["orders"]
   puts
 end
 
+puts "Destroying companies & users..."
+Company.all.destroy_all
 puts "Destroying reports..."
 Report.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
 
-puts "Creating KPIs..."
 
+puts "Creating companies & users..."
+
+COMPANIES = [
+  {
+    name: "Loquence"
+  },
+  {
+    name: "Apple, Inc."
+  }
+]
+
+USERS = [
+  {
+    email: "trouni@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "saad@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "alex@loquence.co",
+    password: "secret"
+  },
+  {
+    email: "eugene@loquence.co",
+    password: "secret"
+  },
+]
+
+COMPANIES.each do |company|
+  Company.create!(name: company[:name], owner: User.first)
+end
+
+USERS.each do |user|
+  user = User.new(email: user[:email], password: user[:password])
+  user.company = Company.first
+  user.save!
+end
+
+puts "Creating KPIs..."
 KPI_NAMES = Dir["./app/views/kpis/*"].map { |filepath| filepath.gsub("./app/views/kpis/_","").gsub(".html.erb","")}
 
 KPI_NAMES.each do |kpi|
@@ -79,123 +163,87 @@ end
 
 puts "Creating reports and widgets..."
 
-monthly_sales_report =
-  Report.create!(
-    name: 'Monthly sales',
-    description: 'Monitoring monthly sales',
-  )
-
-sales_widget =
-  Widget.create!(
-    report: monthly_sales_report,
-    name: 'Evolution of sales per week',
-    display_type: 'line_chart',
-    kpi: KPI.create!(
-      # partial_name: 'revenue_per_week',
-      query: 'revenue_per_week'
-    )
-  )
-
-customers_widget =
-  Widget.create!(
-    report: monthly_sales_report,
-    name: 'repeat customers',
-    display_type: 'column_chart',
-    kpi:  KPI.create!(
-      # partial_name: 'repeat_customers',
-      query: 'repeat_customers'
-    )
-  )
-
- order_analysis_report =
-  Report.create!(
-    name: 'Order analysis',
-    description: 'Analyze orders',
-  )
-
-quantity_widget =
-  Widget.create!(
-    report: order_analysis_report,
-    name: 'Average quantity per product',
-    display_type: 'pie_chart',
-    kpi: KPI.create!(
-      # partial_name: 'avg_qty_per_product',
-      query: 'avg_qty_per_product'
-    )
-  )
-
-amout_order_widget =
-  Widget.create!(
-    report: order_analysis_report,
-    name: 'Average amount per order',
-    display_type: 'line_chart',
-    kpi: KPI.create!(
-      # partial_name: 'avg_order_amount_and_items',
-      query: 'avg_order_amount_and_items'
-    )
-  )
-
-# grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end | itemname;
-SAMPLE_REPORT_LAYOUTS = {
-  "Random report #1": {
-    layout: [
-      "1 / 1 / span 4 / span 4",
-      "1 / 5 / span 4 / span 4",
-      "1 / 9 / span 3 / span 4",
-      "4 / 9 / span 6 / span 4",
-      "5 / 6 / span 4 / span 3",
-      "5 / 1 / span 4 / span 5",
-      "9 / 1 / span 3 / span 8"
-    ],
-    kpis: []
-  },
-  "Random report #2": {
-    layout: [
-      "1 / 1 / span 5 / span 4",
-      "1 / 5 / span 5 / span 4",
-      "1 / 9 / span 5 / span 4",
-      "6 / 1 / span 5 / span 12"
-    ],
-    kpis: []
-  },
-  "Customers": {
-    layout: [
-      "1 / 1 / span 3 / span 4",
-      "1 / 5 / span 4 / span 8",
-      "4 / 1 / span 4 / span 4",
-      "5 / 5 / span 5 / span 4",
-      "5 / 9 / span 5 / span 4",
-      "8 / 1 / span 3 / span 4"
-    ],
-    kpis: [
-      "unique_customers",
-      "new_customers_per_month",
-      "repeat_customers",
-      "customers_per_country",
-      "revenue_this_month",
-      "avg_customer_value"
-    ]
-  }
-}
-
-SAMPLE_REPORT_LAYOUTS.each do |title, widget|
-  report =
+User.all.each do |user|
+  monthly_sales_report =
     Report.create!(
-      name: title,
-      description: 'Description of #{title}',
+      name: 'Monthly sales',
+      description: 'Monitoring monthly sales',
+      owner: user
     )
-  print "#"
-  widget[:layout].each_with_index do |widget_layout, index|
-    kpi_name = widget[:kpis][index] || KPI_NAMES.sample
+
+  sales_widget =
     Widget.create!(
-      report: report,
-      name: kpi_name.gsub("_"," ").capitalize,
-      grid_item_position: widget_layout,
-      kpi: KPI.find_by(query: kpi_name)
+      report: monthly_sales_report,
+      name: 'Evolution of sales per week',
+      display_type: 'line_chart',
+      kpi: KPI.create!(
+        # partial_name: 'revenue_per_week',
+        query: 'revenue_per_week'
+      )
     )
+
+  customers_widget =
+    Widget.create!(
+      report: monthly_sales_report,
+      name: 'repeat customers',
+      display_type: 'column_chart',
+      kpi:  KPI.create!(
+        # partial_name: 'repeat_customers',
+        query: 'repeat_customers'
+      )
+    )
+
+   order_analysis_report =
+    Report.create!(
+      name: 'Order analysis',
+      description: 'Analyze orders',
+      owner: user
+    )
+
+  quantity_widget =
+    Widget.create!(
+      report: order_analysis_report,
+      name: 'Average quantity per product',
+      display_type: 'pie_chart',
+      kpi: KPI.create!(
+        # partial_name: 'avg_qty_per_product',
+        query: 'avg_qty_per_product'
+      )
+    )
+
+  amout_order_widget =
+    Widget.create!(
+      report: order_analysis_report,
+      name: 'Average amount per order',
+      display_type: 'line_chart',
+      kpi: KPI.create!(
+        # partial_name: 'avg_order_amount_and_items',
+        query: 'avg_order_amount_and_items'
+      )
+    )
+
+  # grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end | itemname;
+
+
+  SAMPLE_REPORT_LAYOUTS.each do |title, widget|
+    report =
+      Report.create!(
+        name: title,
+        description: "Description of #{title}",
+        owner: user
+      )
+    print "#"
+    widget[:layout].each_with_index do |widget_layout, index|
+      kpi_name = widget[:kpis][index] || KPI_NAMES.sample
+      Widget.create!(
+        report: report,
+        name: kpi_name.gsub("_"," ").capitalize,
+        grid_item_position: widget_layout,
+        kpi: KPI.find_by(query: kpi_name)
+      )
+      print "#"
+    end
     print "#"
   end
-  print "#"
+  puts
 end
-puts
-
