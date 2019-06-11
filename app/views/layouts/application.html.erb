@@ -10,7 +10,9 @@
   </head>
   <body>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="d-flex">
+      <%= yield %>
+    </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>

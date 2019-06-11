@@ -11,6 +11,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  company_id             :bigint
+#  first_name             :string
+#  last_name              :string
 #
 
 class User < ApplicationRecord
