@@ -19,7 +19,7 @@
             <div class="m-2">Consumer secret: <input class="w-100" type="text" name="consumer key"></div>
           </form>
           <div class="d-flex mt-5">
-          <%= link_to 'You are all done', next_wizard_path, class: 'btn btn-outline-success w-100' %>
+          <%= link_to 'You are all done', report_path(Report.last), class: 'btn btn-outline-success w-100' %>
           </div>
        </div>
     </div>
