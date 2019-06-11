@@ -26,6 +26,7 @@ gem 'chartkick'
 gem 'highcharts-rails'
 gem 'groupdate'
 gem 'annotate'
+gem "select2-rails"
 gem 'wicked'
 
 group :development do

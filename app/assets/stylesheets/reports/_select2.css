@@ -1,0 +1,21 @@
+.select2-results__option[aria-selected]{
+  background: #1B4353;
+  background-color: #1B4353;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+  background: #1B4353;
+  background-color: #1B4353;
+}
+
+.select2-results__option .select2-results__option--highlighted[aria-selected] {
+ background: #1B4353;
+ background-color: #1B4353;
+}
+
+/*
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  background: #1B4353;
+  background-color: #1B4353;
+}
+*/
