@@ -1,7 +1,8 @@
 class ReportPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.joins(:owner).where(users: { company_id: user.company_id })
+      # scope.joins(:owner).where(users: { company_id: user.company_id })
+      scope.where(owner: user).order(:name)
     end
   end
 
