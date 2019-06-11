@@ -6,14 +6,12 @@ class OnboardingController < ApplicationController
   def show
     skip_authorization
     @user = current_user
-    authorize @user
     render_wizard
   end
 
   def update
     skip_authorization
     @user = current_user
-    authorize @user
     case step
     when :confirm_profile
       @user.update_attributes(user_params)

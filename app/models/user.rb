@@ -25,4 +25,9 @@ class User < ApplicationRecord
   has_many :reports, through: :report_accesses
   has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
   has_many :user_platforms
+
+  # valiate
+  before_validation do
+    self.company ||= Company.placeholder
+  end
 end
