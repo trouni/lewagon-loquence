@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
     if @report.save
       redirect_to @report
     else
-      render 'report#new'
+      render 'report/new'
     end
   end
 
