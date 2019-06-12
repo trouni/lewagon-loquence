@@ -148,6 +148,9 @@ KPI.all.destroy_all
 
 puts "Creating companies & users..."
 
+puts "Destroying groups..."
+Group.destroy_all
+
 USERS.each do |user|
   user = User.create!(email: user[:email], password: user[:password])
 end
@@ -155,8 +158,6 @@ end
 COMPANIES.each do |company|
   Company.create!(name: company[:name], owner: User.first)
 end
-puts "Destroying groups..."
-Group.all.destroy_all
 GROUPS.each do |group|
   Group.create!(name: group[:name])
 end
