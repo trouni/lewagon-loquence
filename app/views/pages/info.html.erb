@@ -1,14 +1,15 @@
 <div id="homepage" class="w-100 home-banner position-relative">
   <div class="container d-flex justify-content-between flex-column h-100 text-center">
     <div class="row justify-content-center vh-100">
-      <h1 class="highlight" style="color: white"><small>Our secret? Business decisions based on data</small></h1>
+      <h1 class="highlight" style="color: white"><small>Business decisions based on data</small></h1>
     </div>
     <div >
-    <%= video_tag "pain1.mp4", size: "1200x600", controls: true %>
-    </div>
-    <div class="mt-4">
     <%= video_tag "pain2.mp4", size: "1200x600", controls: true %>
     </div>
+    <div class="mt-4">
+    <%= video_tag "pain1.mp4", size: "1200x600", controls: true %>
+    </div>
+    <%= link_to "Go to Loquence", root_path %>
   </div>
 </div>
 

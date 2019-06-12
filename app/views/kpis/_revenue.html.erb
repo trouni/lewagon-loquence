@@ -1,1 +1,34 @@
-<%= column_chart KPI.revenue_per_day %>
+<%= column_chart KPI.revenue_per_day,
+  options: {
+
+  },
+  library: {
+    # legend: {
+    #      labels: {
+    #           fontColor: 'orange'
+    #          }
+    #       },
+    # title: {
+    #     display: true,
+    #     fontColor: 'blue',
+    #     text: 'Custom Chart Title'
+    # },
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true,
+                fontColor: '#DBE9EECC'
+            },
+        }],
+      xAxes: [{
+            ticks: {
+                fontColor: '#DBE9EECC'
+            },
+        }]
+    },
+    gridLines: {
+      display: false,
+      color: 'white'
+    }
+  }
+%>

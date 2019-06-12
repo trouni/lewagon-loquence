@@ -9,19 +9,19 @@
 // }
 
 .card-report {
-  grid-area: span 4 / span 4;
+  // grid-area: span 4 / span 4;
   margin: 1em;
   padding: 0px;
-  height: 150px;
+  height: 100px;
 }
 
 .card-report-content {
   display: flex;
   justify-content: space-between;
   height: 100%;
-  border: 10px;
+  // border: 10px;
   img {
-    height: 150px;
+    height: 100%;
     width: 150px;
     object-fit: cover;
     background-position: top;

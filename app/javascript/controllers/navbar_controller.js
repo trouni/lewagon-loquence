@@ -1,29 +1,18 @@
 import { Controller } from "stimulus"
-// import Vue from 'vue/dist/vue.esm'
 
 export default class extends Controller {
-  // static targets = [ "output" ]
 
   connect() {
-    // const app = new Vue({
-    //   el: '#navbar',
-    //   methods: {
-    //     enterNavbar: () => {
-    //       setTimeout(document.getElementById("navbar").classList.remove("minimized"), 20000)
-    //       clearTimeout(this.hideNavbarTimeout)
-    //     },
-    //     leaveNavbar: () => {
-    //       setTimeout(document.getElementById("navbar").classList.add("minimized"), 20000)
-    //       clearTimeout(this.showNavbarTimeout)
-    //     },
-    //     expandMenu: () => {
-    //       document.getElementById("navbar").classList.remove("minimized")
-    //     },
-    //     hideMenu: () => {
-    //       document.getElementById("navbar").classList.add("minimized")
-    //     }
-    //   }
-    // });
+    document.onfullscreenchange = (event) => {
+      this.toggleScreenButtonStatus();
+    }
+    if (this.data.get('expanded') == 0) {
+      document.getElementById('navbar').classList.remove('expanded');
+    }
+  }
+
+  expandedNavbar() {
+    document.getElementById('navbar').classList.add('expanded');
   }
 
   goFullscreen() {
@@ -37,8 +26,6 @@ export default class extends Controller {
     } else if (elem.msRequestFullscreen) { /* IE/Edge */
       elem.msRequestFullscreen();
     }
-    document.getElementById('btn-exit-fullscreen').classList.remove('hidden')
-    document.getElementById('btn-go-fullscreen').classList.add('hidden')
   }
 
   exitFullscreen() {
@@ -51,7 +38,23 @@ export default class extends Controller {
     } else if (document.msExitFullscreen) { /* IE/Edge */
       document.msExitFullscreen();
     }
-    document.getElementById('btn-exit-fullscreen').classList.add('hidden')
-    document.getElementById('btn-go-fullscreen').classList.remove('hidden')
+  }
+
+  toggleFullscreen() {
+    if( (screen.availHeight || screen.height-30) <= window.innerHeight) {
+      this.exitFullscreen()
+    } else {
+      this.goFullscreen()
+    }
+  }
+
+  toggleScreenButtonStatus() {
+    if( (screen.availHeight || screen.height-30) <= window.innerHeight) {
+      document.getElementById('btn-exit-fullscreen').classList.remove('hidden')
+      document.getElementById('btn-go-fullscreen').classList.add('hidden')
+    } else {
+      document.getElementById('btn-exit-fullscreen').classList.add('hidden')
+      document.getElementById('btn-go-fullscreen').classList.remove('hidden')
+    }
   }
 }

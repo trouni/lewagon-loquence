@@ -1,5 +1,5 @@
 <%= simple_form_for [report, Widget.new], remote: true do |f| %>
   <%= f.input :grid_item_position, as: :hidden %>
-  <%= f.association :kpi, input_html: { data: { action: "dashbuilder#newWidgetSubmit" } }, label: false %>
-  <%= f.submit class: "hidden" %>
+  <%= f.association :kpi, input_html: { class: "select2", data: { action: "dashbuilder#newWidgetSubmit" } }, label: false, include_blank: false, collection: KPI.all.order(:name), prompt: "Select a KPI" %>
+  <%= f.submit class: "hidden", data: { target: "select2.clickOnChange" } %>
 <% end %>

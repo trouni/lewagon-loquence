@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div class="chart position-relative mb-4">
+<div class="chart position-relative absolute-centering mb-4 w-100 h-100">
 <%= pie_chart KPI.send(widget.kpi.query),
   colors: ['#00D7C0', '#0E6E63'],
   library: {
@@ -29,7 +29,7 @@
     <h3 class="highlight text-center m-0">
       <%= render partial: "shared/animated_number", locals: { value: repeat_buyer_rate, format: 'percent' } %>
     </h3>
-    <p class="highlight">repeat customers</p>
+    <p class="highlight-white">repeat customers</p>
   </div>
 </div>
 

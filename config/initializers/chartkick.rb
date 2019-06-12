@@ -1,7 +1,7 @@
 Chartkick.options = {
-  # height: "300px",
   colors: ['#00D7C0', '#F6DD27', '#FE864E', '#DB1271', '#8A4BFF'],
   library: {
+    mapsApiKey: ENV['GOOGLE_MAPS_API_KEY'],
     animation: {
       duration: 1500,
       easing: 'easeOutQuad'
@@ -17,8 +17,9 @@ Chartkick.options = {
       style: {
         fontFamily: '\'Unica One\', sans-serif'
       },
-      plotBorderColor: '#C2C4CB'
+      plotBorderColor: '#F3F4F8'
     },
+    backgroundColor: 'transparent',
     title: {
       style: {
         color: '#F3F4F8',
@@ -40,7 +41,7 @@ Chartkick.options = {
         }
       },
       lineColor: '#E9E9F2',
-      minorGridLineColor: '#505053',
+      minorGridLineColor: '#E9E9F2',
       tickColor: '#E9E9F2',
       title: {
         style: {
@@ -57,7 +58,7 @@ Chartkick.options = {
         }
       },
       lineColor: '#E9E9F2',
-      minorGridLineColor: '#505053',
+      minorGridLineColor: '#E9E9F2',
       tickColor: '#E9E9F2',
       tickWidth: 1,
       title: {
@@ -66,10 +67,34 @@ Chartkick.options = {
         }
       }
     },
-    tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.85)',
-      style: {
-        color: '#F0F0F0'
+    vAxis: {
+      baselineColor: "#F3F4F8",
+      gridlines: {
+        color: ""
+      },
+      textStyle: {
+        color: "#76BDD1"
+      },
+      titleTextStyle: {
+        color: "#F76161"
+      }
+    },
+    hAxis: {
+      baselineColor: "#F3F4F8",
+      gridlines: {
+        color: ""
+      },
+      textStyle: {
+        color: "#76BDD1"
+      },
+      titleTextStyle: {
+        color: "#F76161"
+      },
+      tooltip: {
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        style: {
+          color: '#F0F0F0'
+        }
       }
     },
     plotOptions: {

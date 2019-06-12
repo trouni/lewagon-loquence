@@ -1,10 +1,16 @@
 import { Controller } from "stimulus"
-import 'select2/dist/css/select2.css';
-import { initSelect2 } from '../components/init_select2';
+import $ from 'jquery';
+import 'select2';
 
 export default class extends Controller {
+  static targets = [ "clickOnChange" ]
 
-  connect() {
-    initSelect2();
+  connect(event) {
+    const select = this.context.scope.element.querySelector('.select2')
+    const $el = $(select).select2();
+    $(select).select2('open');
+    $el.on('change', () => {
+      this.clickOnChangeTarget.click();
+    });
   }
 }

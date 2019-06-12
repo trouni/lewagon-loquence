@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :reports do
     resources :widgets, only: [:create, :update]
+    resources :report_accesses, only: [:create, :update, :destroy]
   end
   resources :widgets, only: :destroy
   resources :users

@@ -50,17 +50,17 @@ SAMPLE_REPORT_LAYOUTS = {
         "1 / 1 / span 3 / span 4",
         "1 / 5 / span 4 / span 8",
         "4 / 1 / span 4 / span 4",
-        "5 / 5 / span 5 / span 4",
         "5 / 9 / span 5 / span 4",
         "8 / 1 / span 3 / span 4"
+        "5 / 5 / span 5 / span 4",
       ],
       kpis: [
         "unique_customers",
         "revenue",
         "repeat_customers",
-        "customers_per_country",
         "revenue_this_month",
         "avg_customer_value"
+        "customers_per_country",
       ]
     }
   }
@@ -164,64 +164,6 @@ puts "Creating reports and widgets..."
 
 User.all.each do |user|
   user.update(company: Company.last)
-
-  monthly_sales_report =
-    Report.create!(
-      name: 'Monthly sales',
-      description: 'Monitoring monthly sales',
-      owner: user
-    )
-
-  sales_widget =
-    Widget.create!(
-      report: monthly_sales_report,
-      name: 'Evolution of sales per week',
-      display_type: 'line_chart',
-      kpi: KPI.create!(
-        # partial_name: 'revenue_per_week',
-        query: 'revenue_per_week'
-      )
-    )
-
-  customers_widget =
-    Widget.create!(
-      report: monthly_sales_report,
-      name: 'repeat customers',
-      display_type: 'column_chart',
-      kpi:  KPI.create!(
-        # partial_name: 'repeat_customers',
-        query: 'repeat_customers'
-      )
-    )
-
-   order_analysis_report =
-    Report.create!(
-      name: 'Order analysis',
-      description: 'Analyze orders',
-      owner: user
-    )
-
-  quantity_widget =
-    Widget.create!(
-      report: order_analysis_report,
-      name: 'Average quantity per product',
-      display_type: 'pie_chart',
-      kpi: KPI.create!(
-        # partial_name: 'avg_qty_per_product',
-        query: 'avg_qty_per_product'
-      )
-    )
-
-  amout_order_widget =
-    Widget.create!(
-      report: order_analysis_report,
-      name: 'Average amount per order',
-      display_type: 'line_chart',
-      kpi: KPI.create!(
-        # partial_name: 'avg_order_amount_and_items',
-        query: 'avg_order_amount_and_items'
-      )
-    )
 
   # grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end | itemname;
 
