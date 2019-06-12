@@ -53,16 +53,16 @@ SAMPLE_REPORT_LAYOUTS = {
         "1 / 5 / span 4 / span 8",
         "4 / 1 / span 4 / span 4",
         "5 / 9 / span 5 / span 4",
-        "8 / 1 / span 3 / span 4"
-        "5 / 5 / span 5 / span 4",
+        "8 / 1 / span 3 / span 4",
+        "5 / 5 / span 5 / span 4"
       ],
       kpis: [
         "unique_customers",
         "revenue",
         "repeat_customers",
         "revenue_this_month",
-        "avg_customer_value"
-        "customers_per_country",
+        "avg_customer_value",
+        "customers_per_country"
       ]
     }
   }

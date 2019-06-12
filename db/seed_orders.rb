@@ -8,10 +8,10 @@ end
 def fake_food_product_name
   [
     "#{Faker::Food.ingredient} " + ["Cookie", "Biscuit", "Protein Bar"].sample,
-    "#{Faker::Food.fruits} & #{Faker::Food.spice}" + ["Cookie", "Biscuit", "Protein Bar", "Caviar", "Terrine", "Jerky", "Granola Bar"].sample,
-    %w[Dried Sundried] + " #{Faker::Food.sushi}",
+    "#{Faker::Food.fruits} & #{Faker::Food.spice} " + ["Cookie", "Biscuit", "Protein Bar", "Caviar", "Terrine", "Jerky", "Granola Bar"].sample,
+    %w[Dried Sundried].sample + " #{Faker::Food.sushi}",
     "#{Faker::Food.vegetables} " + ["Cookie", "Biscuit", "Protein Bar", "Caviar", "Terrine", "Jerky", "Granola Bar"].sample
-  ].sample
+  ].sample.split(" ").map { |word| word.capitalize }.join(" ")
 end
 
 def seed_orders
@@ -24,7 +24,7 @@ def seed_orders
   puts "Destroying buyers..."
   Buyer.all.destroy_all
 
-  filepath = 'db/seed_data/amazon_seeds_2.csv'
+  filepath = 'db/seed_data/amazon_seeds.csv'
   puts "Loading #{filepath}..."
 
   @orders = CSV.read(filepath, col_sep: ',', header_converters: :symbol, encoding: "utf-8", headers: :first_row, quote_char: '"')
@@ -33,7 +33,7 @@ def seed_orders
 
   puts "Creating seeds..."
   @orders.each do |order|
-    if order["OrderStatus"] != "Canceled" && order["OrderStatus"] != "Pending"
+    if order[:orderstatus] != "Canceled" && order[:orderstatus] != "Pending"
       buyer = Buyer.find_by(email: order[:buyeremail]) || Buyer.create!(email: order[:buyeremail])
       print "#"
 
@@ -53,7 +53,7 @@ def seed_orders
       order = Order.find_by(external_order_id: order[:amazonorderid]) || Order.create!(order_hash)
       print "#"
 
-      product = Product.find_by(sku: "BESTIES-#{order[:lsku]}") || Product.create!(sku: "BESTIES-#{order[:lsku]}", title: fake_food_product_name[])
+      product = Product.find_by(sku: "BESTIES-#{order[:lsku]}") || Product.create!(sku: "BESTIES-#{order[:lsku]}", title: fake_food_product_name)
       print "#"
 
       if order[:itemprice]
@@ -65,7 +65,7 @@ def seed_orders
         order: order,
         product: product,
         item_price_cents: item_price_cents,
-        external_order_id: order[:orderitemid],
+        external_order_item_id: order[:orderitemid],
         quantity: order[:quantityordered],
         currency: currency
       )
