@@ -4,6 +4,13 @@ COMPANIES = [
   }
 ]
 
+GROUPS = [
+  {name: "IT"},
+  {name: "Marketing"},
+  {name: "Logistics"},
+  {name: "Customer Support"},
+]
+
 USERS = [
   {
     email: "trouni@loquence.co",
@@ -51,7 +58,7 @@ SAMPLE_REPORT_LAYOUTS = {
         "1 / 5 / span 4 / span 8",
         "4 / 1 / span 4 / span 4",
         "5 / 9 / span 5 / span 4",
-        "8 / 1 / span 3 / span 4"
+        "8 / 1 / span 3 / span 4",
         "5 / 5 / span 5 / span 4",
       ],
       kpis: [
@@ -59,7 +66,7 @@ SAMPLE_REPORT_LAYOUTS = {
         "revenue",
         "repeat_customers",
         "revenue_this_month",
-        "avg_customer_value"
+        "avg_customer_value",
         "customers_per_country",
       ]
     }
@@ -146,9 +153,12 @@ USERS.each do |user|
 end
 
 COMPANIES.each do |company|
-  Company.create!(name: company[:name])
+  Company.create!(name: company[:name], owner: User.first)
 end
 
+GROUPS.each do |group|
+  Group.create!(name: group[:name])
+end
 
 puts "Creating KPIs..."
 KPI_NAMES = Dir["./app/views/kpis/*"].map { |filepath| filepath.gsub("./app/views/kpis/_","").gsub(".html.erb","")}

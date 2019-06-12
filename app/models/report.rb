@@ -14,7 +14,9 @@ class Report < ApplicationRecord
   has_many :widgets, dependent: :destroy
   has_many :kpis, through: :widgets
   has_many :report_accesses, dependent: :destroy
-  has_many :users, through: :report_accesses
+  has_many :groups, through: :report_accesses
+  has_many :group_users, through: :groups
+  has_many :users, through: :group_users
   belongs_to :owner, class_name: "User"
   delegate :company, to: :owner
 
@@ -27,4 +29,3 @@ class Report < ApplicationRecord
     widgets.order(updated_at: :desc).first.updated_at.strftime('%e %b %Y %H:%M:%S%p')
   end
 end
-
