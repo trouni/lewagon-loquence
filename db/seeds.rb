@@ -155,7 +155,8 @@ end
 COMPANIES.each do |company|
   Company.create!(name: company[:name], owner: User.first)
 end
-
+puts "Destroying groups..."
+Group.all.destroy_all
 GROUPS.each do |group|
   Group.create!(name: group[:name])
 end
