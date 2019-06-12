@@ -67,7 +67,16 @@ SAMPLE_REPORT_LAYOUTS = {
     }
   }
 
-if ENV["orders"]
+if ENV["orders"] == "reset"
+  puts "-" * 30
+  puts "RESETTING ORDERS"
+  puts "-" * 30
+  destroy_order_seeds()
+  seed_orders()
+elsif ENV["orders"]
+  puts "-" * 30
+  puts "UPDATING ORDERS"
+  puts "-" * 30
   seed_orders()
 end
 
