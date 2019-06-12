@@ -22,14 +22,26 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
-  has_many :report_accesses, dependent: :destroy
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
+  has_many :report_accesses, through: :groups
   has_many :reports, through: :report_accesses
   has_many :reports_as_owner, foreign_key: :owner_id, class_name: 'Report'
   has_many :user_platforms, dependent: :destroy
-  validates :team, inclusion: { in: TEAM }
+  # validates :team, inclusion: { in: TEAM }
+  after_create :create_user_group
 
   # valiate
   before_validation do
     self.company ||= Company.placeholder
+  end
+
+  def create_user_group
+    if first_name
+      group = Group.create!(name: "#{first_name}, #{last_name}", group_type: "user")
+    else
+      group = Group.create!(name: email, group_type: "user")
+    end
+    GroupUser.create!(user: self, group: group)
   end
 end

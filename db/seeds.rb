@@ -6,6 +6,13 @@ COMPANIES = [
   }
 ]
 
+GROUPS = [
+  {name: "IT"},
+  {name: "Marketing"},
+  {name: "Logistics"},
+  {name: "Customer Support"},
+]
+
 USERS = [
   {
     email: "trouni@loquence.co",
@@ -49,12 +56,12 @@ SAMPLE_REPORT_LAYOUTS = {
     },
     "Daily report": {
       layout: [
-        "1 / 1 / span 3 / span 4",
-        "1 / 5 / span 4 / span 8",
-        "4 / 1 / span 4 / span 4",
-        "5 / 9 / span 5 / span 4",
-        "8 / 1 / span 3 / span 4",
-        "5 / 5 / span 5 / span 4"
+        "1 / 1 / span 6 / span 4",
+        "1 / 5 / span 5 / span 8",
+        "7 / 1 / span 7 / span 4",
+        "6 / 9 / span 7 / span 4",
+        "11 / 5 / span 5 / span 4",
+        "6 / 5 / span 5 / span 4"
       ],
       kpis: [
         "unique_customers",
@@ -93,14 +100,19 @@ KPI.all.destroy_all
 
 puts "Creating companies & users..."
 
+puts "Destroying groups..."
+Group.destroy_all
+
 USERS.each do |user|
   user = User.create!(email: user[:email], password: user[:password])
 end
 
 COMPANIES.each do |company|
-  Company.create!(name: company[:name])
+  Company.create!(name: company[:name], owner: User.first)
 end
-
+GROUPS.each do |group|
+  Group.create!(name: group[:name])
+end
 
 puts "Creating KPIs..."
 KPI_NAMES = Dir["./app/views/kpis/*"].map { |filepath| filepath.gsub("./app/views/kpis/_","").gsub(".html.erb","")}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_024012) do
+ActiveRecord::Schema.define(version: 2019_06_12_030220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,31 @@ ActiveRecord::Schema.define(version: 2019_06_11_024012) do
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
     t.index ["owner_id"], name: "index_companies_on_owner_id"
+  end
+
+  create_table "company_groups", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_groups_on_company_id"
+    t.index ["group_id"], name: "index_company_groups_on_group_id"
+  end
+
+  create_table "group_users", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "group_type", default: "team"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "kpis", force: :cascade do |t|
@@ -95,6 +120,8 @@ ActiveRecord::Schema.define(version: 2019_06_11_024012) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_report_accesses_on_group_id"
     t.index ["report_id", "user_id"], name: "index_report_accesses_on_report_id_and_user_id", unique: true
   end
 
@@ -129,6 +156,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_024012) do
     t.string "first_name"
     t.string "last_name"
     t.string "team"
+    t.boolean "admin", default: false, null: false
     t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -153,9 +181,14 @@ ActiveRecord::Schema.define(version: 2019_06_11_024012) do
   end
 
   add_foreign_key "companies", "users", column: "owner_id"
+  add_foreign_key "company_groups", "companies"
+  add_foreign_key "company_groups", "groups"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "buyers"
+  add_foreign_key "report_accesses", "groups"
   add_foreign_key "reports", "users", column: "owner_id"
   add_foreign_key "user_platforms", "platforms"
   add_foreign_key "user_platforms", "users"
