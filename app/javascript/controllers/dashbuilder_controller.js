@@ -47,6 +47,7 @@ export default class extends Controller {
       // inserting new div before the first grid-edit-item
       const firstGridEditItem = document.querySelector(".grid-edit-item");
       grid.insertBefore(KPISelectorDiv, firstGridEditItem);
+
       // initSelect2(`.select2-dashbuilder`); // TODO: Change and fix targeting to .select2-dashbuilder
 
       // select newly created div

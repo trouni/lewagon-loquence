@@ -10,3 +10,12 @@
 #settings-container .nav-link.active {
   color: $darkblue;
 }
+
+.form-container{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.form-element{
+
+}

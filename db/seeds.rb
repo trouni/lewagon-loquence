@@ -146,7 +146,7 @@ USERS.each do |user|
 end
 
 COMPANIES.each do |company|
-  Company.create!(name: company[:name], owner: User.first)
+  Company.create!(name: company[:name])
 end
 
 
