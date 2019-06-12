@@ -1,7 +1,8 @@
 class ReportPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      # scope.joins(:owner).where(users: { company_id: user.company_id })
+      scope.where(owner: user).order(:name)
     end
   end
 
@@ -16,7 +17,7 @@ class ReportPolicy < ApplicationPolicy
 
   def show?
     # TODO: add company when Alex completes model for the company
-    true
+    record.company == user.company
   end
 
   def destroy?

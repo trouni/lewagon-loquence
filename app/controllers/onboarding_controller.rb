@@ -1,7 +1,7 @@
 class OnboardingController < ApplicationController
   include Wicked::Wizard
 
-  steps :confirm_profile, :add_platforms
+  steps :confirm_profile, :add_platforms, :setup_platform
 
   def show
     skip_authorization

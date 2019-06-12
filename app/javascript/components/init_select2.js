@@ -3,7 +3,7 @@ import 'select2';
 
 const initSelect2 = (selector = ".select2") => {
   const selects = document.querySelectorAll(selector);
-  console.log(selects);
+  // console.log(selects);
   let count = 0;
   selects.forEach((el) => {
     el.id += `_${count}`;

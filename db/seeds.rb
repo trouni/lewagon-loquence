@@ -1,9 +1,6 @@
 COMPANIES = [
   {
     name: "Loquence"
-  },
-  {
-    name: "Apple, Inc."
   }
 ]
 
@@ -27,7 +24,7 @@ USERS = [
 ]
 
 SAMPLE_REPORT_LAYOUTS = {
-    "Random report #1": {
+    "Monthly sales": {
       layout: [
         "1 / 1 / span 4 / span 4",
         "1 / 5 / span 4 / span 4",
@@ -39,7 +36,7 @@ SAMPLE_REPORT_LAYOUTS = {
       ],
       kpis: []
     },
-    "Random report #2": {
+    "Customers report": {
       layout: [
         "1 / 1 / span 5 / span 4",
         "1 / 5 / span 5 / span 4",
@@ -48,7 +45,7 @@ SAMPLE_REPORT_LAYOUTS = {
       ],
       kpis: []
     },
-    "Customers": {
+    "Daily report": {
       layout: [
         "1 / 1 / span 3 / span 4",
         "1 / 5 / span 4 / span 8",
@@ -59,7 +56,7 @@ SAMPLE_REPORT_LAYOUTS = {
       ],
       kpis: [
         "unique_customers",
-        "new_customers_per_month",
+        "revenue",
         "repeat_customers",
         "customers_per_country",
         "revenue_this_month",
@@ -131,27 +128,27 @@ if ENV["orders"]
   puts
 end
 
-puts "Destroying companies & users..."
-Report.all.destroy_all
-Company.all.destroy_all
+
 puts "Destroying reports..."
+Report.all.destroy_all
+puts "Destroying users..."
+ActiveRecord::Base.connection.execute "truncate users cascade"
+puts "Destroying companies..."
+Company.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
 
 
-
 puts "Creating companies & users..."
 
+USERS.each do |user|
+  user = User.create!(email: user[:email], password: user[:password])
+end
 
 COMPANIES.each do |company|
   Company.create!(name: company[:name])
 end
 
-USERS.each do |user|
-  user = User.new(email: user[:email], password: user[:password])
-  user.company = Company.first
-  user.save!
-end
 
 puts "Creating KPIs..."
 KPI_NAMES = Dir["./app/views/kpis/*"].map { |filepath| filepath.gsub("./app/views/kpis/_","").gsub(".html.erb","")}
@@ -166,6 +163,8 @@ end
 puts "Creating reports and widgets..."
 
 User.all.each do |user|
+  user.update(company: Company.last)
+
   monthly_sales_report =
     Report.create!(
       name: 'Monthly sales',
