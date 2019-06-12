@@ -31,14 +31,28 @@ export default class extends Controller {
           data: cumulData,
           borderColor: '#F4F4F4',
             // Changes this dataset to become a line
-            type: 'line'
+            type: 'line',
+          }, {
+            label: 'other',
+            stack: 'Stack 0',
+            yAxisID: 'A',
+            data: newCustomerData,
+            backgroundColor: '#333370',
+          }, {
+            label: 'other 2',
+            stack: 'Stack 0',
+            yAxisID: 'A',
+            data: newCustomerData,
+            backgroundColor: '#333390',
           }, {
             label: 'Fist time customers',
+            stack: 'Stack 1',
             yAxisID: 'A',
             data: newCustomerData,
             backgroundColor: '#AFCFEA',
           }, {
             label: 'Repeat customers',
+            stack: 'Stack 1',
             yAxisID: 'A',
             data: repeatCustomerData,
             backgroundColor: '#00D7C0',
@@ -47,9 +61,13 @@ export default class extends Controller {
         },
         options: {
           scales: {
+            xAxes: [{
+              stacked: true
+            }],
             yAxes: [
             {
               id: 'A',
+              stacked: 'true',
               barPercentage: 0.5,
               type: 'linear',
               position: 'left',
