@@ -112,7 +112,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="601" y="443" name="reports">
+<table x="824" y="464" name="reports">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -130,7 +130,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="758" y="419" name="widgets">
+<table x="984" y="472" name="widgets">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -155,7 +155,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="924" y="465" name="kpis">
+<table x="1153" y="517" name="kpis">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -172,15 +172,21 @@
 <part>id</part>
 </key>
 </table>
-<table x="250" y="466" name="users">
+<table x="330" y="769" name="users">
 <row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="username" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="email" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="first_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="last_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="admin" null="1" autoincrement="0">
+<datatype>BOOLEAN</datatype>
 <default>NULL</default></row>
 <row name="company_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -223,12 +229,58 @@
 <part>id</part>
 </key>
 </table>
-<table x="57" y="488" name="companies">
+<table x="617" y="452" name="report_access">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="report_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="reports" row="id" />
+</row>
+<row name="group_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="group" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="403" y="444" name="group">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
-<datatype>CHAR</datatype>
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="group_type" null="1" autoincrement="0">
+<datatype>BOOLEAN</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="417" y="602" name="group_users">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="group_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="group" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="99" y="732" name="companies">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="owner_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -237,19 +289,18 @@
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
-<comment>has many users</comment>
 </table>
-<table x="396" y="397" name="report_access">
+<table x="133" y="464" name="company_groups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="user_id" null="1" autoincrement="0">
+<row name="company_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="users" row="id" />
+<default>NULL</default><relation table="companies" row="id" />
 </row>
-<row name="report_id" null="1" autoincrement="0">
+<row name="group_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="reports" row="id" />
+<default>NULL</default><relation table="group" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
