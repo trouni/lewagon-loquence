@@ -1,4 +1,5 @@
 import { Controller } from "stimulus"
+import $ from 'jquery';
 
 export default class extends Controller {
 
@@ -9,6 +10,11 @@ export default class extends Controller {
     if (this.data.get('expanded') == 0) {
       document.getElementById('navbar').classList.remove('expanded');
     }
+
+    // Initialize Bootstrap tootips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   }
 
   expandedNavbar() {
@@ -56,5 +62,9 @@ export default class extends Controller {
       document.getElementById('btn-exit-fullscreen').classList.add('hidden')
       document.getElementById('btn-go-fullscreen').classList.remove('hidden')
     }
+  }
+
+  setNewReportClass() {
+    document.querySelector('body').classList.add('new-report');
   }
 }

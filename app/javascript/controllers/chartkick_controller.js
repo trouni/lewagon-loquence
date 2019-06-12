@@ -26,7 +26,6 @@ export default class extends Controller {
 
     const widgetId = canvas.dataset.widgetid;
     const amazonSwitch = document.getElementById(`switch-amazon-${widgetId}`);
-    console.log(`switch-amazon-${widgetId}`);
     const shopifySwitch = document.getElementById(`switch-shopify-${widgetId}`);
     document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true;
     document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true;
@@ -190,7 +189,6 @@ export default class extends Controller {
     }
 
     shopifySwitch.addEventListener("click", (event) => {
-      console.log("voila")
       if (document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true &&
         document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true) {
         showOnlyAmazon()
@@ -201,7 +199,6 @@ export default class extends Controller {
     });
 
     amazonSwitch.addEventListener("click", (event) => {
-      console.log("shopify voila")
       if (document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true &&
         document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true) {
         showOnlyShopify()

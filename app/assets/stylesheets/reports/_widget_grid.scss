@@ -4,7 +4,6 @@
   grid-auto-rows: 100px;
   // grid-auto-rows: minmax(8vw, 8vw);
   grid-auto-flow: dense;
-  padding: 10px;
 }
 
 .list-group-item {
@@ -12,21 +11,6 @@
 }
 
 .grid-item {
-  // z-index: 500;
-  padding: 0.5rem;
-}
-
-.grid-item-center {
-  padding: 0.5rem;
-  align-content: flex-center;
-  align-items: center;
-  text-align: center;
-}
-
-.grid-layout-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 8px;
 }
 
 .ctn-widgets {

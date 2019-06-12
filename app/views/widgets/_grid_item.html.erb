@@ -1,10 +1,12 @@
-<div class="grid-item colspan-<%= widget.grid_item_position.split(" / ").last.split(" ").last %>" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
+<div class="grid-item m-2 colspan-<%= widget.grid_item_position.split(" / ").last.split(" ").last %>" data-widget-id="<%= widget.id %>" style="grid-area: <%= widget.grid_item_position %>;">
   <div class="widget">
     <div class="widget-header d-flex justify-content-between">
       <h5><%= widget.name %></h5>
       <div class="btn-group widget-edit-icons">
-          <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
-        <%= link_to widget_path(widget), method: :delete, class: "menu-item", remote: true do %>
+        <%= link_to edit_widget_path(widget), class: "menu-item menu-item-edit-widget", remote: true do %>
+          <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-widget-id="<%= widget.id %>" data-action="click->dashbuilder#editWidget"></i>
+        <% end %>
+        <%= link_to widget_path(widget), method: :delete, class: "menu-item menu-item-delete-widget", remote: true do %>
           <i class="fas fa-trash-alt btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
         <% end %>
       </div>
@@ -13,14 +15,7 @@
           <i class="fas fa-ellipsis-v btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <div id="menu-item-filter-amazon" class="menu-item d-flex justify-content-between align-items-center">
-                <p class="m-0">Amazon</p>
-                <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "amazon" } %>
-              </div>
-          <div id="menu-item-filter-shopify" class="menu-item d-flex justify-content-between align-items-center">
-                <p class="m-0">Shopify</p>
-                <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "shopify" }  %>
-              </div>
+          <%= render 'widgets/filters', widget: widget %>
         </div>
       </div>
 

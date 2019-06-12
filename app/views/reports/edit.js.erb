@@ -3,7 +3,7 @@ if (!document.querySelector('.grid-layout').classList.contains('edit')) {
 
   // Hidden form template
   const newWidgetTemplateHTML = `
-  <div id="new-widget-template" class="grid-item hidden">
+  <div id="new-widget-template" class="grid-item m-2 hidden">
     <div class="widget">
       <div class="widget-header d-flex justify-content-between">
         <h5>New widget</h5>
@@ -18,7 +18,7 @@ if (!document.querySelector('.grid-layout').classList.contains('edit')) {
   `;
 
   // Grid elements
-  const gridEditItemsHTML = "<%=j render 'reports/edit_grid_items', rows: 15, cols: 12 %>";
+  const gridEditItemsHTML = "<%=j render 'reports/edit_grid_items', rows: 18, cols: 12 %>";
 
   const initEditGrid = () => {
     const grid = document.querySelector('.grid-layout')
@@ -30,24 +30,6 @@ if (!document.querySelector('.grid-layout').classList.contains('edit')) {
   }
 
   initEditGrid()
-  // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = true
-  // document.querySelector('#menu-item-edit-report p').innerText = "Done editing"
 } else {
   document.querySelector('.grid-layout').removeAttribute('data-controller')
-  // Remove Editing Grid
-  // const removeEditGrid = () => {
-  //   const grid = document.querySelector('.grid-layout')
-  //   // grid.removeAttribute('data-controller')
-  //   grid.classList.remove('edit')
-  //   grid.querySelectorAll('.grid-edit-item').forEach(el => el.remove())
-  //   // Removes existing blueprint if any
-  //   const newWidgetBlueprint = document.getElementById('new-widget-blueprint')
-  //   if (newWidgetBlueprint) { newWidgetBlueprint.remove() }
-  //   // Removes hidden template
-  //   const newWidgetTemplate = document.getElementById('new-widget-template')
-  //   if (newWidgetTemplate) { newWidgetTemplate.remove() }
-  // }
-  // removeEditGrid()
-  // document.querySelector('#menu-item-edit-report input[type="checkbox"]').checked = false
-  // document.querySelector('#menu-item-edit-report p').innerText = "Edit report"
 }

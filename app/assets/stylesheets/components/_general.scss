@@ -6,9 +6,7 @@
 
 body {
   color: $secondary;
-  background:
-    black
-    radial-gradient(ellipse farthest-corner at top left, $prussianblue50 10%, $darkblue25);
+  background: black radial-gradient(ellipse farthest-corner at top left, $prussianblue50 10%, $darkblue25);
 }
 
 a, a:hover {
@@ -35,11 +33,21 @@ h4, h5, h6 {
   opacity: 0;
 }
 
-// .active {
-//   border-style: dotted;
-//   border-color: black;
-//   box-shadow: 0 0 5px #00D7C0, 0 0 40px rgba(255, 255, 255, 0.5);
-// }
+.bg-darkblue50 {
+  background-color: $darkblue50;
+}
+
+.bg-darkblue75 {
+  background-color: $darkblue75;
+}
+
+.bg-darkblue {
+  background-color: $darkblue;
+}
+
+.flex-1 {
+  flex: 1;
+}
 
 .absolute-centering {
   width: 50%;

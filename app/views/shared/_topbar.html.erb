@@ -1,43 +1,33 @@
-<div id="top-navbar" class="d-flex justify-content-between align-items-center pt-3 px-4" data-controller="navbar">
-    <div></div>
-    <h1 class="report-title text-center m-0"><%= title.upcase %></h1>
-    <div>
-      <div class="btn-group">
-        <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable" data-action='click->navbar#toggleFullscreen'></i>
-        <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable hidden" data-action='click->navbar#toggleFullscreen'></i>
-        <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-bars btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <%= link_to new_report_path do %>
-            <div id="menu-item-new-report" class="menu-item">
-              <p class="m-0"><i class="far fa-plus-square mr-2"></i>Create new report</p>
-            </div>
-          <% end %>
-          <% if @report && @report.persisted? %>
-            <%= link_to edit_report_path(@report), remote: true do %>
-              <div id="menu-item-edit-report" class="menu-item d-flex justify-content-between align-items-center">
-                <p class="m-0">Edit report</p>
-                <%#= render 'shared/switch' %>
-              </div>
-            <% end %>
-            <%= link_to "#", data: { toggle: "modal", target: "#shareModal" } do %>
-              <div id="menu-item-new-report" class="menu-item">
-                <p class="m-0">Share</p>
-              </div>
-            <% end %>
-            <%= link_to "#" do %>
-              <div id="menu-item-new-report" class="menu-item">
-                <p class="m-0">Export / Print</p>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+<div id="top-navbar" class="d-flex justify-content-between align-items-center pb-2 pt-4 pl-2 pr-3" data-controller="navbar">
+    <div class="home-link flex-1">
+        <%= link_to root_path do %>
+          <h4 class="highlight-white m-0">Loquence</h4>
+        <% end %>
       </div>
+    <h1 class="report-title text-center highlight-white m-0 flex-1"><%= title.upcase %></h1>
+    <div class="justify-self-end flex-1 text-right">
+      <!-- <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable" data-action='click->navbar#toggleFullscreen'></i>
+      <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable hidden" data-action='click->navbar#toggleFullscreen'></i> -->
+      <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
+      <% if @report && @report.persisted? %>
+        <%= link_to edit_report_path(@report), remote: true do %>
+          <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Edit this report"></i>
+        <% end %>
+        <%= link_to "#", data: { toggle: "modal", target: "#shareModal" } do %>
+          <i class="fas fa-share-square btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Share this report"></i>
+        <% end %>
+        <%= link_to "#" do %>
+          <i class="fas fa-print btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Export this report"></i>
+        <% end %>
+      <% end %>
+      <%#= link_to new_report_path do %>
+      <%= link_to "#", data: { toggle: "modal", action: "navbar#setNewReportClass", target: "#newReportModal" } do %>
+        <i class="fas fa-plus-square btn-icon scale-on-hover highlight-on-hover py-1 pl-2 pr-3 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Create a new report" data-toggle="modal" data-target="#newReportModal"></i>
+      <% end %>
     </div>
   </div>
 
-<!-- Modal -->
+<!-- Share Modal -->
 <% if @report && @report.persisted? %>
   <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,11 +54,26 @@
   </div>
 <% end %>
 
+<!-- New Report Modal -->
+<div class="modal fade" id="newReportModal" tabindex="-1" role="dialog" aria-labelledby="newReportModal" aria-hidden="true">
+  <div class="modal-dialog absolute-centering w-100" role="document">
+    <div class="modal-content bg-transparent">
+      <div class="modal-body">
+        <%= simple_form_for Report.new, data: { controller: 'typed' } do |f| %>
+          <%= f.input :name, label: false, autocomplete: 'off', input_html: { data: { target: 'typed.focus' } } %>
+          <%= f.button :submit, "Create", id: 'create-cocktail-submit', class: 'btn-primary hidden' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Finshied editing button -->
 <% if @report && @report.persisted? %>
   <%= link_to edit_report_path(@report), remote: true do %>
     <div id="editFloatingButton" class="box-highlight-white">
         <div id="floating-button-edit-report" class="menu-item d-flex justify-content-between align-items-center">
-          <p class="m-0">Done editing</p>
+          <p class="m-0 bg-darkblue">Finished editing</p>
           <%= render 'shared/switch' %>
         </div>
     </div>

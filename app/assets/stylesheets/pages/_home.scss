@@ -1,20 +1,28 @@
 // Specific CSS for your home-page
+#home {
+  background: radial-gradient(ellipse farthest-corner at top left, #086788CC 10%, #1B435440), linear-gradient(#000000FF, #000000CC), url(bg-charts.jpg);
+}
+
 #homepage {
   min-height: 100vh;
   padding: 50px;
   .supported-platforms {
     opacity: 0.5;
     .logos {
+      display: flex;
+      flex-wrap: wrap;
       margin: 0 auto;
-      padding: 40px 1em 30px 1em;
+      padding: 1em;
       border-radius: 10px;
       background-color: rgba(255,255,255,0.1);
       width: fit-content;
     }
   }
   .platform-logo {
-    height: 30px;
-    margin: 0 2em;
+    margin: 2em auto;
+    img {
+      height: 30px;
+    }
   }
 }
 

@@ -11,12 +11,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <%#= javascript_pack_tag 'header' %>
   </head>
-  <body>
+  <%= content_tag :body, class: @body_classes, id: @body_id do %>
     <%= render 'shared/flashes' %>
     <div class="d-flex">
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-  </body>
+  <% end %>
 </html>

@@ -1,0 +1,17 @@
+var editWidgetTemplateHTML = `
+<div id="new-widget-blueprint" class="grid-item m-2" style="grid-area: <%= @widget.grid_item_position %>;" data-controller="select2" data-replacing-widget-id="<%= @widget.id %>"" >
+  <div class="widget">
+    <div class="widget-header d-flex justify-content-between">
+      <h5>Update widget</h5>
+      <i class="far fa-times-circle btn-close scale-on-hover highlight-on-hover py-1 px-2 clickable", data-action="click->dashbuilder#removeKPISelectorDiv"></i>
+    </div>
+
+    <div class="ctn-kpi justify-content-start w-100">
+      <%=j render 'widgets/form_edit', widget: @widget %>
+    </div>
+  </div>
+</div>
+`;
+
+var grid = document.querySelector('.grid-layout');
+grid.insertAdjacentHTML('afterBegin', editWidgetTemplateHTML);

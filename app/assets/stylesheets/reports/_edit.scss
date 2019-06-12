@@ -24,51 +24,27 @@
   #new-widget-blueprint .widget {
     background: linear-gradient(154.9deg, $teal25 0%, $darkblue50 86.37%);
   }
-
-  .grid-notice {
-
-  }
-
 }
 
 #editFloatingButton {
   opacity: 0;
   visibility: hidden;
-  width: 200px;
+  width: 250px;
   height: auto;
   border-radius: 5px;
   padding: 1em;
   position: fixed;
   top: 1em;
-  right: 1em;
+  right: 1.5em;
   z-index: 100;
-  background-color: $darkblue50;
-  // transition: 1s ease-out;
-  // animation: 1s fadeOut;
-  // transition-delay: 5s;
+  background-color: $darkblue;
 }
 
 #editFloatingButton.show {
-  // animation: none;
-  opacity: 0.8;
+  opacity: 0.9;
   visibility: visible;
   &:hover {
     opacity: 1;
+    box-shadow: white;
   }
 }
-
-// @keyframes fadeOut {
-//   0% {
-//     opacity: 1;
-//   }
-//   60% {
-//     opacity: 1;
-//   }
-//   99% {
-//     opacity: 0;
-//     visibility: visible;
-//   }
-//   100% {
-//     visibility: hidden;
-//   }
-// }

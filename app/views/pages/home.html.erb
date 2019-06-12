@@ -1,7 +1,7 @@
 <div id="homepage" class="w-100 home-banner position-relative">
   <div id="top-nav" class="d-flex">
     <% if user_signed_in? %>
-      <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-outline-light box-highlight-white-hover mr-3" %>
+      <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-outline-light bg-darkblue50 box-highlight-white-hover mr-3" %>
       <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "https://avatars1.githubusercontent.com/u/34345789?s=460&v=4", class: "avatar" %>
       </button>
@@ -44,15 +44,23 @@
       <hr class="separator box-highlight">
       <h4 class="my-3 col-12 col-sm-12">Automated live reporting for your online shops.</h4>
       <h3>Spend your time making <span class="highlight">business decisions</span>, not spreadsheets.</h3>
-      <%= link_to "Connect your shops for free", reports_path, class: "btn btn-outline-light box-highlight-white btn-home-cta my-5" %>
+      <%= link_to "Connect your shops for free", reports_path, class: "btn bg-darkblue50 btn-outline-light box-highlight-white btn-home-cta my-5" %>
     </div>
     <div class="supported-platforms">
       <h6 class="highlight-white">Supported platforms</h6>
-      <div class="logos">
-        <%= image_tag "logos/amazon.png", alt: "Amazon", class: "platform-logo" %>
-        <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "platform-logo", style: "margin-top: -5px" %>
-        <%= image_tag "logos/shopify.png", alt: "Shopify", class: "platform-logo", style: "margin-top: -15px"  %>
-        <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "platform-logo", style: "margin-top: -18px"  %>
+      <div class="logos mt-3">
+        <div class="platform-logo">
+          <%= image_tag "logos/amazon.png", alt: "Amazon", style: "margin-top: 7px", class: "mx-5" %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", style: "margin-top: 5px", class: "mx-5" %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/shopify.png", alt: "Shopify", class: "mx-5"  %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", style: "margin-top: -2px", class: "mx-5"  %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+document.querySelector(`[data-widget-id="<%= @widget.id %>"].grid-item`).remove();
 <% if @widget.persisted? %>
   var newWidget = "<%= j render partial: 'widgets/grid_item', locals: { widget: @widget } %>";
   var grid = document.querySelector('.grid-layout');
