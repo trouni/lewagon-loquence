@@ -1,4 +1,4 @@
-<div class="mb-4">
+<div>
   <% repeat_buyer_rate = ((Buyer.repeat_buyers.to_f / KPI.total_customers) * 100).round(1) %>
   <div>
     <% (repeat_buyer_rate / 5.0).round.times do %>
@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div class="chart position-relative absolute-centering mb-4 w-100 h-100">
+<div class="chart position-relative w-100">
 <%= pie_chart KPI.send(widget.kpi.query),
   colors: ['#00D7C0', '#0E6E63'],
   library: {

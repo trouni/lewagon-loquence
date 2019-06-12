@@ -54,12 +54,12 @@ SAMPLE_REPORT_LAYOUTS = {
     },
     "Daily report": {
       layout: [
-        "1 / 1 / span 3 / span 4",
-        "1 / 5 / span 4 / span 8",
-        "4 / 1 / span 4 / span 4",
-        "5 / 9 / span 5 / span 4",
-        "8 / 1 / span 3 / span 4",
-        "5 / 5 / span 5 / span 4",
+        "1 / 1 / span 6 / span 4",
+        "1 / 5 / span 5 / span 8",
+        "7 / 1 / span 7 / span 4",
+        "6 / 9 / span 7 / span 4",
+        "11 / 5 / span 5 / span 4",
+        "6 / 5 / span 5 / span 4",
       ],
       kpis: [
         "unique_customers",
