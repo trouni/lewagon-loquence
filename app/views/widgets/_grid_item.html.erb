@@ -13,12 +13,14 @@
           <i class="fas fa-ellipsis-v btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right">
-          <div id="menu-item-new-report" class="menu-item">
-              <p class="m-0">Amazon</p>
-            </div>
-          <div id="menu-item-new-report" class="menu-item">
-              <p class="m-0">Woocommerce</p>
-            </div>
+          <div id="menu-item-filter-amazon" class="menu-item d-flex justify-content-between align-items-center">
+                <p class="m-0">Amazon</p>
+                <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "amazon" } %>
+              </div>
+          <div id="menu-item-filter-shopify" class="menu-item d-flex justify-content-between align-items-center">
+                <p class="m-0">Shopify</p>
+                <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "shopify" }  %>
+              </div>
         </div>
       </div>
 

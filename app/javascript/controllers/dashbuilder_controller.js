@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = [ "gridEditItem" ]
 
   connect() {
+    console.log("connected to dashbuilder controller")
     let selecting = false
     const grid = document.querySelector(".grid-layout");
 
