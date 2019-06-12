@@ -19,8 +19,17 @@ export default class extends Controller {
   repeatCustomersChart() {
     const canvas = document.getElementById("repeat_customers_chart");
     const cumulData = JSON.parse(canvas.dataset.cumul);
-    const newCustomerData = JSON.parse(canvas.dataset.newcustomer);
-    const repeatCustomerData = JSON.parse(canvas.dataset.repeatcustomer);
+    const newAmazonCustomerData = JSON.parse(canvas.dataset.amazonnewcustomer);
+    const repeatAmazonCustomerData = JSON.parse(canvas.dataset.amazonrepeatcustomer);
+    const newShopifyCustomerData = JSON.parse(canvas.dataset.shopifynewcustomer);
+    const repeatShopifyCustomerData = JSON.parse(canvas.dataset.shopifyrepeatcustomer);
+
+    const widgetId = canvas.dataset.widgetid;
+    const amazonSwitch = document.getElementById(`switch-amazon-${widgetId}`);
+    console.log(`switch-amazon-${widgetId}`);
+    const shopifySwitch = document.getElementById(`switch-shopify-${widgetId}`);
+    document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true;
+    document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true;
 
     var myChart = new Chart('repeat_customers_chart', {
       type: 'bar',
@@ -31,30 +40,48 @@ export default class extends Controller {
           data: cumulData,
           borderColor: '#F4F4F4',
             // Changes this dataset to become a line
-            type: 'line'
+            type: 'line',
           }, {
-            label: 'Fist time customers',
+            label: 'Amazon - first time customers',
+            stack: 'Stack 0',
             yAxisID: 'A',
-            data: newCustomerData,
-            backgroundColor: '#AFCFEA',
+            data: newAmazonCustomerData,
+            backgroundColor: '#FED876',
           }, {
-            label: 'Repeat customers',
+            label: 'Amazon - repeat customers',
+            stack: 'Stack 0',
             yAxisID: 'A',
-            data: repeatCustomerData,
-            backgroundColor: '#00D7C0',
+            data: repeatAmazonCustomerData,
+            backgroundColor: '#FFD600',
+          }, {
+            label: 'Shopify - first time customers',
+            stack: 'Stack 1',
+            yAxisID: 'A',
+            data: newShopifyCustomerData,
+            backgroundColor: '#E5F0FF',
+          }, {
+            label: 'Shopify - repeat customers',
+            stack: 'Stack 1',
+            yAxisID: 'A',
+            data: repeatShopifyCustomerData,
+            backgroundColor: '#7EB3FF',
           }],
           labels: ['January', 'February', 'March', 'April', 'Mai']
         },
         options: {
           scales: {
+            xAxes: [{
+              stacked: true
+            }],
             yAxes: [
             {
               id: 'A',
+              stacked: 'true',
               barPercentage: 0.5,
               type: 'linear',
               position: 'left',
               ticks: {
-                max: 100,
+                max: 150,
                 min: 0
               }
             }, {
@@ -62,12 +89,150 @@ export default class extends Controller {
               type: 'linear',
               position: 'right',
               ticks: {
-                max: 100,
+                max: 150,
                 min: 0
               }
             }]
           }
         }
+
       });
+
+    const showEverything = (event) => {
+      myChart.data.datasets = [{
+        label: 'Total customers (cumul)',
+        yAxisID: 'B',
+        data: cumulData,
+        borderColor: '#F4F4F4',
+          // Changes this dataset to become a line
+          type: 'line',
+        }, {
+          label: 'Amazon - first time customers',
+          stack: 'Stack 0',
+          yAxisID: 'A',
+          data: newAmazonCustomerData,
+          backgroundColor: '#FED876',
+        }, {
+          label: 'Amazon - repeat customers',
+          stack: 'Stack 0',
+          yAxisID: 'A',
+          data: repeatAmazonCustomerData,
+          backgroundColor: '#FFD600',
+        }, {
+          label: 'Shopify - first time customers',
+          stack: 'Stack 1',
+          yAxisID: 'A',
+          data: newShopifyCustomerData,
+          backgroundColor: '#E5F0FF',
+        }, {
+          label: 'Shopify - repeat customers',
+          stack: 'Stack 1',
+          yAxisID: 'A',
+          data: repeatShopifyCustomerData,
+          backgroundColor: '#7EB3FF',
+        }]
+        myChart.update();
+        document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true
+        document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true
+      }
+
+    const showOnlyAmazon = (event) => {
+      myChart.data.datasets = [{
+          label: 'Total customers (cumul)',
+          yAxisID: 'B',
+          data: cumulData,
+          borderColor: '#F4F4F4',
+            // Changes this dataset to become a line
+            type: 'line',
+          }, {
+            label: 'Amazon - first time customers',
+            stack: 'Stack 0',
+            yAxisID: 'A',
+            data: newAmazonCustomerData,
+            backgroundColor: '#FED876',
+          }, {
+            label: 'Amazon - repeat customers',
+            stack: 'Stack 0',
+            yAxisID: 'A',
+            data: repeatAmazonCustomerData,
+            backgroundColor: '#FFD600',
+          }];
+      myChart.update();
+      document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true
+      document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = false
+    }
+
+
+    const showOnlyShopify = (event) => {
+      myChart.data.datasets = [{
+          label: 'Total customers (cumul)',
+          yAxisID: 'B',
+          data: cumulData,
+          borderColor: '#F4F4F4',
+            // Changes this dataset to become a line
+            type: 'line',
+          }, {
+            label: 'Shopify - first time customers',
+            stack: 'Stack 1',
+            yAxisID: 'A',
+            data: newShopifyCustomerData,
+            backgroundColor: '#E5F0FF',
+          }, {
+            label: 'Shopify - repeat customers',
+            stack: 'Stack 1',
+            yAxisID: 'A',
+            data: repeatShopifyCustomerData,
+            backgroundColor: '#7EB3FF',
+      }];
+      myChart.update();
+      document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = false
+      document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true
+    }
+
+    shopifySwitch.addEventListener("click", (event) => {
+      console.log("voila")
+      if (document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true &&
+        document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true) {
+        showOnlyAmazon()
+      } else {
+        showEverything()
+      }
+      //update chart
+    });
+
+    amazonSwitch.addEventListener("click", (event) => {
+      console.log("shopify voila")
+      if (document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true &&
+        document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true) {
+        showOnlyShopify()
+      } else {
+        showEverything()
+      }
+      //update chart
+    });
+    // shopifySwitch.addEventListener("click", (event) => {
+    //   myChart.data.datasets = [{
+    //       label: 'Total customers (cumul)',
+    //       yAxisID: 'B',
+    //       data: cumulData,
+    //       borderColor: '#F4F4F4',
+    //         // Changes this dataset to become a line
+    //         type: 'line',
+    //       }, {
+    //         label: 'Shopify - first time customers',
+    //         stack: 'Stack 1',
+    //         yAxisID: 'A',
+    //         data: newShopifyCustomerData,
+    //         backgroundColor: '#E5F0FF',
+    //       }, {
+    //         label: 'Shopify - repeat customers',
+    //         stack: 'Stack 1',
+    //         yAxisID: 'A',
+    //         data: repeatShopifyCustomerData,
+    //         backgroundColor: '#7EB3FF',
+    //   }];
+    //   myChart.update();
+    // });
+
   }
 }
