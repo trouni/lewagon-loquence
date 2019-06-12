@@ -28,6 +28,8 @@ export default class extends Controller {
     const amazonSwitch = document.getElementById(`switch-amazon-${widgetId}`);
     console.log(`switch-amazon-${widgetId}`);
     const shopifySwitch = document.getElementById(`switch-shopify-${widgetId}`);
+    document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true;
+    document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true;
 
     var myChart = new Chart('repeat_customers_chart', {
       type: 'bar',
@@ -93,6 +95,7 @@ export default class extends Controller {
             }]
           }
         }
+
       });
 
     const showEverything = (event) => {
@@ -129,7 +132,8 @@ export default class extends Controller {
           backgroundColor: '#7EB3FF',
         }]
         myChart.update();
-        document.querySelector('#menu-item-filter-amazon input[type="checkbox"]').checked = true
+        document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true
+        document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true
       }
 
     const showOnlyAmazon = (event) => {
@@ -154,17 +158,9 @@ export default class extends Controller {
             backgroundColor: '#FFD600',
           }];
       myChart.update();
-      document.querySelector('#menu-item-filter-amazon input[type="checkbox"]').checked = false
+      document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = true
+      document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = false
     }
-
-    amazonSwitch.addEventListener("click", (event) => {
-      if (document.querySelector('#menu-item-filter-amazon input[type="checkbox"]').checked === true) {
-        showOnlyAmazon()
-      } else {
-        showEverything()
-      }
-      //update chart
-    });
 
 
     const showOnlyShopify = (event) => {
@@ -189,10 +185,25 @@ export default class extends Controller {
             backgroundColor: '#7EB3FF',
       }];
       myChart.update();
+      document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked = false
+      document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked = true
     }
 
     shopifySwitch.addEventListener("click", (event) => {
-      if (document.querySelector('#menu-item-filter-shopify input[type="checkbox"]').checked === true) {
+      console.log("voila")
+      if (document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true &&
+        document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true) {
+        showOnlyAmazon()
+      } else {
+        showEverything()
+      }
+      //update chart
+    });
+
+    amazonSwitch.addEventListener("click", (event) => {
+      console.log("shopify voila")
+      if (document.querySelector(`#switch-shopify-${widgetId} input[type="checkbox"]`).checked === true &&
+        document.querySelector(`#switch-amazon-${widgetId} input[type="checkbox"]`).checked === true) {
         showOnlyShopify()
       } else {
         showEverything()

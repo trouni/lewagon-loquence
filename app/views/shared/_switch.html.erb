@@ -1,6 +1,6 @@
-<div class="switch">
+<div class="switch" id="switch-<%= defined?(switch_name) ? switch_name : 'domain' %>-<%= defined?(widget) ? widget.id : 'test' %>">
   <input type="checkbox" name="toggle">
-  <label for="toggle" id="switch-<%= defined?(switch_name) ? switch_name : 'domain' %>-<%= defined?(widget) ? widget.id : 'test' %>">
+  <label for="toggle">
     <i class="bulb">
       <span class="bulb-center"></span>
       <span class="filament-1"></span>
