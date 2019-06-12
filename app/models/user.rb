@@ -37,6 +37,11 @@ class User < ApplicationRecord
   end
 
   def create_user_group
-    Group.create!(name: "#{first_name}, #{last_name}", group_type: "user")
+    if first_name
+      group = Group.create!(name: "#{first_name}, #{last_name}", group_type: "user")
+    else
+      group = Group.create!(name: email, group_type: "user")
+    end
+    GroupUser.create!(user: self, group: group)
   end
 end

@@ -19,6 +19,7 @@ class Report < ApplicationRecord
   has_many :users, through: :group_users
   belongs_to :owner, class_name: "User"
   delegate :company, to: :owner
+  after_create :create_report_access
 
   validates :name, presence: true
   RANDOMIMAGES = ["index_random_report_1.png", "index_random_report_2.png"]
@@ -28,4 +29,43 @@ class Report < ApplicationRecord
 
     widgets.order(updated_at: :desc).first.updated_at.strftime('%e %b %Y %H:%M:%S%p')
   end
+
+  def create_report_access
+    ReportAccess.create(report: self, group: owner.groups.find_by(group_type: "user"))
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

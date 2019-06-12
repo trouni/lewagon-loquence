@@ -154,6 +154,9 @@ Group.all.destroy_all
 
 puts "Creating companies & users..."
 
+puts "Destroying groups..."
+Group.destroy_all
+
 USERS.each do |user|
   user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password])
 end
@@ -161,7 +164,8 @@ end
 COMPANIES.each do |company|
   Company.create!(name: company[:name], owner: User.first)
 end
-puts "Destroying groups..."
+
+
 GROUPS.each do |group|
   Group.create!(name: group[:name])
 end
