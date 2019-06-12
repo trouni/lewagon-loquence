@@ -52,7 +52,7 @@
           <%= @report.name %>
           <p>Invite people to view this report</p>
           <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
-            <%= f.association :user, label: false, label_method: :email, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
+            <%= f.association :group, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
