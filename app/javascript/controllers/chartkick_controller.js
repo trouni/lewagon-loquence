@@ -19,8 +19,10 @@ export default class extends Controller {
   repeatCustomersChart() {
     const canvas = document.getElementById("repeat_customers_chart");
     const cumulData = JSON.parse(canvas.dataset.cumul);
-    const newCustomerData = JSON.parse(canvas.dataset.newcustomer);
-    const repeatCustomerData = JSON.parse(canvas.dataset.repeatcustomer);
+    const newAmazonCustomerData = JSON.parse(canvas.dataset.amazonnewcustomer);
+    const repeatAmazonCustomerData = JSON.parse(canvas.dataset.amazonrepeatcustomer);
+    const newShopifyCustomerData = JSON.parse(canvas.dataset.shopifynewcustomer);
+    const repeatShopifyCustomerData = JSON.parse(canvas.dataset.shopifyrepeatcustomer);
 
     var myChart = new Chart('repeat_customers_chart', {
       type: 'bar',
@@ -33,29 +35,29 @@ export default class extends Controller {
             // Changes this dataset to become a line
             type: 'line',
           }, {
-            label: 'other',
+            label: 'Amazon - first time customers',
             stack: 'Stack 0',
             yAxisID: 'A',
-            data: newCustomerData,
-            backgroundColor: '#333370',
+            data: newAmazonCustomerData,
+            backgroundColor: '#FED876',
           }, {
-            label: 'other 2',
+            label: 'Amazon - repeat customers',
             stack: 'Stack 0',
             yAxisID: 'A',
-            data: newCustomerData,
-            backgroundColor: '#333390',
+            data: repeatAmazonCustomerData,
+            backgroundColor: '#FFD600',
           }, {
-            label: 'Fist time customers',
+            label: 'Shopify - first time customers',
             stack: 'Stack 1',
             yAxisID: 'A',
-            data: newCustomerData,
-            backgroundColor: '#AFCFEA',
+            data: newShopifyCustomerData,
+            backgroundColor: '#E5F0FF',
           }, {
-            label: 'Repeat customers',
+            label: 'Shopify - repeat customers',
             stack: 'Stack 1',
             yAxisID: 'A',
-            data: repeatCustomerData,
-            backgroundColor: '#00D7C0',
+            data: repeatShopifyCustomerData,
+            backgroundColor: '#7EB3FF',
           }],
           labels: ['January', 'February', 'March', 'April', 'Mai']
         },
@@ -72,7 +74,7 @@ export default class extends Controller {
               type: 'linear',
               position: 'left',
               ticks: {
-                max: 100,
+                max: 150,
                 min: 0
               }
             }, {
@@ -80,7 +82,7 @@ export default class extends Controller {
               type: 'linear',
               position: 'right',
               ticks: {
-                max: 100,
+                max: 150,
                 min: 0
               }
             }]
