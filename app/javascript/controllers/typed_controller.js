@@ -2,15 +2,17 @@ import { Controller } from "stimulus"
 import Typed from 'typed.js';
 
 export default class extends Controller {
+  static targets = ["focus"]
 
   connect() {
     new Typed('#report_name', {
-      strings: ["Type the name of your new report..."],
+      strings: ["Enter a name for the new report..."],
       typeSpeed: 15,
       showCursor: true,
+      startDelay: 500,
       attr: 'placeholder',
       loop: false
     })
-    document.getElementById('report_name').focus()
+    this.focusTarget.focus();
   }
 }

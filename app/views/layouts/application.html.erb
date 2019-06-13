@@ -26,12 +26,12 @@
     <%#= javascript_pack_tag 'header' %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
-  <body>
+  <%= content_tag :body, class: @body_classes, id: @body_id do %>
     <%= render 'shared/flashes' %>
     <div class="d-flex">
       <%= yield %>
     </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-  </body>
+  <% end %>
 </html>

@@ -2,9 +2,9 @@
   <div class="container h-100">
     <%= simple_form_for @report do |f| %>
       <div class="input-group justify-content-between" data-controller='typed'>
-        <%= f.input :name, label: false, input_html: { data: { action: 'focus->new-cocktail#showBtn blur->new-cocktail#hideBtn' }, autocomplete: 'off' } %>
+        <%= f.input :name, label: false, autocomplete: 'off', data: { target: 'typed.focus' } } %>
         <div class="input-group-append">
-          <%= f.button :submit, "Create", id: 'create-cocktail-submit', class: 'btn-primary hidden', data: { target: 'new-cocktail.btnCreate' } %>
+          <%= f.button :submit, "Create", id: 'create-cocktail-submit', class: 'btn-primary hidden' %>
         </div>
       </div>
     <% end %>

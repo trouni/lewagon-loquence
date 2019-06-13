@@ -9,6 +9,10 @@ class WidgetPolicy < ApplicationPolicy
     record.report.owner == user
   end
 
+  def update?
+    record.report.owner == user
+  end
+
   def destroy?
     record.report.owner == user
   end

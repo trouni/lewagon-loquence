@@ -1,6 +1,9 @@
 class ReportsController < ApplicationController
+  before_action :set_mini_navbar, only: %i[create show edit]
+
   def index
-    @reports = policy_scope(Report).order(created_at: :desc) #copied from pundit lecture note
+    @body_id = "reports-index"
+    @reports = policy_scope(Report).order(created_at: :desc) # copied from pundit lecture note
   end
 
   def new
@@ -37,5 +40,9 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:name)
+  end
+
+  def set_mini_navbar
+    @body_classes = %w[report mini-navbar]
   end
 end
