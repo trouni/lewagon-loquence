@@ -1,0 +1,24 @@
+<%=simple_form_for User.new, url: settings_path do |f|%>
+   <%= f.error_notification %>
+    <div class="form-container">
+      <div class="mr-sm-2">
+        <%= f.input :first_name, :placeholder => 'First name', label: false, input_html: { class: "mb-2 mr-sm-2" }  %>
+      </div>
+      <div class="mr-sm-2">
+        <%= f.input :last_name, :placeholder => 'Last name', label: false, input_html: { class: "mb-2 mr-sm-2" } %>
+      </div>
+      <div class="mr-sm-2">
+        <%#= f.input :team, collection: User::TEAM, input_html: { multiple: true } %>
+        <%= f.input :email, :placeholder => 'email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
+      </div>
+      <div class="mr-sm-2">
+        <%#= f.input :password, label: false, input_html: { class: "mb-2 mr-sm-2" } %>
+        <%= f.button :button, class:"btn btn-outline-light form-control" do %>
+        <i class="fas fa-user-plus"></i>
+        Add a new user
+        <% end %>
+      </div>
+    </div>
+        <%#= f.input :team, as: :check_boxes, label: false, collection: User::TEAM, wrapper: :vertical_collection_inline %>
+    <% end %>
+  </div>
