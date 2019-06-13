@@ -1,6 +1,9 @@
 <div data-controller="navbar">
   <div id="navbar" class="navbar navbar-loquence">
     <div class="navbar-top">
+      <%= link_to root_path do %>
+        <h4 class="home-link highlight-white m-0">Loquence</h4>
+      <% end %>
       <div class="menu-item d-flex">
         <%= image_tag "https://via.placeholder.com/150", class: "avatar-square" %>
         <h4 class="avatar-name">Besties</h4>
