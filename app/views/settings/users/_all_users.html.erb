@@ -15,24 +15,24 @@
     <tr>
       <th scope="row">
 
-        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">
+        <a href="#" data-toggle="modal" data-target="#editUser-<%= user.id %>" data-user-id="<%= user.id %>">
           <i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i>
         </a>
-    </th>
-    <td><%="#{user.first_name}  #{ (user.last_name || [""])[0].upcase }."%></td>
-    <td><%= user.email %></td>
-    <td>
-      <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>
-    </td>
-    <td><%= ("Owner" if user == user.company.owner) || "Editor"%></td>
-    <td><%= Date.today - rand(1..5) %></td>
-  </tr>
-  <% end %>
-</tbody>
+      </th>
+      <td><%="#{user.first_name}  #{ (user.last_name || [""])[0].upcase }."%></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>
+      </td>
+      <td><%= ("Owner" if user == user.company.owner) || "Editor"%></td>
+      <td><%= Date.today - rand(1..5) %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <div class="mt-sm-2">
-  <%=simple_form_for @user, url: settings_invite_path do |f|%>
+  <%=simple_form_for User.new, url: settings_invite_path do |f|%>
   <%= f.error_notification %>
   <div class="form-container">
     <div class="mr-sm-2">
@@ -56,25 +56,32 @@
   <% end %>
 </div>
 
-
-
+<% User.order(:created_at).all.each do |user| %>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="editUser-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit user</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <%= simple_form_for user, :url => settings_update_path, :method => :patch do |f| %>
+        <div class="modal-body">
+         <%= f.input :first_name, :placeholder => 'First name', label: false, input_html: { class: "mb-2 mr-sm-2" }  %>
+         <%= f.input :last_name, :placeholder => 'Last name', label: false, input_html: { class: "mb-2 mr-sm-2" } %>
+         <%= f.input :email, :placeholder => 'email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
+         <%= f.association :groups, collection: Group.all.where(group_type: 'team'), as: :check_boxes, label: false,  wrapper: :vertical_collection_inline %>
+         <%= f.input :id, as: :hidden %>
+
+     </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-outline-light box-highlight-white-hover mr-3 px-3" data-dismiss="modal">Close</button>
+      <%= f.submit class:"btn btn-light box-highlight-white-hover mr-3 px-3" "Save changes" %>
     </div>
+    <% end %>
   </div>
 </div>
+</div>
+<% end %>
