@@ -11,7 +11,7 @@ GROUPS = [
   {name: "IT"},
   {name: "Marketing"},
   {name: "Logistics"},
-  {name: "Customer Support"},
+  {name: "Customer Support"}
 ]
 
 USERS = [
@@ -125,7 +125,9 @@ USERS.each do |attrs|
 end
 
 COMPANIES.each do |company|
-  Company.create!(name: company[:name], owner: User.first)
+  company_one = Company.new(name: company[:name], owner: User.first)
+  company_one.remote_photo_url = company[:remote_photo_url]
+  company_one.save
 end
 
 
