@@ -26,34 +26,32 @@
         <% end %>
       </div>
     </div>
-
-    <!-- Share Modal -->
-    <% if @report && @report.persisted? %>
-    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content widget box-highlight-white">
-          <div class="modal-header">
-            <h5 class="modal-title text-black" id="shareModalLabel">Share this report</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= @report.name %>
-            <p>Invite people to view this report</p>
-            <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select2" } } do |f| %>
-            <%= f.association :group, collection: Group.all - current_user.groups.where(group_type: :user), label: false, label_method: :display_name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <%= f.submit "Share", class: "btn" %>
-          </div>
+<!-- Share Modal -->
+<% if @report && @report.persisted? %>
+  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content widget box-highlight-white">
+        <div class="modal-header">
+          <h5 class="modal-title text-black" id="shareModalLabel">Share this report</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <b><%= @report.name %></b>
+          <p><i>Invite people to view this report</i></p>
+          <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
+            <%= f.association :group, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-light box-highlight-white-hover mr-3" data-dismiss="modal">Close</button>
+              <%= f.submit "Share", class: "btn btn-light box-highlight-white-hover mr-3" %>
+            </div>
           <% end %>
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
 
     <!-- New Report Modal -->
     <div class="modal fade" id="newReportModal" tabindex="-1" role="dialog" aria-labelledby="newReportModal" aria-hidden="true">
