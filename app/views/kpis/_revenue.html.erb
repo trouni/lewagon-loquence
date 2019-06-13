@@ -1,4 +1,4 @@
-<%= column_chart Order.where(external_source: "Shopify").group_by_day(:purchase_date).sum("order_total_cents / 100"), thousands: ","
+<%= column_chart Order.where(external_source: "Shopify").group_by_day(:purchase_date).sum("order_total_cents / 100"), thousands: ",",
   options: {
 
   },

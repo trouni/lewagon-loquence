@@ -5,8 +5,12 @@
     background: none;
     border: none;
     width: 100%;
+    font-weight: 200;
     thead {
       border-bottom: 1px solid $teal25;
+    }
+    tr {
+      height: 3em;
     }
   }
 

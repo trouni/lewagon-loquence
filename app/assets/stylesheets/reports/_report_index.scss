@@ -12,7 +12,14 @@
   // grid-area: span 4 / span 4;
   margin: 1em;
   padding: 0px;
-  height: 100px;
+  height: 80px;
+  transition: 0.3s;
+  &:hover {
+    height: 200px;
+  }
+  &:hover img {
+    width: 200px;
+  }
 }
 
 .card-report-content {
@@ -21,6 +28,7 @@
   height: 100%;
   // border: 10px;
   img {
+    transition: 0.3s;
     height: 100%;
     width: 150px;
     object-fit: cover;

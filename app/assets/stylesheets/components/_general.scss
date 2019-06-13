@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   transition: opacity 0.3s, box-shadow 0.3s, text-shadow 0.3s, transform 0.3s;
+  letter-spacing: 1px;
 }
 
 body {
@@ -20,6 +21,7 @@ h1, h2, h3, p {
 h4, h5, h6 {
   color: white;
 }
+
 
 .hidden {
   display: none;

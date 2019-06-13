@@ -19,7 +19,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  TEAM = %w(Customer_Support IT Marketing Sales)
+  TEAM = %w[Customer_Support IT Marketing Sales]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
@@ -32,17 +32,21 @@ class User < ApplicationRecord
   # validates :team, inclusion: { in: TEAM }
   after_create :create_user_group
 
-  # valiate
+  # validate
   before_validation do
     self.company ||= Company.placeholder
   end
 
   def create_user_group
-    if first_name
-      group = Group.create!(name: "#{first_name}, #{last_name}", group_type: "user")
+    if first_name && last_name
+      group = Group.create!(name: name, group_type: "user")
     else
       group = Group.create!(name: email, group_type: "user")
     end
     GroupUser.create!(user: self, group: group)
+  end
+
+  def name
+    "#{(first_name || '').capitalize} #{(last_name || '').capitalize}"
   end
 end
