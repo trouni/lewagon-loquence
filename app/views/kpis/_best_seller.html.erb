@@ -1,18 +1,18 @@
-<%= form_tag root_path, method: :get do %>
-  <%= select_tag :time_type,
+<%#= form_tag root_path, method: :get do %>
+  <%#= select_tag :time_type,
     options_for_select(%w(days weeks months years), params[:time_type]),
     # selected: params[:time_type],
     {class: "form-control"}%>
-  <%= text_field_tag :time_ago,
+  <%#= text_field_tag :time_ago,
     params[:time_ago],
     class: "form-control",
     placeholder: "whitout restriction"%>
-  <%= text_field_tag :top_count,
+  <%#= text_field_tag :top_count,
     params[:top_count],
     class: "form-control",
     value: OrderItem::DEFAULT_TOP_NUMBER%>
-    <%= submit_tag "apply" %>
-<% end %>
+    <%#= submit_tag "apply" %>
+<%# end %>
 <% time_type =  (params[:time_type] || "months").to_s%>
 <% time_ago =  (params[:time_ago] || 3).to_i%>
 <% top_number = (params[:top_count] || OrderItem::DEFAULT_TOP_NUMBER).to_i %>
@@ -35,4 +35,4 @@
   (<%= number_to_percentage(revenue_for_top_number.to_f / OrderItem.sum("item_price_cents *quantity") * 100, delimiter: '.', precision: 1)%>)
   of total revenue
 </h5>
-<%= bar_chart best_sellers_list, discrete: true %>
+<%= bar_chart best_sellers_list, discrete: true, thousands: "," %>
