@@ -6,6 +6,7 @@ class SettingsController < ApplicationController
   end
 
   def users
+    @user = User.new
     skip_authorization
   end
 
@@ -16,11 +17,12 @@ class SettingsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.password = create_password(8)
     skip_authorization
     if @user.save
-      redirect_to settings_path
+      redirect_to settings_users_path
     else
-      render 'user/new'
+      render 'settings/users'
     end
   end
 
