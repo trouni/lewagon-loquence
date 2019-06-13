@@ -1,12 +1,14 @@
 <div class="well le-wagon-slides w-100" id="well" data-controller="slides">
   <div class="panel d-flex flex-column align-items-center justify-content-center">
-    <div class="">
-      <h1 class="highlight-white mb-4">It is a capital mistake to theorize before one has data.</h1>
+    <div>
+      <div class="highlight-white d-flex">
+        <i class="fas fa-quote-left mr-2"></i><h1 class="mb-4">It is a capital mistake to theorize before one has data.</h1><i class="fas fa-quote-right"></i>
+      </div>
       <h4 class="font-italic">― Sir Arthur Conan Doyle, Sherlock Holmes</h4>
     </div>
   </div>
   <div class="panel">
-    <%= video_tag "amazon_dashboard.mp4", autoplay: :autoplay, mute: :mute, class: "video" %>
+    <%= video_tag "amazon_dashboard.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
   </div>
   <div class="panel">
     <div class="spreadsheet">
