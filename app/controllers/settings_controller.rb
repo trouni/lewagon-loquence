@@ -26,6 +26,13 @@ class SettingsController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(user_params[:id])
+    skip_authorization
+    @user.update(user_params)
+    redirect_to settings_users_path
+  end
+
   private
 
   def init_body_tag
@@ -39,6 +46,6 @@ class SettingsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :company_id)
+    params.require(:user).permit(:id, :first_name, :last_name, :email, :company_id, group_ids: [])
   end
 end
