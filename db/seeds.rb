@@ -84,24 +84,6 @@ SAMPLE_REPORT_LAYOUTS = {
     }
   }
 
-if ENV["orders"] == "reset"
-  puts "-" * 30
-  puts "RESETTING ORDERS"
-  puts "-" * 30
-  destroy_order_seeds()
-  seed_orders()
-elsif ENV["orders"] == "shopify"
-  puts "-" * 30
-  puts "SEEDING SHOPIFY ORDERS"
-  puts "-" * 30
-  destroy_order_seeds("Shopify")
-  seed_shopify_orders()
-# elsif ENV["orders"]
-#   puts "-" * 30
-#   puts "UPDATING ORDERS"
-#   puts "-" * 30
-#   seed_orders()
-end
 
 
 puts "Destroying reports..."
@@ -177,4 +159,19 @@ User.all.each do |user|
     print "#"
   end
   puts
+end
+
+if ENV["orders"] == "reset"
+  puts "-" * 30
+  puts "RESETTING ORDERS"
+  puts "-" * 30
+  destroy_order_seeds()
+  seed_amazon_orders()
+  seed_shopify_orders()
+elsif ENV["orders"] == "shopify"
+  puts "-" * 30
+  puts "SEEDING SHOPIFY ORDERS"
+  puts "-" * 30
+  destroy_order_seeds("Shopify")
+  seed_shopify_orders()
 end
