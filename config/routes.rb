@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/create'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -9,10 +10,11 @@ Rails.application.routes.draw do
     resources :report_accesses, only: [:create, :update, :destroy]
   end
   resources :widgets, only: %i[destroy edit update]
-  resources :users
+  # resources :users
   get 'settings', to: 'settings#account', as: 'settings'
   get 'settings/account', to: 'settings#account'
   get 'settings/users', to: 'settings#users'
+  post 'settings/invite', to: 'settings#create'
   resources :onboarding
   get 'info', to: 'pages#info'
 end

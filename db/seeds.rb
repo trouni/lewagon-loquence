@@ -16,12 +16,12 @@ GROUPS = [
 USERS = [
   {
     first_name: "Trouni",
-    last_name: "T.",
+    last_name: "Tiet",
     email: "trouni@loquence.co",
     password: "secret"
   },
   {first_name: "Saad",
-    last_name: "Saad",
+    last_name: "Amrani",
     email: "saad@loquence.co",
     password: "secret"
   },
@@ -31,7 +31,7 @@ USERS = [
     password: "secret"
   },
   {first_name: "Eugene",
-    last_name: "Eugene",
+    last_name: "Sia",
     email: "eugene@loquence.co",
     password: "secret"
   },
@@ -118,7 +118,10 @@ end
 
 
 GROUPS.each do |group|
-  Group.create!(name: group[:name])
+  group = Group.create!(name: group[:name])
+  rand(1...5).times do
+    GroupUser.create(user: User.all.sample, group: group)
+  end
 end
 
 puts "Creating KPIs..."
