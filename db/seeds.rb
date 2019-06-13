@@ -90,11 +90,17 @@ if ENV["orders"] == "reset"
   puts "-" * 30
   destroy_order_seeds()
   seed_orders()
-elsif ENV["orders"]
+elsif ENV["orders"] == "shopify"
   puts "-" * 30
-  puts "UPDATING ORDERS"
+  puts "SEEDING SHOPIFY ORDERS"
   puts "-" * 30
-  seed_orders()
+  destroy_order_seeds("Shopify")
+  seed_shopify_orders()
+# elsif ENV["orders"]
+#   puts "-" * 30
+#   puts "UPDATING ORDERS"
+#   puts "-" * 30
+#   seed_orders()
 end
 
 
