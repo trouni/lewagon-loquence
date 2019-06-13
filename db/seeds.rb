@@ -101,13 +101,12 @@ puts "Destroying companies..."
 Company.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
+puts "Destroying groups..."
 Group.all.destroy_all
 
 
 puts "Creating companies & users..."
 
-puts "Destroying groups..."
-Group.destroy_all
 
 USERS.each do |user|
   user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password])
