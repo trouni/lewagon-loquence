@@ -1,9 +1,6 @@
 <div id="top-navbar" class="d-flex justify-content-between align-items-center pb-2 pt-4 pl-2 pr-3" data-controller="navbar">
-    <div class="home-link flex-1">
-        <%= link_to root_path do %>
-          <h4 class="highlight-white m-0"><%#= image_tag "logo_widgets.svg", class: "loquence-icon" %>Loquence</h4>
-        <% end %>
-      </div>
+    <div class="flex-1">
+    </div>
     <h1 class="report-title text-center highlight-white m-0 flex-1"><%= title.upcase %></h1>
     <div class="justify-self-end flex-1 text-right">
       <!-- <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable" data-action='click->navbar#toggleFullscreen'></i>
@@ -15,7 +12,7 @@
         <%= link_to edit_report_path(@report), id: "edit-report-link", remote: true do %>
           <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Edit this report"></i>
         <% end %>
-        <%= link_to "#", data: { toggle: "modal", target: "#shareModal" } do %>
+        <%= link_to "#", data: { toggle: "modal", target: "#shareModal", action: 'click->navbar#connectShareToSelect2' } do %>
         <i class="fas fa-share-square btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Share this report"></i>
         <% end %>
         <%= link_to "#" do %>
@@ -36,7 +33,7 @@
     <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
       <div class="modal-content widget box-highlight-white">
         <div class="modal-header">
-          <h5 class="modal-title text-black" id="shareModalLabel"><b>Here are our suggestions for today</b></h5>
+          <h5 class="modal-title text-black" id="notificationsModalLabel"><b>Here are our suggestions for today</b></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -58,7 +55,7 @@
     <% if @report && @report.persisted? %>
     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content widget box-highlight-white">
+        <div class="modal-content widget">
           <div class="modal-header">
             <h5 class="modal-title text-black" id="shareModalLabel">Share this report</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,7 +65,7 @@
           <div class="modal-body">
             <%= @report.name %>
             <p>Invite people to view this report</p>
-            <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
+            <%= simple_form_for [@report, ReportAccess.new] do |f| %>
             <%= f.association :group, collection: Group.all - @report.groups, label: false, label_method: :display_name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
           </div>
           <div class="modal-body">
@@ -79,8 +76,8 @@
             <%= access_names.join(" | ") %>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <%= f.submit "Share", class: "btn" %>
+            <button type="button" class="btn btn-outline-light box-highlight-white-hover mr-3 px-3" data-dismiss="modal">Cancel</button>
+            <%= f.submit "Share", class: "btn btn-light box-highlight-white-hover mr-3 px-3" %>
           </div>
           <% end %>
         </div>

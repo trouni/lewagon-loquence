@@ -1,18 +1,21 @@
 body.mini-navbar #navbar {
-  transition: width 0.3s ease-out 0.5s;
-  // transition-delay: 0.3s;
-  // transition: width 0.3s ease-out 0.5s;
+  transition: width 0.2s ease-out 0.5s;
+  transition-delay: 0.5s;
   width: 70px;
   .menu-item h4 {
+    transition-delay: 0.5s;
     opacity: 0;
   }
   .home-link {
+    transition-delay: 0.5s;
     opacity: 0;
+  }
+  .loquence-icon {
+    width: 1em;
   }
 
   &:hover {
-    transition: width 0.3s ease-out 0.5s;
-    width: inherit;
+    width: 240px;
     .menu-item h4 {
       opacity: inherit;
     }
@@ -22,19 +25,8 @@ body.mini-navbar #navbar {
   }
 }
 
-// .navbar-loquence:hover {
-//   transition: width 0.2s ease-out 0s;
-//   transition-delay: 0.3s;
-//   width: 240px;
-//   .menu-item h4 {
-//     opacity: 1;
-//   }
-//   .home-link {
-//     opacity: 1;
-//   }
-// }
 #navbar {
-  transition: width 0.3s ease-out 0.5s;
+  // transition: width 0.3s ease-out 0.5s;
   width: 240px;
   overflow: hidden;
   padding: 24px;

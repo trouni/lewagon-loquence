@@ -15,6 +15,16 @@ export default class extends Controller {
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
+
+
+    // Edit body class for new report modal
+    $('#newReportModal').on('hidden.bs.modal', function (e) {
+      document.querySelector('body').classList.remove('new-report');
+    })
+
+    $('#newReportModal').on('show.bs.modal', function (e) {
+      document.querySelector('body').classList.add('new-report');
+    })
   }
 
   expandedNavbar() {
@@ -64,7 +74,7 @@ export default class extends Controller {
     }
   }
 
-  setNewReportClass() {
-    document.querySelector('body').classList.add('new-report');
+  connectShareToSelect2() {
+    document.getElementById('new_report_access').dataset["controller"] = "select2"
   }
 }
