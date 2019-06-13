@@ -1,3 +1,4 @@
+<div class="p-3 w-100 h-100" data-chartname="repeatCustomersChart">
 <%= column_chart [
   {
     name: 'One-time customers', stack: 'stack1', data: KPI.orders_count(interval: "month")
@@ -5,8 +6,32 @@
   {
     name: 'Repeat customers', stack: 'stack1', data: KPI.fake_repeat_customers(interval: "month")
   }],
-  stacked: true
+  stacked: true,
+  colors: ['#0E6E63', '#00D7C0'],
+  library: {
+    legend: {
+      labels: {
+        fontColor: '#FFFFFFCC'
+      }
+    },
+    gridLines: {
+      color: '#FFFFFFCC'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        }
+      }]
+    }
+  }
 %>
+</div>
 
 <!-- <div class="p-3 w-100 h-100" data-chartname="repeatCustomersChart">
   <canvas
