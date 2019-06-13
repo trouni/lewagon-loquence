@@ -4,7 +4,7 @@ COMPANIES = [
   {
     name: "Besties Natural",
     remote_photo_url: "http://www.bestiesnatural.com/wp-content/uploads/2019/02/besties_logo_blue_1000px.png"
-  },
+  }
 ]
 
 GROUPS = [
