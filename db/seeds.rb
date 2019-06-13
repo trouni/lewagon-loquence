@@ -15,18 +15,23 @@ GROUPS = [
 
 USERS = [
   {
+    first_name: "Trouni",
+    last_name: "T.",
     email: "trouni@loquence.co",
     password: "secret"
   },
-  {
+  {first_name: "Saad",
+    last_name: "Saad",
     email: "saad@loquence.co",
     password: "secret"
   },
-  {
+  {first_name: "Alex",
+    last_name: "Remp",
     email: "alex@loquence.co",
     password: "secret"
   },
-  {
+  {first_name: "Eugene",
+    last_name: "Eugene",
     email: "eugene@loquence.co",
     password: "secret"
   },
@@ -96,6 +101,7 @@ puts "Destroying companies..."
 Company.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
+Group.all.destroy_all
 
 
 puts "Creating companies & users..."
@@ -104,12 +110,14 @@ puts "Destroying groups..."
 Group.destroy_all
 
 USERS.each do |user|
-  user = User.create!(email: user[:email], password: user[:password])
+  user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password])
 end
 
 COMPANIES.each do |company|
   Company.create!(name: company[:name], owner: User.first)
 end
+
+
 GROUPS.each do |group|
   Group.create!(name: group[:name])
 end
