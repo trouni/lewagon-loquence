@@ -22,13 +22,13 @@
         <i class="fas fa-print btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Export this report"></i>
         <% end %>
         <% end %>
+
         <%#= link_to new_report_path do %>
         <%= link_to "#", data: { toggle: "modal", action: "navbar#setNewReportClass", target: "#newReportModal" } do %>
         <i class="fas fa-plus-square btn-icon scale-on-hover highlight-on-hover py-1 pl-2 pr-3 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Create a new report" data-toggle="modal" data-target="#newReportModal"></i>
         <% end %>
       </div>
     </div>
-  </div>
 
 <!-- Notifications Modal -->
 <% if @report && @report.persisted? %>
@@ -55,26 +55,33 @@
 <% end %>
 
 <!-- Share Modal -->
-<% if @report && @report.persisted? %>
-  <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content widget box-highlight-white">
-        <div class="modal-header">
-          <h5 class="modal-title text-black" id="shareModalLabel">Share this report</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <b><%= @report.name %></b>
-          <p><i>Invite people to view this report</i></p>
-          <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
+    <% if @report && @report.persisted? %>
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content widget box-highlight-white">
+          <div class="modal-header">
+            <h5 class="modal-title text-black" id="shareModalLabel">Share this report</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= @report.name %>
+            <p>Invite people to view this report</p>
+            <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
             <%= f.association :group, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-light box-highlight-white-hover mr-3" data-dismiss="modal">Close</button>
-              <%= f.submit "Share", class: "btn btn-light box-highlight-white-hover mr-3" %>
-            </div>
+          </div>
+          <div class="modal-body">
+            <p>Currently access for the report</p>
+            <% access_names = @report.groups.map do |group| %>
+            <% group.name%>
+            <% end %>
+            <%= access_names.join(" | ") %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= f.submit "Share", class: "btn" %>
+          </div>
           <% end %>
         </div>
       </div>
