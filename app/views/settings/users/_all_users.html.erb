@@ -19,7 +19,7 @@
           <i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i>
         </a>
       </th>
-      <td><%="#{user.first_name}  #{ (user.last_name || [""])[0].upcase }."%></td>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td>
         <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>

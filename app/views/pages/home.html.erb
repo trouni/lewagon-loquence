@@ -1,4 +1,4 @@
-<div id="homepage" class="w-100 home-banner position-relative" data-controller="navbar">
+<div id="homepage" class="w-100 home-banner position-relative pb-5" data-controller="navbar">
   <div id="top-nav" class="d-flex">
     <% if user_signed_in? %>
       <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-light box-highlight-white-hover mr-3" %>
@@ -18,11 +18,11 @@
       <h5 class="text-uppercase my-3 col-12 col-sm-12"><small>Aggregated E-commerce Data & Automated Reporting</small></h5>
       <h3 class="mt-5">Spend more time making <span class="highlight">business decisions</span>,</h3>
         <h3>instead of making spreadsheets.</h3>
-      <%= link_to "Connect your shops for free", reports_path, class: "btn bg-darkblue50 btn-outline-light box-highlight-white btn-home-cta my-5" %>
+      <%= link_to "Connect your shops for free", new_user_registration_path, class: "btn bg-darkblue50 btn-outline-light box-highlight-white btn-home-cta my-5" %>
     </div>
     <div class="supported-platforms">
       <h6 class="highlight-white">Supported platforms</h6>
-      <div class="logos mt-3">
+      <div class="logos mt-3 mb-5">
         <div class="platform-logo">
           <%= image_tag "logos/amazon.png", alt: "Amazon", style: "margin-top: 7px", class: "mx-5" %>
         </div>
@@ -34,6 +34,18 @@
         </div>
         <div class="platform-logo">
           <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", style: "margin-top: -2px", class: "mx-5"  %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/ebay.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5"  %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/magento.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5"  %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/rakuten.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5"  %>
+        </div>
+        <div class="platform-logo">
+          <%= image_tag "logos/eccube.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5"  %>
         </div>
       </div>
     </div>
