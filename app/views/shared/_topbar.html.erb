@@ -7,9 +7,11 @@
   <h1 class="report-title text-center highlight-white m-0 flex-1"><%= title.upcase %></h1>
   <div class="justify-self-end flex-1 text-right">
       <!-- <i id="btn-go-fullscreen" class="fas fa-expand btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable" data-action='click->navbar#toggleFullscreen'></i>
-        <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable hidden" data-action='click->navbar#toggleFullscreen'></i> -->
-        <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
-        <% if @report && @report.persisted? %>
+      <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable hidden" data-action='click->navbar#toggleFullscreen'></i> -->
+      <%= link_to "#", data: { toggle: "modal", target: "#notificationsModal" } do %>
+      <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
+      <% end %>
+      <% if @report && @report.persisted? %>
         <%= link_to edit_report_path(@report), remote: true do %>
         <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Edit this report"></i>
         <% end %>
@@ -20,6 +22,7 @@
         <i class="fas fa-print btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Export this report"></i>
         <% end %>
         <% end %>
+
         <%#= link_to new_report_path do %>
         <%= link_to "#", data: { toggle: "modal", action: "navbar#setNewReportClass", target: "#newReportModal" } do %>
         <i class="fas fa-plus-square btn-icon scale-on-hover highlight-on-hover py-1 pl-2 pr-3 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Create a new report" data-toggle="modal" data-target="#newReportModal"></i>
@@ -27,7 +30,31 @@
       </div>
     </div>
 
-    <!-- Share Modal -->
+<!-- Notifications Modal -->
+<% if @report && @report.persisted? %>
+  <div class="modal fade right" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+      <div class="modal-content widget box-highlight-white">
+        <div class="modal-header">
+          <h5 class="modal-title text-black" id="shareModalLabel"><b>Here are our suggestions for today</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><b>1</b> - Get ready for meeting with your Sales team</p>
+          <p><b>2</b> - Review your marketing strategy on Amazon</p>
+          <p><b>3</b> - Analysis - Repeat customer rate on shopify is low</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!-- Share Modal -->
     <% if @report && @report.persisted? %>
     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -59,7 +86,7 @@
         </div>
       </div>
     </div>
-    <% end %>
+  <% end %>
 
     <!-- New Report Modal -->
     <div class="modal fade" id="newReportModal" tabindex="-1" role="dialog" aria-labelledby="newReportModal" aria-hidden="true">
