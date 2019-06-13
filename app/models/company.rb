@@ -10,6 +10,7 @@
 #
 
 class Company < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   has_many :users, dependent: :destroy
   has_many :reports, through: :users, dependent: :destroy
   has_many :company_groups, dependent: :destroy

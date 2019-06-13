@@ -1,4 +1,4 @@
-.bundle
+FF.bundle
 log/*.log
 tmp/**/*
 tmp/*

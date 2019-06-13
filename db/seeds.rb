@@ -16,24 +16,28 @@ GROUPS = [
 USERS = [
   {
     first_name: "Trouni",
-    last_name: "T.",
+    last_name: ".T",
     email: "trouni@loquence.co",
-    password: "secret"
+    password: "secret",
+    remote_photo_url: "https://avatars3.githubusercontent.com/u/34345789?v=4"
   },
   {first_name: "Saad",
-    last_name: "Saad",
+    last_name: ".A",
     email: "saad@loquence.co",
-    password: "secret"
+    password: "secret",
+    remote_photo_url: "https://avatars0.githubusercontent.com/u/21337523?v=4"
   },
   {first_name: "Alex",
-    last_name: "Remp",
+    last_name: ".R",
     email: "alex@loquence.co",
-    password: "secret"
+    password: "secret",
+    remote_photo_url: "https://avatars0.githubusercontent.com/u/48198772?v=4"
   },
   {first_name: "Eugene",
-    last_name: "Eugene",
+    last_name: ".S",
     email: "eugene@loquence.co",
-    password: "secret"
+    password: "secret",
+    remote_photo_url: "https://avatars1.githubusercontent.com/u/49116295?v=4"
   },
 ]
 
@@ -109,8 +113,9 @@ puts "Creating companies & users..."
 puts "Destroying groups..."
 Group.destroy_all
 
-USERS.each do |user|
-  user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password])
+USERS.each do |attrs|
+  # user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password]) #cancelled out by Forest
+  user = User.create!(attrs)
 end
 
 COMPANIES.each do |company|
