@@ -1,7 +1,7 @@
 <div id="top-navbar" class="d-flex justify-content-between align-items-center pb-2 pt-4 pl-2 pr-3" data-controller="navbar">
     <div class="home-link flex-1">
         <%= link_to root_path do %>
-          <h4 class="highlight-white m-0">Loquence</h4>
+          <h4 class="highlight-white m-0"><%#= image_tag "logo_widgets.svg", class: "loquence-icon" %>Loquence</h4>
         <% end %>
       </div>
     <h1 class="report-title text-center highlight-white m-0 flex-1"><%= title.upcase %></h1>
@@ -10,7 +10,7 @@
       <i id="btn-exit-fullscreen" class="fas fa-compress btn-icon scale-on-hover highlight-on-hover py-1 px-3 clickable hidden" data-action='click->navbar#toggleFullscreen'></i> -->
       <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
       <% if @report && @report.persisted? %>
-        <%= link_to edit_report_path(@report), remote: true do %>
+        <%= link_to edit_report_path(@report), id: "edit-report-link", remote: true do %>
           <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Edit this report"></i>
         <% end %>
         <%= link_to "#", data: { toggle: "modal", target: "#shareModal" } do %>

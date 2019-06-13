@@ -18,24 +18,6 @@
   }
 }
 
-.dropdown-menu {
-  box-shadow: 0 0 5px white, 0 0 15px rgba(255,255,255,0.5);
-  color: $primary;
-  background: black linear-gradient(154.9deg, $darkblue75 0%, $darkblue50 86.37%);
-  padding: 10px 0px;
-  width: 250px;
-  border-radius: 5px;
-  .menu-item {
-    padding: 10px 20px;
-    display: block;
-    opacity: 0.8;
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      opacity: 1;
-    }
-  }
-}
-
 @media (max-width: 992px) {
   .navbar-loquence {
     display: none;
