@@ -1,19 +1,15 @@
 <div class="container platform-container vh-100">
-  <div class="row align-content-center justify-content-center">
-  <h3 class="highlight-white">Which platform do you want to connect?</h3>
-  </div>
-  <div class="row align-content-center justify-content-center platforms supported-platforms">
+  <div class="row h-100 align-content-center justify-content-center">
+    <h3 class="highlight-white">Which sales platform would you like to connect?</h3>
+    <div class="row align-content-center justify-content-center platforms supported-platforms">
       <div class="col-12" data-controller="category-selector">
-        <%= image_tag "logos/amazon.png", alt: "Amazon", class: "logo category"%>
-        <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "logo category", style: "margin-top: -5px" %>
-        <%= image_tag "logos/shopify.png", alt: "Shopify", class: "logo category", style: "margin-top: -15px" %>
-        <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "logo category", style: "margin-top: -18px" %>
+        <%= link_to next_wizard_path do %>
+          <%= image_tag "logos/amazon.png", alt: "Amazon", class: "logo category"%>
+          <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "logo category", style: "margin-top: -5px" %>
+          <%= image_tag "logos/shopify.png", alt: "Shopify", class: "logo category", style: "margin-top: -15px" %>
+          <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "logo category", style: "margin-top: -18px" %>
+        <% end %>
       </div>
-
-  </div>
-    <div class="row align-content-center justify-content-center">
-          <%= link_to 'Next', next_wizard_path, class: "btn btn-success w-50 align-content-center" %>
     </div>
+  </div>
 </div>
-
-

@@ -44,4 +44,8 @@ class Buyer < ApplicationRecord
   def self.unique_buyers_between(start_time, end_time = DateTime.now)
     Order.between(start_time, end_time).distinct.count(:buyer_id)
   end
+
+  def self.repeat_buyers_by(interval, start_time = Order.first_order_date, end_time = DateTime.now)
+
+  end
 end

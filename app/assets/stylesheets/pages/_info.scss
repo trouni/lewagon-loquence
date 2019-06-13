@@ -1,0 +1,111 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+.well {
+  position: relative;
+  overflow: hidden;
+  transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.panel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: default;
+  background: radial-gradient(ellipse farthest-corner at top left, #086788CC 10%, #1B435440), linear-gradient(#000000FF, #000000CC), url(bg-charts.jpg);
+}
+
+#loquence-link {
+  font-size: 4em;
+}
+
+.spreadsheet, iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.disappear {
+  animation: 2s easeInOutElastic;
+  // transition: opacity 0.5s ease-out, transform 1s ease-in;
+  // transform: scale(5);
+  // opacity: 0;
+}
+
+@keyframes easeInOutElastic {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  4% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  8% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  18% {
+    transform: scale(1.05);
+    opacity: 1.01;
+  }
+  20% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  28% {
+    transform: scale(0.94);
+    opacity: 0.98;
+  }
+  30% {
+    transform: scale(0.94);
+    opacity: 0.98;
+  }
+  38% {
+    transform: scale(1.17);
+    opacity: 1.09;
+  }
+  40% {
+    transform: scale(1.20);
+    opacity: 1.12;
+  }
+  60% {
+    transform: scale(-0.18);
+    opacity: -0.12;
+  }
+  62% {
+    transform: scale(-0.14);
+    opacity: -0.09;
+  }
+  70% {
+    transform: scale(0.02);
+    opacity: 0.02;
+  }
+  72% {
+    transform: scale(0.02);
+    opacity: 0.02;
+  }
+  80% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  82% {
+    transform: scale(-0.01);
+    opacity: -0.01;
+  }
+  90% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  92% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}

@@ -5,6 +5,7 @@
 
 #homepage {
   min-height: 100vh;
+  overflow: scroll;
   padding: 50px;
   .supported-platforms {
     opacity: 0.5;
@@ -18,8 +19,16 @@
       width: fit-content;
     }
   }
+  h3 {
+    letter-spacing: 1px;
+    font-size: 2em;
+  }
+  h5 {
+    letter-spacing: 3px;
+    opacity: 0.7;
+  }
   .platform-logo {
-    margin: 2em auto;
+    margin: 1.5em auto;
     img {
       height: 30px;
     }

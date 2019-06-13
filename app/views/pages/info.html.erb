@@ -1,15 +1,21 @@
-<div id="homepage" class="w-100 home-banner position-relative">
-  <div class="container d-flex justify-content-between flex-column h-100 text-center">
-    <div class="row justify-content-center vh-100">
-      <h1 class="highlight" style="color: white"><small>Business decisions based on data</small></h1>
+<div class="well le-wagon-slides w-100" id="well" data-controller="slides">
+  <div class="panel d-flex flex-column align-items-center justify-content-center">
+    <div class="">
+      <h1 class="highlight-white mb-4">It is a capital mistake to theorize before one has data.</h1>
+      <h4 class="font-italic">― Sir Arthur Conan Doyle, Sherlock Holmes</h4>
     </div>
-    <div >
-    <%= video_tag "pain2.mp4", size: "1200x600", controls: true %>
+  </div>
+  <div class="panel">
+    <%= video_tag "amazon_dashboard.mp4", autoplay: :autoplay, mute: :mute, class: "video" %>
+  </div>
+  <div class="panel">
+    <div class="spreadsheet">
+      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRhygtRuk2MisGAsEYix4WdJL_NKYebo9bhOVBCyxxwjbSinVc6SBDYTQsS7ckBOg/pubhtml?widget=true&amp;headers=false"></iframe>
     </div>
-    <div class="mt-4">
-    <%= video_tag "pain1.mp4", size: "1200x600", controls: true %>
-    </div>
-    <%= link_to "Go to Loquence", root_path %>
+    <%#= video_tag "pain1.mp4", autoplay: :autoplay, mute: :mute, class: "video" %>
+  </div>
+  <div class="panel d-flex align-items-center justify-content-center">
+    <h1 id="loquence-link" class="highlight-white" data-action="click->slides#addDisappearClass">Introducing <span class="highlight">Loquence</span></h1>
   </div>
 </div>
 

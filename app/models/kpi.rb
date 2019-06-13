@@ -28,10 +28,47 @@ class KPI < ApplicationRecord
     Order.group_by_day(:purchase_date).sum("order_total_cents / 100")
   end
 
+  # second, minute, hour, day, week, month, quarter, year
+  # hour_of_day, day_of_week (Sun > 0, Mon > 1...), day_of_month, month_of_year
+
+  def self.revenue(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      Order.group_by_period(interval, :purchase_date, range: range).sum("order_total_cents / 100")
+    else
+      Order.where(purchase_date: range).sum("order_total_cents / 100")
+    end
+  end
+
   # ORDERS
 
+  def self.orders_count(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      Order.group_by_period(interval, :purchase_date, range: range).count
+    else
+      Order.where(purchase_date: range).count
+    end
+  end
+
+  def self.avg_order_amount(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      result = {}
+      revenue(args).each do |period, revenue|
+        result[period] = (revenue / orders_count(args)[period])
+      end
+      return result
+    else
+      revenue / orders_count
+    end
+  end
+
   def self.order_count_total
-    Order.all.count
+    orders_count
   end
 
   def self.avg_order_amount
@@ -76,9 +113,19 @@ class KPI < ApplicationRecord
 
   # BUYERS
 
-  def self.unique_customers
-    Order.distinct.count('buyer_id')
+  def self.unique_customers(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      Order.select('buyer_id').distinct.group_by_period(interval, :purchase_date, range: range).count
+    else
+      Order.select('buyer_id').distinct.where(purchase_date: range).count
+    end
   end
+
+  # def self.unique_customers
+  #   Order.distinct.count('buyer_id')
+  # end
 
   def self.avg_purchase_frequency
     order_count_total.to_f / unique_customers
@@ -95,11 +142,18 @@ class KPI < ApplicationRecord
     ]
   end
 
-  def self.repeat_customers_per_day
-    [
-      ["Returning customers", Buyer.repeat_buyers],
-      ["New customers", Buyer.single_time_buyers]
-    ]
+  def self.fake_repeat_customers(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      result = {}
+      unique_customers(args).each do |period, customers|
+        result[period] = (orders_count(args)[period] - customers)
+      end
+      return result
+    else
+      orders_count - unique_customers
+    end
   end
 
   def self.new_customers_per_month

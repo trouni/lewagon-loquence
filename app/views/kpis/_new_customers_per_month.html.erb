@@ -1,4 +1,14 @@
-<div class="p-3 w-100 h-100" data-chartname="repeatCustomersChart">
+<%= column_chart [
+  {
+    name: 'One-time customers', stack: 'stack1', data: KPI.orders_count(interval: "month")
+  },
+  {
+    name: 'Repeat customers', stack: 'stack1', data: KPI.fake_repeat_customers(interval: "month")
+  }],
+  stacked: true
+%>
+
+<!-- <div class="p-3 w-100 h-100" data-chartname="repeatCustomersChart">
   <canvas
     id="repeat_customers_chart"
     style="width: 80%; height: 80%"
@@ -9,4 +19,4 @@
     data-shopifynewcustomer="<%= [10, 5, 25, 40, 70].to_json %>"
     data-shopifyrepeatcustomer="<%= [20, 30, 35, 40, 60].to_json %>"
   ></canvas>
-</div>
+</div> -->
