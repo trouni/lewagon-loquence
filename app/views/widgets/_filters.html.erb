@@ -1,8 +1,42 @@
-<div id="menu-item-filter-amazon" class="menu-item d-flex justify-content-between align-items-center">
-  <p class="m-0">Amazon</p>
-  <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "amazon" } %>
+<div class="widget-filters">
+  <%= render 'widgets/filter_menu_item', title: "Date range" do %>
+    <%= simple_form_for :filter, method: "get" do |f| %>
+      <div class="form-row">
+        <div class="col-md-6 text-center">
+          <%= f.input :start_time, as: :string, label: false, required: false, input_html: {class: "form-control datepicker"}, placeholder: "From date" %>
+        </div>
+        <div class="col-md-6 text-center">
+          <%= f.input :end_time, as: :string, label: false, required: false, input_html: {class: "form-control datepicker"}, placeholder: "To date" %>
+        </div>
+      </div>
+      <%= f.button :submit, "Go", class: "hidden" %>
+    <% end %>
+  <% end %>
+  <%= render 'widgets/filter_menu_item', title: "Group by" do %>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-outline-secondary px-3 active">
+        <input type="radio" name="options" id="group-by-month" autocomplete="off" checked> Month
+      </label>
+      <label class="btn btn-outline-secondary px-3">
+        <input type="radio" name="options" id="group-by-week" autocomplete="off"> Week
+      </label>
+      <label class="btn btn-outline-secondary px-3">
+        <input type="radio" name="options" id="group-by-day" autocomplete="off"> Day
+      </label>
+    </div>
+  <% end %>
+  <%= render 'widgets/filter_menu_item', title: "Sales channels" do %>
+    <div id="menu-item-filter-amazon" class="switch-item d-flex justify-content-between align-items-center">
+      <p class="m-0">Amazon</p>
+      <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "amazon" } %>
+    </div>
+    <div id="menu-item-filter-shopify" class="switch-item d-flex justify-content-between align-items-center">
+      <p class="m-0">Shopify</p>
+      <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "shopify" }  %>
+    </div>
+  <% end %>
 </div>
-<div id="menu-item-filter-shopify" class="menu-item d-flex justify-content-between align-items-center">
-  <p class="m-0">Shopify</p>
-  <%= render partial: 'shared/switch', locals: { widget: widget, switch_name: "shopify" }  %>
-</div>
+
+
+
+

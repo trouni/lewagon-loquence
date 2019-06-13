@@ -1,0 +1,46 @@
+.widget-filter-menu {
+  .dropdown-menu {
+    width: max-content;
+  }
+
+  .switch-item {
+    padding: 10px 0;
+  }
+  .widget-filters {
+    padding: 0 1em;
+  }
+
+  .filter-menu-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .filter-menu-item:last-child {
+    border-bottom: none;
+  }
+
+  .filter-title {
+    font-size: 0.8em;
+    // text-align: center;
+    // padding-top: 0.8em;
+    flex: 4;
+    display: flex;
+    align-items: center;
+  }
+
+  .filter-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8em 0;
+    font-size: 12px;
+    flex: 8;
+  }
+
+  .form-group {
+    margin-bottom: 0.2em;
+  }
+
+  label, input {
+    font-size: 12px;
+    // margin-bottom: 0.2em;
+  }
+}

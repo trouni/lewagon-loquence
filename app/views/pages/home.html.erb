@@ -1,35 +1,8 @@
-<div id="homepage" class="w-100 home-banner position-relative">
+<div id="homepage" class="w-100 home-banner position-relative" data-controller="navbar">
   <div id="top-nav" class="d-flex">
     <% if user_signed_in? %>
-      <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-outline-light bg-darkblue50 box-highlight-white-hover mr-3" %>
-      <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= image_tag "https://avatars1.githubusercontent.com/u/34345789?s=460&v=4", class: "avatar" %>
-      </button>
-      <div class="dropdown-menu dropdown-menu-right">
-        <%= link_to destroy_user_session_path do %>
-          <div id="menu-item-new-report" class="menu-item">
-            <p class="m-0">Sign out</p>
-          </div>
-        <% end %>
-        <% if @report && @report.persisted? %>
-          <%= link_to edit_report_path(@report), remote: true do %>
-            <div id="menu-item-edit-report" class="menu-item d-flex justify-content-between align-items-center">
-              <p class="m-0">Edit report</p>
-              <%= render 'shared/switch' %>
-            </div>
-          <% end %>
-          <%= link_to "#" do %>
-            <div id="menu-item-new-report" class="menu-item">
-              <p class="m-0">Share</p>
-            </div>
-          <% end %>
-          <%= link_to "#" do %>
-            <div id="menu-item-new-report" class="menu-item">
-              <p class="m-0">Export / Print</p>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-light box-highlight-white-hover mr-3" %>
+      <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-outline-light bg-darkblue50 box-highlight-white-hover mr-3" %>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light box-highlight-white-hover mr-3" %>
       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light box-highlight-white-hover mr-3" %>

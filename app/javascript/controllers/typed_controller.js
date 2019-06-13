@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     new Typed('#report_name', {
-      strings: ["Enter a name for the new report..."],
+      strings: ["Enter a name for your report..."],
       typeSpeed: 15,
       showCursor: true,
       startDelay: 500,
