@@ -69,7 +69,7 @@
             <%= @report.name %>
             <p>Invite people to view this report</p>
             <%= simple_form_for [@report, ReportAccess.new], html: { data: { controller: "select" } } do |f| %>
-            <%= f.association :group, label: false, label_method: :name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
+            <%= f.association :group, collection: Group.all - @report.groups, label: false, label_method: :display_name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
           </div>
           <div class="modal-body">
             <p>Currently access for the report</p>
