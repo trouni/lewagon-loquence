@@ -1,6 +1,9 @@
 <div data-controller="navbar">
   <div id="navbar" class="navbar navbar-loquence">
     <div class="navbar-top">
+      <%= link_to root_path do %>
+        <h4 class="home-link highlight-white m-0">Loquence</h4>
+      <% end %>
       <div class="menu-item d-flex">
         <%= cl_image_tag "https://res.cloudinary.com/dkol9v93b/image/upload/v1560392641/m11ki8czfvb2hgxaol7e.png", class: "avatar-square" %>
         <h4 class="avatar-name">Kiwana LLC</h4>

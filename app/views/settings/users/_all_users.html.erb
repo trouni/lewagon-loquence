@@ -11,43 +11,28 @@
     </tr>
   </thead>
   <tbody>
+    <% User.order(:created_at).all.each do |user| %>
     <tr>
-      <th scope="row"><i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i></th>
-      <td>Trouni T.</td>
-      <td>trouni@loquence.co</td>
-      <td>Sales, Marketing, Customer Support</td>
-      <td>Owner</td>
-      <td>17:23</td>
-    </tr>
-    <tr>
-      <th scope="row"><i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i></th>
-      <td>Alex R.</td>
-      <td>alex@loquence.co</td>
-      <td>Marketing, IT</td>
-      <td>Editor</td>
-      <td>Jun 2, 2019</td>
-    </tr>
-    <tr>
-      <th scope="row"><i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i></th>
-      <td>Saad A.</td>
-      <td>saad@loquence.co</td>
-      <td>Sales, Customer Support</td>
-      <td>Editor</td>
-      <td>May 18, 2019</td>
-    </tr>
-    <tr>
-      <th scope="row"><i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i></th>
-      <td><%="#{User.last.first_name}  #{ (User.last.last_name || [""])[0].upcase }"%></td>
-      <td>eugene@loquence.co</td>
-      <td>Sales, Marketing</td>
-      <td>Editor</td>
-      <td>May 28, 2019</td>
-    </tr>
-  </tbody>
+      <th scope="row">
+
+        <a href="#" data-toggle="modal" data-target="#exampleModalCenter">
+          <i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i>
+        </a>
+    </th>
+    <td><%="#{user.first_name}  #{ (user.last_name || [""])[0].upcase }."%></td>
+    <td><%= user.email %></td>
+    <td>
+      <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>
+    </td>
+    <td><%= ("Owner" if user == user.company.owner) || "Editor"%></td>
+    <td><%= Date.today - rand(1..5) %></td>
+  </tr>
+  <% end %>
+</tbody>
 </table>
 
 <div class="mt-sm-2">
-  <%=simple_form_for User.new, url: settings_path do |f|%>
+  <%=simple_form_for @user, url: settings_invite_path do |f|%>
   <%= f.error_notification %>
   <div class="form-container">
     <div class="mr-sm-2">
@@ -60,11 +45,36 @@
       <%= f.input :email, :placeholder => 'email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
     </div>
     <div class="mr-sm-2">
+      <%= link_to settings_path do%>
       <%= f.button :button, class:"btn btn-outline-light form-control" do %>
       <i class="fas fa-user-plus"></i>
       Add a new user
       <% end %>
+      <% end %>
     </div>
   </div>
   <% end %>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

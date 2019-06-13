@@ -1,0 +1,14 @@
+.dropdown-menu {
+  color: $primary;
+  background: rgba(0, 0, 0, 0.6) linear-gradient(154.9deg, $darkblue 0%, $darkblue75 86.37%);
+  padding: 10px 0px;
+  width: 250px;
+  border-radius: 5px;
+  .menu-item {
+    padding: 10px 20px;
+    display: block;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

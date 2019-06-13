@@ -153,9 +153,9 @@ ActiveRecord::Schema.define(version: 2019_06_13_035421) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "company_id"
     t.string "first_name"
     t.string "last_name"
+    t.bigint "company_id"
     t.string "team"
     t.boolean "admin", default: false, null: false
     t.string "photo"

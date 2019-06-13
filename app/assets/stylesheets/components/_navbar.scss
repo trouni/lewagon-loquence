@@ -1,28 +1,33 @@
-.navbar-loquence.expanded {
-  transition: none;
-  width: 240px;
+body.mini-navbar #navbar {
+  transition: width 0.2s ease-out 0.5s;
+  transition-delay: 0.5s;
+  width: 70px;
   .menu-item h4 {
-    opacity: 1;
+    transition-delay: 0.5s;
+    opacity: 0;
   }
   .home-link {
-    opacity: 1;
+    transition-delay: 0.5s;
+    opacity: 0;
+  }
+  .loquence-icon {
+    width: 1em;
+  }
+
+  &:hover {
+    width: 240px;
+    .menu-item h4 {
+      opacity: inherit;
+    }
+    .home-link {
+      opacity: inherit;
+    }
   }
 }
 
-.navbar-loquence:hover {
-  transition: width 0.2s ease-out 0s;
-  transition-delay: 0.3s;
+#navbar {
+  // transition: width 0.3s ease-out 0.5s;
   width: 240px;
-  .menu-item h4 {
-    opacity: 1;
-  }
-  .home-link {
-    opacity: 1;
-  }
-}
-.navbar-loquence {
-  transition: width 0.3s ease-out 0.5s;
-  width: 70px;
   overflow: hidden;
   padding: 24px;
   justify-content: space-between;
@@ -32,7 +37,7 @@
   flex-direction: column;
   // transition: 0.3s opacity ease-out, 0.3s width ease-out;
   .home-link {
-    opacity: 0;
+    opacity: 1;
   }
   .menu-item {
     align-items: center;
@@ -55,7 +60,7 @@
     font-size: 0.9em;
     line-height: 1.2em;
     letter-spacing: 3px;
-    opacity: 0;
+    opacity: 1;
   }
   h4.avatar-name {
     margin: 0 0 0 1em;

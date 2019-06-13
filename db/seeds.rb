@@ -23,7 +23,7 @@ USERS = [
     remote_photo_url: "https://avatars3.githubusercontent.com/u/34345789?v=4"
   },
   {first_name: "Saad",
-    last_name: "Amarani",
+    last_name: "Amrani",
     email: "saad@loquence.co",
     password: "secret",
     remote_photo_url: "https://avatars0.githubusercontent.com/u/21337523?v=4"
@@ -106,13 +106,12 @@ puts "Destroying companies..."
 Company.all.destroy_all
 puts "Destroying KPIs..."
 KPI.all.destroy_all
+puts "Destroying groups..."
 Group.all.destroy_all
 
 
 puts "Creating companies & users..."
 
-puts "Destroying groups..."
-Group.destroy_all
 
 USERS.each do |attrs|
   # user = User.create!(first_name: user[:first_name], last_name: user[:last_name], email: user[:email], password: user[:password]) #cancelled out by Forest
@@ -125,7 +124,10 @@ end
 
 
 GROUPS.each do |group|
-  Group.create!(name: group[:name])
+  group = Group.create!(name: group[:name])
+  rand(1...5).times do
+    GroupUser.create(user: User.all.sample, group: group)
+  end
 end
 
 puts "Creating KPIs..."
