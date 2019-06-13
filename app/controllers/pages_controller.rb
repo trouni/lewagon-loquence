@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @body_id = "home"
+    @body_classes = %w[bg-chart]
   end
 
   def info

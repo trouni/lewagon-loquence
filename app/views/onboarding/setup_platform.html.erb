@@ -2,26 +2,36 @@
 <div class="container">
 
   <div class="row vh-100 align-content-center justify-content-center">
-    <div class="platform-container d-flex justify-content-center ">
-      <%= image_tag "logos/shopify.png", alt: "Shopify", class: "w-20", style: "width: 40%; height: 100%;"  %>
-    </div>
-    <div class="col-12 col-md-8">
+    <h6 class="text-center mb-4">Connect your Shopify account and start building awesome reports! 🚀</h6>
+    <div class="col-12 col-md-6">
       <div class="widget w-100">
 
-          <div class="text-center">
-            <h3>Shopify API set-up</h3>
-            <p>Let's get your Shopify data and build amazing reports 🚀</p>
-
+        <div class="text-center d-flex justify-content-center mt-3 mb-4">
+          <h4 class="home-link highlight-white m-0">Loquence</h4><i class="fas fa-2x mx-5 fa-exchange-alt"></i><%= image_tag "logos/shopify.png", alt: "Shopify", class: "", style: "height: 32px;"  %>
         </div>
-          <form>
-            <div class="m-2">Shopify API key <input class="w-100" type="text" name="url" placeholder=" The API key that you generated"></div>
-            <div class="m-2">Shopify Password <input class="w-100" type="text" name="consumer key" placeholder=" The API password"></div>
-            <div class="m-2">Shared secret <input class="w-100" type="text" name="consumer key" placeholder="Secrets are used to validate the integrity of webhooks"></div>
-          </form>
-          <div class="d-flex mt-5">
-          <%= link_to 'You are all done', report_path(Report.last), class: 'btn btn-outline-success w-100' %>
+        <p class="text-center">Need help setting up your account? <span class="clickable">Watch our instructions.</span></p>
+        <form class="p-3">
+          <div class="form-group row">
+            <div class="m-2 w-100">Store url</div>
+            <input class="form-control" type="text" name="url" placeholder="https://yourstore.myshopify.com">
           </div>
-       </div>
+          <div class="form-group row">
+            <div class="m-2 w-100">API key</div>
+            <input class="form-control" type="text" name="url" placeholder="API Key from your Shopify store">
+          </div>
+          <div class="form-group row">
+            <div class="m-2 w-100">Password</div>
+            <input class="w-100 form-control" type="text" name="consumer key" placeholder="API Password from your Shopify store">
+          </div>
+          <div class="form-group row">
+            <div class="m-2 w-100">Shared secret</div>
+            <input class="w-100 form-control" type="text" name="consumer key" placeholder="Used to validate the integrity of webhooks">
+          </div>
+        </form>
+        <div class="d-flex justify-content-center">
+          <%= link_to 'Connect your Shopify store', reports_path, class: 'btn btn-outline-light box-highlight-white-hover mr-3 mb-3' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

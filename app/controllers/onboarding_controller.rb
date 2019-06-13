@@ -4,12 +4,14 @@ class OnboardingController < ApplicationController
   steps :confirm_profile, :add_platforms, :coming_soon, :setup_platform
 
   def show
+    @body_classes = %[bg-chart]
     skip_authorization
     @user = current_user
     render_wizard
   end
 
   def update
+    @body_classes = %[bg-chart]
     skip_authorization
     @user = current_user
     @user.update_attributes(user_params)

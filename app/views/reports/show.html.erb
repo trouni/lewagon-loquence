@@ -1,5 +1,5 @@
 <%= render 'shared/dashboard', title: @report.name do %>
-  <div class="ctn-widgets grid-layout pr-4" data-controller="navbar<%= ' dashbuilder-autolaunch' if @report.widgets.size == 0 %>" data-navbar-expanded="0">
+  <div class="ctn-widgets grid-layout pr-4" data-controller="navbar<%= ' dashbuilder-autolaunch' if @report.widgets.size == 0 %>">
     <% @report.widgets.each do |widget| %>
       <%= render partial: 'widgets/grid_item', locals: { widget: widget } %>
     <% end %>

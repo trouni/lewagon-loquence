@@ -1,15 +1,38 @@
 <div class="container platform-container vh-100">
-  <div class="row h-100 align-content-center justify-content-center">
-    <h3 class="highlight-white">Which sales platform would you like to connect?</h3>
+  <div class="row h-100 align-content-center justify-content-center flex-column">
+    <h3 class="highlight-white text-center">Which sales platform would you like to connect?</h3>
     <div class="row align-content-center justify-content-center platforms supported-platforms">
       <div class="col-12" data-controller="category-selector">
-        <%= link_to wizard_path(:setup_platform) do %>
-          <%= image_tag "logos/amazon.png", alt: "Amazon", class: "logo category"%>
-          <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", class: "logo category", style: "margin-top: -5px" %>
-          <%= image_tag "logos/shopify.png", alt: "Shopify", class: "logo category", style: "margin-top: -15px" %>
-          <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", class: "logo category", style: "margin-top: -18px" %>
-        <% end %>
+          <div class="select-platform mt-3 mb-4">
+            <div class="platform-logo">
+              <%= image_tag "logos/amazon.png", alt: "Amazon", style: "margin-top: 7px", class: "mx-5 clickable" %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/woocommerce.png", alt: "WooCommerce", style: "margin-top: 5px", class: "mx-5 clickable" %>
+            </div>
+            <div class="platform-logo">
+            <%= link_to wizard_path(:setup_platform) do %>
+              <%= image_tag "logos/shopify.png", alt: "Shopify", class: "mx-5 clickable"  %>
+            <% end %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/bigcommerce.png", alt: "BigCommerce", style: "margin-top: -2px", class: "mx-5 clickable"  %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/ebay.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5 clickable"  %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/magento.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5 clickable"  %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/rakuten.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5 clickable"  %>
+            </div>
+            <div class="platform-logo">
+              <%= image_tag "logos/eccube.png", alt: "BigCommerce", style: "margin-top: 0px", class: "mx-5 clickable"  %>
+            </div>
+          </div>
       </div>
+      <p>Your shop platform is not listed above? <%= mail_to "info@loquence.co", "Let us know!" %></p>
     </div>
   </div>
 </div>
