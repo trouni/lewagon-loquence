@@ -1,5 +1,8 @@
 
-<h2> <%= number_to_human(KPI.total_number_of_items_sold) %> items sold</h2>
+<h2>
+  <%= render partial: "shared/animated_number", locals: { value: KPI.total_number_of_items_sold, format: 'integer' } %>
+  items sold
+</h2>
 <!--number_with_delimiter to display with decimal: ','  -->
 <%= line_chart KPI.total_number_of_items_sold_per_month, thousands: "," %>
 
