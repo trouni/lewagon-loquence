@@ -2,7 +2,7 @@
   <div id="top-nav" class="d-flex">
     <% if user_signed_in? %>
       <%= link_to "Go to Dashboard", report_path(current_user.reports_as_owner.where(name: "Daily report").first), class: "btn btn-light box-highlight-white-hover mr-3" %>
-      <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-outline-light bg-darkblue50 box-highlight-white-hover mr-3" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light bg-darkblue50 box-highlight-white-hover mr-3" %>
     <% else %>
       <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light box-highlight-white-hover mr-3" %>
       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light box-highlight-white-hover mr-3" %>
