@@ -85,7 +85,7 @@ class KPI < ApplicationRecord
   end
 
   def self.avg_purchase_frequency_between(start_time, end_time = DateTime.now)
-    order_count_total_between(start_time, end_time) / Buyer.unique_buyers_between(start_time, end_time)
+    order_count_total_between(start_time, end_time) / Buyer.unique_buyers_between(start_time, end_time) unless Buyer.unique_buyers_between(start_time, end_time).zero?
   end
 
   def self.repeat_customers
