@@ -1,3 +1,14 @@
-#shareModal .modal-content {
-  background-color: $darkblue75;
+
+.modal {
+  .modal-content {
+    background-color: $darkblue50;
+  }
+  .close {
+      color: #fff;
+      opacity: 0.5;
+  }
+  .close:hover, .close:focus {
+      color: #fff;
+      opacity: 1;
+  }
 }

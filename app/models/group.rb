@@ -5,4 +5,8 @@ class Group < ApplicationRecord
   has_many :group_users
   has_many :users, through: :group_users
   validates :group_type, inclusion: { in: GROUP_TYPES }
+
+  def display_name
+    group_type == 'team' ? "[team] #{name}" : "[user] #{name}"
+  end
 end
