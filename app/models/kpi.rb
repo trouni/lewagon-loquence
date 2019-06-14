@@ -15,6 +15,8 @@ class KPI < ApplicationRecord
   has_many :widgets, dependent: :destroy
   validates :query, presence: true
 
+  KPI_NAMES = Dir["./app/views/kpis/*"].map { |filepath| filepath.gsub("./app/views/kpis/_","").gsub(".html.erb","")}
+
   # REVENUE
   def self.revenue_total
     Order.sum("order_total_cents / 100")

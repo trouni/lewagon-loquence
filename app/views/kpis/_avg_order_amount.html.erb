@@ -1,0 +1,4 @@
+<%#= line_chart KPI.send(widget.kpi.query) %>
+<%= line_chart [
+    {name: "Average order amount", data: KPI.avg_order_amount(interval: "week")}
+  ]%>

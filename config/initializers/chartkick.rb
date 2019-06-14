@@ -1,5 +1,5 @@
 Chartkick.options = {
-  colors: ['#00D7C0', '#F6DD27', '#FE864E', '#DB1271', '#8A4BFF'],
+  colors: ['#00D7C0', '#8A4BFF', '#F6DD27', '#FE864E', '#DB1271'],
   library: {
     mapsApiKey: ENV['GOOGLE_MAPS_API_KEY'],
     animation: {

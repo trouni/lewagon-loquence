@@ -10,10 +10,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super
-    redirect_to 'settings/users'
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -53,12 +52,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(user)
-    #if %().include?("trouni@loquence.co")
+    if user.company == "Loquence"
+      reports_path
+    else
       onboarding_path(:coming_soon)
+    end
   end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_inactive_sign_up_path_for(user)
+    # super(resource)
+    onboarding_path(:coming_soon)
+  end
 end
