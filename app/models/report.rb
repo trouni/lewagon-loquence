@@ -24,6 +24,8 @@ class Report < ApplicationRecord
   validates :name, presence: true
   RANDOMIMAGES = ["index_random_report_1.png", "index_random_report_2.png"]
 
+  THUMBNAILS = Dir["./app/assets/images/report_thumbnails/*"].map { |filepath| filepath.gsub("./app/assets/images/","").gsub(".png","")}
+
   def most_recent_widget_date
     return updated_at.strftime('%e %b %Y %H:%M:%S%p') if widgets.empty?
 
