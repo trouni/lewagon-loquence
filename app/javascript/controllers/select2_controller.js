@@ -7,7 +7,10 @@ export default class extends Controller {
 
   connect(event) {
     const select = this.context.scope.element.querySelector('.select2')
-    const $el = $(select).select2();
+    const $el = $(select).select2({
+      theme: "classic",
+      width: "resolve"
+    });
     $(select).select2('open');
     $el.on('change', () => {
       this.clickOnChangeTarget.click();

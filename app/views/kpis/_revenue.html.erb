@@ -1,34 +1,24 @@
-<%= column_chart Order.where(external_source: "Shopify").group_by_day(:purchase_date).sum("order_total_cents / 100"), thousands: ",",
-  options: {
-
-  },
+<%= column_chart KPI.revenue(interval: "day"), thousands: ",",
   library: {
-    # legend: {
-    #      labels: {
-    #           fontColor: 'orange'
-    #          }
-    #       },
-    # title: {
-    #     display: true,
-    #     fontColor: 'blue',
-    #     text: 'Custom Chart Title'
-    # },
-    scales: {
-        yAxes: [{
-            ticks: {
-                beginAtZero:true,
-                fontColor: '#DBE9EECC'
-            },
-        }],
-      xAxes: [{
-            ticks: {
-                fontColor: '#DBE9EECC'
-            },
-        }]
+    legend: {
+      labels: {
+        fontColor: '#FFFFFFCC'
+      }
     },
     gridLines: {
-      display: false,
-      color: 'white'
+      color: '#FFFFFFCC'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        }
+      }]
     }
   }
 %>
