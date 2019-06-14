@@ -1,4 +1,8 @@
-.select2-results__option[aria-selected]{
+.select2-dropdown {
+  color: #1B4353;
+}
+
+/*.select2-results__option[aria-selected]{
   background: #1B4353;
   background-color: #1B4353;
 }
@@ -26,7 +30,7 @@
 .select2-results__option.select2-results__option--highlighted{
     background: #086788CC;
     background-color: #086788CC;
-}
+}*/
 
 /*
 .select2-container--default .select2-search--dropdown .select2-search__field {
