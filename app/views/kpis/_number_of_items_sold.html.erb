@@ -1,8 +1,34 @@
 
-<h2>
-  <%= render partial: "shared/animated_number", locals: { value: KPI.total_number_of_items_sold, format: 'integer' } %>
-  items sold
-</h2>
+<div class="text-center">
+    <h3>
+      <%= render partial: "shared/animated_number", locals: { value: KPI.total_number_of_items_sold, format: 'integer', spanclass: 'highlight' } %>
+    </h3>
+    <small>items sold</small>
+  </div>
+
 <!--number_with_delimiter to display with decimal: ','  -->
-<%= line_chart KPI.total_number_of_items_sold_per_month, thousands: "," %>
+<%= line_chart KPI.total_number_of_items_sold_per_month, thousands: ",",
+  colors: ['#0E6E63', '#00D7C0'],
+  library: {
+    legend: {
+      labels: {
+        fontColor: '#FFFFFFCC'
+      }
+    },
+    gridLines: {
+      color: '#FFFFFFCC'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        }
+      }]
+    }
+  } %>
 
