@@ -13,7 +13,8 @@ node_modules
 yarn-error.log
 .byebug_history
 .env*
-db/seed_data
+db/seed_data/archive
+# db/seed_data
 
 /public/packs
 /public/packs-test
