@@ -1,12 +1,23 @@
-<% shopify_data = current_user.company.shopify_active? ? KPI.shopify_revenue(interval: "day") : [] %>
+<% if current_user.company.shopify_active? %>
+  <% data = [
+    {
+      name: 'Amazon Sales', stack: 'stack1', data: KPI.revenue(interval: "day"), thousands: ","
+    },
+    {
+      name: 'Shopify Sales', stack: 'stack1', data: KPI.shopify_revenue(interval: "day"), thousands: ","
+    }
+  ]
+  %>
+<% else %>
+  <% data = [
+    {
+      name: 'Amazon Sales', stack: 'stack1', data: KPI.revenue(interval: "day"), thousands: ","
+    }
+  ]
+  %>
+<% end %>
 
-<%= column_chart [
-  {
-    name: 'Amazon Sales', stack: 'stack1', data: KPI.revenue(interval: "day"), thousands: ","
-  },
-  {
-    name: 'Shopify Sales', stack: 'stack1', data: shopify_data, thousands: ","
-  }],
+<%= column_chart data,
   stacked: true,
   colors: ['#0E6E63', '#00D7C0'],
   library: {

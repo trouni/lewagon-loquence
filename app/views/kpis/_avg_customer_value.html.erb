@@ -1,5 +1,5 @@
-<% avg_customer_value_total = 2890%>
-<% avg_customer_value_month_faktor = 1.05 %>
+<% avg_customer_value_total = 7890 %>
+<% avg_customer_value_month_factor = 1.05 %>
 
 <div class="text-center mb-4">
   <p class="mb-3">Average customer value</p>
@@ -20,7 +20,7 @@
   </div>
   <div>
     <h4 class="highlight-white">
-      <%= number_to_currency((avg_customer_value_total * avg_customer_value_month_faktor).round, options ={locale: :jp}) %>
+      <%= number_to_currency((avg_customer_value_total * avg_customer_value_month_factor).round, options ={locale: :jp}) %>
     </h4>
     <small>last 12 months</small>
   </div>
