@@ -35,4 +35,25 @@
   (<%= number_to_percentage(revenue_for_top_number.to_f / OrderItem.sum("item_price_cents *quantity") * 100, delimiter: '.', precision: 1)%>)
   of total revenue
 </h5>
-<%= bar_chart best_sellers_list, discrete: true, thousands: "," %>
+<%= bar_chart best_sellers_list, discrete: true, thousands: ",",  library: {
+    legend: {
+      labels: {
+        fontColor: '#FFFFFFCC'
+      }
+    },
+    gridLines: {
+      color: '#FFFFFFCC'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        }
+      }]
+    }
+  } %>

@@ -2,5 +2,27 @@
 <% product_list = OrderItem.group(:product_id).count%>
 <% slow_mover_list = product_list.sort_by { |k, v| v } %>
 <%# data = ["Best sellers": @total_list.first(5)] %>
-<%= bar_chart slow_mover_list.first(slow_number), discrete: true %>
+<%= bar_chart slow_mover_list.first(slow_number), discrete: true, library: {
+    legend: {
+      labels: {
+        fontColor: '#0E6E63'
+      }
+    },
+    gridLines: {
+      color: '#00D7C0'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          fontColor: '#00D7C0'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#00D7C0'
+        }
+      }]
+    }
+  }
+ %>
 
