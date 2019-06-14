@@ -43,6 +43,16 @@ class KPI < ApplicationRecord
     end
   end
 
+  def self.shopify_revenue(args = {})
+    interval = args[:interval]
+    range = args[:range] || Order.oldest_order.purchase_date..DateTime.now
+    if interval
+      Order.where(external_source: "Shopify").group_by_period(interval, :purchase_date, range: range).sum("order_total_cents / 100")
+    else
+      Order.where(external_source: "Shopify").where(purchase_date: range).sum("order_total_cents / 100")
+    end
+  end
+
   # ORDERS
 
   def self.orders_count(args = {})
