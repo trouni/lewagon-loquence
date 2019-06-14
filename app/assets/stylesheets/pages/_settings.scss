@@ -1,13 +1,18 @@
 #settings-container {
   max-width: unset;
+  font-size: 14px;
 
   .settings-table {
     background: none;
     border: none;
     width: 100%;
     font-weight: 200;
+    td {
+      padding: 0.5em;
+    }
     thead {
       border-bottom: 1px solid $teal25;
+      margin-bottom: 0.5em;
     }
     tr {
       height: 3em;
@@ -18,8 +23,7 @@
     color: $darkblue;
   }
   .form-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
   }
 
   .form-element{
