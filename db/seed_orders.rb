@@ -14,11 +14,11 @@ def fake_food_product_name
   ].sample.split(" ").map { |word| word.capitalize }.join(" ")
 end
 
-def destroy_order_seeds(platform)
+def destroy_order_seeds(platform = nil)
   # puts "Destroying order items..."
   # OrderItem.where(external_source: platform).destroy_all
   puts "Destroying orders..."
-  Order.where(external_source: platform).destroy_all
+  platform ? Order.where(external_source: platform).destroy_all : Order.destroy_all
 end
   # puts "Destroying products..."
   # Product.all.destroy_all
