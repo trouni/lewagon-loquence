@@ -13,6 +13,9 @@
 #  company_id             :bigint
 #  first_name             :string
 #  last_name              :string
+#  team                   :string
+#  admin                  :boolean          default(FALSE), not null
+#  photo                  :string
 #
 
 require 'test_helper'
