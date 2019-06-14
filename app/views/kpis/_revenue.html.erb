@@ -1,17 +1,17 @@
 <% if current_user.company.shopify_active? %>
   <% data = [
     {
-      name: 'Amazon Sales', stack: 'stack1', data: KPI.revenue(interval: "day"), thousands: ","
+      name: 'Amazon Sales', stack: 'stack1', data: Order.group_by_period("day", :purchase_date, range: 1.months.ago..DateTime.now).sum("order_total_cents / 100"), thousands: ","
     },
     {
-      name: 'Shopify Sales', stack: 'stack1', data: KPI.shopify_revenue(interval: "day"), thousands: ","
+      name: 'Shopify Sales', stack: 'stack1', data: Order.where(external_source: "Shopify").group_by_period("day", :purchase_date, range: 1.months.ago..DateTime.now).sum("order_total_cents / 100"), thousands: ","
     }
   ]
   %>
 <% else %>
   <% data = [
     {
-      name: 'Amazon Sales', stack: 'stack1', data: KPI.revenue(interval: "day"), thousands: ","
+      name: 'Amazon Sales', stack: 'stack1', data: Order.group_by_period("day", :purchase_date, range: 1.months.ago..DateTime.now).sum("order_total_cents / 100"), thousands: ","
     }
   ]
   %>
