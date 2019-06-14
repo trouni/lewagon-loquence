@@ -6,7 +6,7 @@ class ReportAccessesController < ApplicationController
     authorize @report_access
     if @report_access.save
       flash[:notice] = "#{@report_access.group.group_type.capitalize} #{@report_access.group.name} now has access to this report."
-      redirect_to @report
+      redirect_to report_path(@report)
     else
       flash[:alert] = "Could not add access this report."
       render 'reports/show'

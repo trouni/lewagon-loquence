@@ -33,6 +33,12 @@ class SettingsController < ApplicationController
     redirect_to settings_users_path
   end
 
+  def activate_shopify
+    skip_authorization
+    current_user.company.update(shopify_active: true)
+    redirect_to onboarding_path(:success)
+  end
+
   private
 
   def init_body_tag

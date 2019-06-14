@@ -1,5 +1,18 @@
-<h2>General Information</h2>
-<h5 class="mt-5 mb-3">Company</h5>
-<p><%= current_user.company.name %></p>
-<h5 class="mt-5 mb-3">Your account</h5>
-<p><%= current_user.name %> (<%= current_user.email %>)</p>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h2>General Information</h2>
+    <h5 class="mt-5 mb-3">Company</h5>
+    <p><%= current_user.company.name %></p>
+    <h5 class="mt-5 mb-3">Your account</h5>
+    <p><%= current_user.name %> (<%= current_user.email %>)</p>
+  </div>
+  <div class="col-12 col-md-6">
+    <h2>Sales channels</h2>
+    <p class="mt-5 mb-3">Currently connected to your Loquence account:</p>
+    <p><%= image_tag "logos/amazon.png", alt: "Amazon", width: "100px" %></p>
+    <% if current_user.company.shopify_active? %>
+      <p class="mt-5 mb-3">Fetching initial data for the following platforms:</p>
+      <p><%= image_tag "logos/shopify.png", alt: "Amazon", width: "100px" %></p>
+    <% end %>
+  </div>
+</div>

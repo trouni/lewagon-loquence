@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
     @report.owner = current_user
     authorize @report
     if @report.save
-      redirect_to @report
+      redirect_to report_path(@report)
     else
       render 'report/new'
     end

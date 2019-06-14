@@ -1,7 +1,7 @@
 class OnboardingController < ApplicationController
   include Wicked::Wizard
-
-  steps :confirm_profile, :add_platforms, :coming_soon, :setup_platform
+  before_action :init_body_classes
+  steps :confirm_profile, :add_platforms, :coming_soon, :setup_platform, :success
 
   def show
     @body_classes = %[bg-chart]
@@ -19,7 +19,13 @@ class OnboardingController < ApplicationController
     render_wizard @user
   end
 
+  private
+
   def user_params
     params.require(:user).permit(:first_name, :last_name)
+  end
+
+  def init_body_classes
+    @body_classes = %w[mini-navbar]
   end
 end
