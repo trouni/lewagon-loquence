@@ -6,7 +6,8 @@
         <div class="report-cards mb-5">
           <div class="row">
             <div class="col-12 col-md-6">
-              <% @reports.each do |report| %>
+              <h3 class="mb-5">My reports</h3>
+              <% current_user.reports_as_owner.each do |report| %>
                 <%# image_name = report.name.gsub(" ","_").downcase %>
                 <div class="card-report widget">
                   <%= link_to report do %>
@@ -23,8 +24,31 @@
                   <% end %>
                 </div>
               <% end %>
-
             </div>
+              <div class="col-12 col-md-6">
+                <h3 class="mb-5">Reports shared with me</h3>
+                <% if current_user.reports_shared_with_me.empty? %>
+                  <p>You currently have no reports shared with you.</p>
+                  <%= link_to "Would you like to invite collaborators?", settings_users_path %>
+                <% end %>
+                <% current_user.reports_shared_with_me.each do |report| %>
+                  <%# image_name = report.name.gsub(" ","_").downcase %>
+                  <div class="card-report widget">
+                    <%= link_to report do %>
+                      <div class="card-report-content">
+                        <div>
+                          <%= image_tag Report::RANDOMIMAGES.sample, alt: "alttext" %>
+                          <%#= image_tag "index_#{image_name}.png" %>
+                        </div>
+                        <div class="pl-4 p-3 flex-grow-1">
+                          <h5><%=report.name%></h5>
+                          <!-- <small class="font-italic">Last updated <%= time_ago_in_words(report.most_recent_widget_date) %> ago</small> -->
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
           </div>
         </div>
       </div>

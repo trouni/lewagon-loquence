@@ -13,6 +13,9 @@
 #  company_id             :bigint
 #  first_name             :string
 #  last_name              :string
+#  team                   :string
+#  admin                  :boolean          default(FALSE), not null
+#  photo                  :string
 #
 
 class User < ApplicationRecord
@@ -55,6 +58,10 @@ class User < ApplicationRecord
       "customers_per_country"
     ]
   }
+
+  def reports_shared_with_me
+    reports.where("owner_id != ?", self.id)
+  end
 
   def create_user_group
     if first_name && last_name

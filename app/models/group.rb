@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  group_type :string           default("team")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Group < ApplicationRecord
   GROUP_TYPES = %w(team user)
   has_many :report_accesses
