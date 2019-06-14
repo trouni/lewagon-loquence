@@ -1,78 +1,87 @@
 <h2>All users</h2>
-<table class="settings-table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Team(s)</th>
-      <th scope="col">Role(s)</th>
-      <th scope="col">Last sign in</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% User.order(:created_at).all.each do |user| %>
-    <tr>
-      <th scope="row">
+<div class="container">
+  <table class="settings-table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Team(s)</th>
+        <th scope="col">Role(s)</th>
+        <th scope="col">Last sign in</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% User.order(:created_at).all.each do |user| %>
+      <tr>
+        <th scope="row">
 
-        <a href="#" data-toggle="modal" data-target="#editUser-<%= user.id %>" data-user-id="<%= user.id %>">
-          <i class="fas fa-user-edit mr-3 highlight-on-hover scale-on-hover btn-icon"></i>
-        </a>
-      </th>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td>
-        <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>
-      </td>
-      <td><%= ("Owner" if user == user.company.owner) || "Editor"%></td>
-      <td><%= Date.today - rand(1..5) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="mt-sm-2">
-  <%=simple_form_for User.new, url: settings_invite_path do |f|%>
-  <%= f.error_notification %>
-  <div class="form-container">
-    <div class="mr-sm-2">
-      <%= f.input :first_name, :placeholder => 'First name', label: false, input_html: { class: "mb-2 mr-sm-2" }  %>
-    </div>
-    <div class="mr-sm-2">
-      <%= f.input :last_name, :placeholder => 'Last name', label: false, input_html: { class: "mb-2 mr-sm-2" } %>
-    </div>
-    <div class="mr-sm-2">
-      <%= f.input :email, :placeholder => 'email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
-    </div>
-    <div class="mr-sm-2">
-      <%= link_to settings_path do%>
-      <%= f.button :button, class:"btn btn-outline-light form-control" do %>
-      <i class="fas fa-user-plus"></i>
-      Add a new user
+          <a href="#" data-toggle="modal" data-target="#editUser-<%= user.id %>" data-user-id="<%= user.id %>">
+            <i class="fas fa-user-edit highlight-on-hover scale-on-hover btn-icon"></i>
+          </a>
+        </th>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <a href="#" data-toggle="modal" data-target="#editTeams-<%= user.id %>" data-user-id="<%= user.id %>">
+            <i class="fas fa-edit highlight-on-hover scale-on-hover btn-icon"></i>
+          </a>
+          <%= user.groups.where("group_type != 'user'").map { |group| group.name }.join(", ") %>
+        </td>
+        <td><%= ("Owner" if user == user.company.owner) || "Editor"%></td>
+        <td><%= Date.today - rand(1..5) %></td>
+      </tr>
       <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-5">
+    <div class="widget p-4">
+      <%=simple_form_for User.new, url: settings_invite_path do |f|%>
+        <%= f.error_notification %>
+        <div class="">
+          <div class="input-fields d-flex w-100">
+            <div class="mr-sm-2 flex-1">
+              <%= f.input :first_name, :placeholder => 'John', label: false  %>
+            </div>
+            <div class="mr-sm-2 flex-1">
+              <%= f.input :last_name, :placeholder => 'Smith', label: false %>
+            </div>
+            <div class="flex-1">
+              <%= f.input :email, :placeholder => 'john.smith@example.com', label: false, input_html: { autocomplete: 'email' }  %>
+            </div>
+          </div>
+          <div class="">
+            <%= link_to settings_path do%>
+            <%= f.button :button, class:"btn btn-outline-light form-control" do %>
+            <i class="fas fa-user-plus"></i>
+            Invite a new user
+            <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
-  <% end %>
 </div>
 
 <% User.order(:created_at).all.each do |user| %>
 <!-- Modal -->
-<div class="modal fade" id="editUser-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="editTeams-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Edit user</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Manage teams for <%= user.name %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
         <%= simple_form_for user, :url => settings_update_path, :method => :patch do |f| %>
         <div class="modal-body">
-         <%= f.input :first_name, :placeholder => 'First name', label: false, input_html: { class: "mb-2 mr-sm-2" }  %>
-         <%= f.input :last_name, :placeholder => 'Last name', label: false, input_html: { class: "mb-2 mr-sm-2" } %>
-         <%= f.input :email, :placeholder => 'email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
-         <%= f.association :groups, collection: Group.all.where(group_type: 'team'), as: :check_boxes, label: false,  wrapper: :vertical_collection_inline %>
+         <%= f.input :first_name, as: :hidden, :placeholder => 'First name', label: false, input_html: { class: "mb-2 mr-sm-2" }  %>
+         <%= f.input :last_name, as: :hidden, :placeholder => 'Last name', label: false, input_html: { class: "mb-2 mr-sm-2" } %>
+         <%= f.input :email, as: :hidden, :placeholder => 'Email', label: false, input_html: { autocomplete: 'email' }, input_html: { class: "mb-2 mr-sm-2" }  %>
+         <%= f.association :groups, collection: Group.all.where(group_type: 'team'), as: :check_boxes, label: false,  wrapper: :vertical_collection %>
          <%= f.input :id, as: :hidden %>
 
      </div>

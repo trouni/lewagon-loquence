@@ -3,9 +3,16 @@
   </div>
   <h1 class="report-title text-center highlight-white m-0 flex-1"><%= title.upcase %></h1>
   <div class="justify-self-end flex-1 text-right">
-      <%= link_to "#", data: { toggle: "modal", target: "#notificationsModal" } do %>
-        <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
-      <% end %>
+      <!-- <div class="btn-group widget-filter-menu">
+        <button type="button" class="widget-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Notifications"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" style="width: 250px; font-size: 12px;">
+          <div class="menu-item mb-0"><h5>Recommendation</h5>
+            <p>Based on your product categories and pricing, it seems your products would sell well on Rakuten. Would you like help to get set up?</p>
+          </div>
+        </div>
+      </div> -->
       <% if @report && @report.persisted? %>
         <%= link_to edit_report_path(@report), id: "edit-report-link", remote: true do %>
           <i class="fas fa-edit btn-icon scale-on-hover highlight-on-hover py-1 px-2 clickable" data-toggle="tooltip" data-delay='{ "show": 500, "hide": 100 }' data-placement="bottom" title="Edit this report"></i>
@@ -29,7 +36,7 @@
   <% if @report && @report.persisted? %>
     <div class="modal fade right" id="notificationsModal" tabindex="-1" role="dialog" aria-labelledby="notificationsModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
-        <div class="modal-content widget box-highlight-white">
+        <div class="modal-content widget">
           <div class="modal-header">
             <h5 class="modal-title text-black" id="notificationsModalLabel"><b>Here are our suggestions for today</b></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -37,9 +44,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p><b>1</b> - Get ready for meeting with your Sales team</p>
-            <p><b>2</b> - Review your marketing strategy on Amazon</p>
-            <p><b>3</b> - Analysis - Repeat customer rate on shopify is low</p>
+            <p>Based on your product categories and pricing, it seems your products would sell well on Rakuten Ichiba. Would you like help to get set up?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -67,11 +72,19 @@
             <%= f.association :group, collection: Group.all - @report.groups, label: false, label_method: :display_name, value_method: :id, include_blank: false, input_html: { class: "select2" }, prompt: "Enter a user or team name..." %>
           </div>
           <div class="modal-body">
-            <p>Currently access for the report</p>
-            <% access_names = @report.groups.map do |group| %>
-            <% group.name%>
+            <p>The following user(s) and team(s) currently have access to this report:</p>
+            <% @report.groups.each do |group| %>
+              <div class="btn btn-outline-light">
+                <div class="d-flex">
+                <% if group.group_type == "user" %>
+                  <i class="fas fa-user btn-icon"></i>
+                <% else %>
+                  <i class="fas fa-users btn-icon"></i>
+                <% end %>
+                <%= group.name%>
+                </div>
+              </div>
             <% end %>
-            <%= access_names.join(" | ") %>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-light box-highlight-white-hover mr-3 px-3" data-dismiss="modal">Cancel</button>
