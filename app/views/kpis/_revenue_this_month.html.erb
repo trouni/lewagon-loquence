@@ -28,14 +28,14 @@
 
 <div class="text-center">
   <h5>Revenue growth</h5>
-  <div class="d-flex justify-content-between">
-    <div>
-      <h3 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 3.2, format: 'percent', prefix: '+' } %></h3>
-      <p>(previous month)</p>
+  <div class="d-flex w-100 justify-content-around">
+    <div class="text-center w-100">
+      <h4 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 3.2, format: 'percent', prefix: '+' } %></h4>
+      <small>previous month</small>
     </div>
-    <div>
-      <h3 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 6.3, format: 'percent', prefix: '+' } %></h3>
-      <p>(same period last year)</p>
+    <div class="text-center w-100">
+      <h4 class="highlight-white"><%= render partial: "shared/animated_number", locals: { value: 6.3, format: 'percent', prefix: '+' } %></h4>
+      <small>previous year</small>
     </div>
   </div>
 </div>

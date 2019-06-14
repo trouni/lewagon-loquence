@@ -1,0 +1,26 @@
+<%= column_chart OrderItem.joins(:product).top(:title, 5),
+  colors: ['#0E6E63', '#00D7C0'],
+  library: {
+    legend: {
+      labels: {
+        fontColor: '#FFFFFFCC'
+      }
+    },
+    gridLines: {
+      color: '#FFFFFFCC'
+    },
+    scales: {
+      yAxes: [{
+        display: false,
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        },
+      }],
+      xAxes: [{
+        ticks: {
+          fontColor: '#FFFFFFCC'
+        }
+      }]
+    }
+  }
+%>

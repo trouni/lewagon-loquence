@@ -1,6 +1,0 @@
-<% slow_number = 10 %>
-<% product_list = OrderItem.group(:product_id).count%>
-<% slow_mover_list = product_list.sort_by { |k, v| v } %>
-<%# data = ["Best sellers": @total_list.first(5)] %>
-<%= bar_chart slow_mover_list.first(slow_number), discrete: true %>
-

@@ -35,8 +35,19 @@ class SettingsController < ApplicationController
 
   def activate_shopify
     skip_authorization
+    # report = Report.create(
+    #   name: "Multi-Platforms Report",
+    #   description: "Automatically generated report for multi-platforms sales",
+    #   owner: current_user
+    # )
+    # Widget.create(
+    #   report: report,
+    #   grid_item_position: "1 / 3 / span 6 / span 8",
+    #   kpi: KPI.find_by(query: "revenue"),
+    #   name: "Multi-platforms revenue"
+    # )
     current_user.company.update(shopify_active: true)
-    redirect_to onboarding_path(:success)
+    redirect_to settings_path
   end
 
   private

@@ -20,7 +20,6 @@ class ReportPolicy < ApplicationPolicy
     # TODO: add company when Alex completes model for the company
     # record.company == user.company
     user.reports.include?(record) || user.admin
-
   end
 
   def destroy?

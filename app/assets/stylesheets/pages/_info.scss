@@ -16,7 +16,7 @@ body {
   overflow: hidden;
   box-sizing: border-box;
   cursor: default;
-  background: radial-gradient(ellipse farthest-corner at top left, #086788CC 10%, #1B435440), linear-gradient(#000000FF, #000000CC), url(images/bg-charts.jpg);
+  background: radial-gradient(ellipse farthest-corner at top left, #086788CC 10%, #1B435440), linear-gradient(#000000FF, #000000CC), asset-url('bg-charts.jpg');
 }
 
 #loquence-link {

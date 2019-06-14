@@ -32,7 +32,7 @@ class User < ApplicationRecord
   has_many :user_platforms, dependent: :destroy
   # validates :team, inclusion: { in: TEAM }
   mount_uploader :photo, PhotoUploader
-  after_create :create_user_group, :create_demo_report
+  after_create :create_user_group
 
   # validate first sign up without company
   before_validation do
@@ -61,6 +61,10 @@ class User < ApplicationRecord
 
   def reports_shared_with_me
     reports.where("owner_id != ?", self.id)
+  end
+
+  def user_group
+    groups.where(group_type: "user")
   end
 
   def create_user_group

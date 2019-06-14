@@ -22,23 +22,26 @@ USERS = [
     password: "secret",
     remote_photo_url: "https://avatars3.githubusercontent.com/u/34345789?v=4"
   },
-  {first_name: "Saad",
+  {
+    first_name: "Saad",
     last_name: "Amrani",
     email: "saad@loquence.co",
     password: "secret",
     remote_photo_url: "https://avatars0.githubusercontent.com/u/21337523?v=4"
   },
-  {first_name: "Alex",
-    last_name: "Remp",
-    email: "alex@loquence.co",
-    password: "secret",
-    remote_photo_url: "https://avatars0.githubusercontent.com/u/48198772?v=4"
-  },
-  {first_name: "Eugene",
+  {
+    first_name: "Eugene",
     last_name: "Sia",
     email: "eugene@loquence.co",
     password: "secret",
     remote_photo_url: "https://avatars1.githubusercontent.com/u/49116295?v=4"
+  },
+  {
+    first_name: "Alex",
+    last_name: "Remp",
+    email: "alex@loquence.co",
+    password: "secret",
+    remote_photo_url: "https://avatars0.githubusercontent.com/u/48198772?v=4"
   },
 ]
 
@@ -133,6 +136,17 @@ User.all.each do |user|
   user.update(company: Company.last)
 
   # grid-area: grid-row-start / grid-column-start / grid-row-end / grid-column-end | itemname;
+  if user != User.first
+    report = Report.create!(
+      name: "#{user.first_name.capitalize}'s Personal KPIs",
+      owner: user
+    )
+    ReportAccess.create!(
+      group: User.first.user_group.first,
+      report: report
+    )
+  end
+
 
   SAMPLE_REPORT_LAYOUTS.each do |title, widget|
     report =
@@ -154,8 +168,17 @@ User.all.each do |user|
     end
     print "#"
   end
-  puts
 end
+
+report = Report.create!(
+      name: "June 2019 Pop-up store event report",
+      owner: User.second
+    )
+    ReportAccess.create!(
+      group: User.first.user_group.first,
+      report: report
+    )
+
 
 if ENV["orders"] == "reset"
   puts "-" * 30
