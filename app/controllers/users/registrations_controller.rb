@@ -62,6 +62,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(user)
     # super(resource)
-    onboarding_path(:coming_soon)
+    redirect_to 'pages/comingsoon'
+  end
+
+  private
+
+  def method_name
+
   end
 end

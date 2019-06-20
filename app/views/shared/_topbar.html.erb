@@ -102,7 +102,7 @@
       <div class="modal-content bg-transparent">
         <div class="modal-body">
           <%= simple_form_for Report.new, data: { controller: 'typed' } do |f| %>
-          <%= f.input :name, label: false, autocomplete: 'off', input_html: { data: { target: 'typed.focus' } } %>
+          <%= f.input :name, label: false, input_html: { autocomplete: 'off', data: { target: 'typed.focus' } } %>
           <%= f.button :submit, "Create", id: 'create-cocktail-submit', class: 'btn-primary hidden' %>
           <% end %>
         </div>
