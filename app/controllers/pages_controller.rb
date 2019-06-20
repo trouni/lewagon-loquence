@@ -9,5 +9,7 @@ class PagesController < ApplicationController
   def info
   end
 
+  def coming_soon
 
+  end
 end

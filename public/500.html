@@ -33,6 +33,17 @@
   .rails-default-error-page div.dialog > p {
 
   }
+
+  .highlight-white {
+    font-weight: 300;
+    color: white;
+    text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+  }
+  .highlight {
+    font-weight: 300;
+    color: $highlight;
+    text-shadow: 0 0 5px $highlight, 0 0 15px rgba(255,255,255,0.5);
+  }
   </style>
 </head>
 
@@ -41,9 +52,9 @@
 
   <div class="dialog">
 
-  <h1>We're sorry, but something went wrong.</h1>
-  <h4>If you are the application owner check the logs for more information.</h4>
-  <h1>500</h1>
+  <h1 class="highlight-white">We're sorry, but something went wrong :(</h1>
+  <h2>Error <span class="highlight">500</span>: Internal server error</h2>
+  <p>We have been notified and are looking into this.</p>
 
 </body>
 </html>
